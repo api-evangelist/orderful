@@ -1,0 +1,748 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Label API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Label
+  description: Generate UCC-128 shipping labels.
+paths:
+  /v3/labels:
+    post:
+      operationId: LabelController_generate
+      summary: Generate Label
+      description: 'Generates a PDF or ZPL file to be used for label printing. For more information, see the <a href="https://docs.orderful.com/docs/generate-shipping-label" target="_blank">Create a Label guide</a>. Supports single label or batch generation.
+
+        '
+      tags:
+      - Label
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: skipValidation
+        in: query
+        required: false
+        description: Skip validation.
+        schema:
+          type: boolean
+      - name: format
+        in: query
+        required: false
+        description: Output format for the label.
+        schema:
+          type: string
+          enum:
+          - zpl
+          - pdf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/GenerateLabelRequestBodyDto'
+                title: Single Label
+              - type: array
+                items:
+                  $ref: '#/components/schemas/GenerateLabelRequestBodyDto'
+                title: Batch Labels
+      responses:
+        '201':
+          description: Label generated successfully.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: string
+                  description: ZPL label content.
+                  title: ZPL
+                - type: string
+                  format: binary
+                  description: PDF label content.
+                  title: PDF
+components:
+  schemas:
+    GenerateLabelRequestBodyDto:
+      type: object
+      description: Request body for generating a UCC-128 shipping label.
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          description: Company/format to generate a label for.
+          enum:
+          - ACADEMY_SPORTS_ANY_MIXED
+          - ACADEMY_SPORTS_ANY_SINGLE
+          - ACE_HARDWARE_CARTON
+          - ACE_HARDWARE_PALLET
+          - ALBERTSONS_SAFEWAY_CARTON_MIXED
+          - ALBERTSONS_SAFEWAY_CARTON_SINGLE
+          - ALS_SPORTING_GOODS_MIXED_CARTON
+          - ALS_SPORTING_GOODS_SINGLE_CARTON
+          - ALTARDSTATE
+          - AMAZON_US_RETAIL_MIXED_PALLET
+          - AMAZON_US_RETAIL_SINGLE_CARTON_NON-PALLETIZED
+          - AMAZON_US_RETAIL_SINGLE_CARTON_PALLETIZED
+          - AMAZON_US_RETAIL_SINGLE_PALLET
+          - AMERICAN_FREIGHT_FURNITURE_AND_MATTRESS_CARTON_MULTI
+          - AMERICAN_FREIGHT_FURNITURE_AND_MATTRESS_CARTON_SINGLE
+          - AMERICAN_FREIGHT_FURNITURE_AND_MATTRESS_PALLET_MULTI
+          - AMERICAN_FREIGHT_FURNITURE_AND_MATTRESS_PALLET_SINGLE
+          - ARMY_AND_AIR_FORCE_EXCHANGE_SERVICE
+          - BACKCOUNTRY_SINGLE_CARTON
+          - BARNES_AND_NOBLE
+          - BARNES_AND_NOBLE_CARTON_PRODUCT
+          - BASS_PRO_CARTON
+          - BASS_PRO_CARTON_MIXED
+          - BELK
+          - BEST_BUY
+          - BIG_5_ANY_MIXED
+          - BIG_5_ANY_SINGLE
+          - BIG_LOTS_CARTON_SINGLE
+          - BIG_LOTS_PALLET_SINGLE
+          - BLOOMINGDALES
+          - BOSCOVS_CARTON_MIXED
+          - BOSCOVS_CARTON_SINGLE
+          - BUCEES_CARTON_MULTI
+          - BUCEES_CARTON_SINGLE
+          - BUCEES_PALLET_MULTI
+          - BUCEES_PALLET_SINGLE
+          - BUCKLE_CARTON_SINGLE
+          - BURLINGTON_COAT_FACTORY
+          - CABELAS_CANADA_CARTON_MIXED
+          - CABELAS_CANADA_CARTON_SINGLE
+          - CABELAS_CANADA_PALLET_MULTI
+          - CABELAS_CANADA_PALLET_SINGLE
+          - CAMPING_WORLD_FREIGHT_PALLET_SINGLE
+          - CAMPING_WORLD_SMALL_PARCEL_CARTON_SINGLE
+          - CANADIAN_TIRE_CORPORATION
+          - CENCORA_SUPPLIER_PALLET_ANY
+          - CHENEY_BROTHERS_ANY_MIXED
+          - CHENEY_BROTHERS_ANY_SINGLE
+          - CHEWY_MIXED_CARTON
+          - CHEWY_SINGLE_CARTON
+          - CHEWY_SPS_CARTON_MULTI
+          - CHEWY_SPS_CARTON_SINGLE
+          - COREMARK_ANY_MIXED
+          - COREMARK_ANY_SINGLE
+          - CORNERSTONE_BRANDS_INC_CARTON_SINGLE
+          - COSTCO
+          - COSTCO_CANADA_PALLET_MIXED
+          - COSTCO_CANADA_PALLET_SINGLE
+          - COSTCO_CARTON_MIXED
+          - COSTCO_CARTON_SINGLE
+          - CRATE_AND_BARREL_CARTON_SINGLE
+          - CURACAO_MULTI_CARTON
+          - CURACAO_SINGLE_CARTON
+          - CVS_DOMESTIC_MIXED_CARTON
+          - CVS_DOMESTIC_PALLET
+          - CVS_DOMESTIC_SINGLE_CARTON
+          - DICKS_SPORTING_GOODS_BULK_PURCHASE_ORDER
+          - DICKS_SPORTING_GOODS_DIRECT_TO_STORE_ORDER_MIXED
+          - DICKS_SPORTING_GOODS_DIRECT_TO_STORE_ORDER_SINGLE
+          - DICKS_SPORTING_GOODS_MARK_FOR_STORE_ORDER_MIXED
+          - DICKS_SPORTING_GOODS_MARK_FOR_STORE_ORDER_SINGLE
+          - DILLARDS_DIRECT_TO_DC_CARTON_ANY
+          - DOT_FOODS
+          - DOT_FOODS_MIXED
+          - E2E_Test_Template
+          - EVEREVE_MIXED_ANY
+          - EVEREVE_SINGLE_ANY
+          - EVO_ANY_MIXED
+          - EVO_ANY_SINGLE
+          - FAIRFAX_SPORTING_LIFE_CARTON_MULTI
+          - FAIRFAX_SPORTING_LIFE_CARTON_SINGLE
+          - FAMILY_FARM_&_HOME_CARTON_MULTI
+          - FAMILY_FARM_&_HOME_CARTON_SINGLE
+          - FAMILY_FARM_&_HOME_PALLET_MULTI
+          - FAMILY_FARM_&_HOME_PALLET_SINGLE
+          - FANATICS_CARTON_MIXED
+          - FANATICS_CARTON_SINGLE
+          - FARMERS_HOME_FURNITURE_MULTI_CARTON
+          - FARMERS_HOME_FURNITURE_SINGLE_CARTON
+          - FASTENAL_CARTON
+          - FASTENAL_PALLET
+          - FERGUSON_ANY_MIXED
+          - FERGUSON_ANY_SINGLE
+          - FINISH_LINE_DISTRIBUTION_SOLID_CARTON_SINGLE
+          - FINISH_LINE_SHOE_PALACE_SOLID_CARTON_SINGLE
+          - FISHER_SCIENTIFIC
+          - FISHER_SCIENTIFIC_ANY_MIXED
+          - FISHER_SCIENTIFIC_ANY_SINGLE
+          - FISHER_SCIENTIFIC_NON_EDI
+          - FIVE_BELOW_CARTON_MULTI
+          - FIVE_BELOW_CARTON_SINGLE
+          - FLEET_FARM_ANY_SINGLE
+          - FLEET_FARM_PREMARK_CARTON_SINGLE
+          - FLEET_FARM_PREMARK_PALLET_SINGLE
+          - FOOT_LOCKER_EASTBAY_SHIPMENTS_ONLY_CARTON_SINGLE
+          - FOOT_LOCKER_MARK_FOR_ANY
+          - FOOT_LOCKER_UCC_128_CARTON_SINGLE
+          - FRED_MEYER_CARTON
+          - FRED_MEYER_NON_SSCC
+          - FULLSCRIPT_CARTON_MIXED
+          - FULLSCRIPT_SINGLE_ANY
+          - GENERIC_SSCC_CARTON
+          - GENERIC_SSCC_CARTON_MIXED
+          - GENERIC_SSCC_PALLET
+          - GNC_MULTI_CARTON
+          - GNC_SINGLE_CARTON
+          - GOLF_TOWN_CARTON_MIXED
+          - GOLF_TOWN_CARTON_SINGLE
+          - GORDON_FOOD_SERVICE_CARTON_MULTI
+          - GORDON_FOOD_SERVICE_CARTON_SINGLE
+          - HARBOR_FOODSERVICE_CARTON_MULTI
+          - HARBOR_FOODSERVICE_CARTON_SINGLE
+          - HARBOR_FOODSERVICE_PALLET_MULTI
+          - HARBOR_FOODSERVICE_PALLET_SINGLE
+          - HARBOR_WHOLESALE_CARTON_MIXED
+          - HARBOR_WHOLESALE_CARTON_SINGLE
+          - HARBOR_WHOLESALE_PALLET_MIXED
+          - HARBOR_WHOLESALE_PALLET_SINGLE
+          - HAVERTY_FURNITURE_COMPANIES_CARTON_MULTI
+          - HAVERTY_FURNITURE_COMPANIES_CARTON_SINGLE
+          - HEB_MIXED
+          - HEB_STANDARD
+          - HEB_STANDARD_CARTON
+          - Henry_Schein_Pallet_Multi
+          - HENRY_SHEIN_CARTON_SINGLE
+          - HOME_DEPOT_CANADA
+          - IHERB_CARTON_SINGLE
+          - INDIGO_CARTON
+          - JOANN
+          - KEHE_MIXED_CARTON
+          - KEHE_SINGLE_CARTON
+          - KEYSTONE_CARTON_MIXED
+          - KEYSTONE_CARTON_SINGLE
+          - KEYSTONE_PALLET_ANY
+          - K&G_FASHION_CARTON_SINGLE
+          - KOHLS_BULK_ORDER
+          - KOHLS_PACK_BY_STORE
+          - KROGER_NON_SSCC
+          - LESLIE_POOLMART_CARTON_MULTI
+          - LESLIE_POOLMART_CARTON_SINGLE
+          - LIDL_STANDARD_WEIGHT_PALLET_SINGLE
+          - LIDS_CARTON_SINGLE
+          - LIPARI_FOODS_CARTON_MULTI
+          - LIPARI_FOODS_CARTON_SINGLE
+          - LIPARI_FOODS_PALLET_MULTI
+          - LIPARI_FOODS_PALLET_SINGLE
+          - LIPPERT_CARTON_MULTI
+          - LIPPERT_CARTON_SINGLE
+          - LIPPERT_PALLET_MULTI
+          - LIPPERT_PALLET_SINGLE
+          - LOBLAWS_COMPANIES_LIMITED_CARTON_MULTI
+          - LOBLAWS_COMPANIES_LIMITED_CARTON_SINGLE
+          - LOBLAWS_STORE_READY_PALLETS_ANY
+          - LOBLAWS_WAREHOUSE_DELIVERIES_PALLET_ANY
+          - LOWES_CROSSDOCK_ANY
+          - LOWES_STANDARD_ANY
+          - MACYS
+          - MARINE_CORPS_EXCHANGE
+          - MARINE_CORPS_EXCHANGE_CARTON_MULTI
+          - MARINE_CORPS_EXCHANGE_CARTON_SINGLE
+          - MAST_GENERAL_STORE_CARTON_MULTI
+          - MAST_GENERAL_STORE_CARTON_SINGLE
+          - MAST_GENERAL_STORE_PALLET_MULTI
+          - MAST_GENERAL_STORE_PALLET_SINGLE
+          - MCKESSON_CANADA_CARTON_SINGLE
+          - MCKESSON_CANADA_PALLET_SINGLE
+          - MCKESSON_MED_SURG_CARTON_MULTI
+          - MCKESSON_MED_SURG_CARTON_SINGLE
+          - MCKESSON_MED_SURG_PALLET_MULTI
+          - MCKESSON_MED_SURG_PALLET_SINGLE
+          - MEC_MOUNTAIN_EQUIPMENT_COMPANY_CARTON_MULTI
+          - MEC_MOUNTAIN_EQUIPMENT_COMPANY_CARTON_SINGLE
+          - MEDLINE_CARTON_SINGLE
+          - MEIJER_CARTON_SINGLE
+          - MERCHANT_DISTRIBUTORS_PALLET_MULTI
+          - MERCHANTS_DISTRIBUTORS_CARTON_MULTI
+          - MERCHANTS_DISTRIBUTORS_CARTON_SINGLE
+          - MERCHANTS_DISTRIBUTORS_PALLET_SINGLE
+          - MidwayUSA_CARTON_SINGLE
+          - MOUNTAIN_HIGH_OUTFITTERS_MIXED_ANY
+          - MOUNTAIN_HIGH_OUTFITTERS_SINGLE_ANY
+          - MURDOCHS_RANCH_AND_HOME_SUPPLY_CARTON_MULTI
+          - MURDOCHS_RANCH_AND_HOME_SUPPLY_CARTON_SINGLE
+          - NATURAL_GROCERS_CARTON_MULTI
+          - NATURAL_GROCERS_CARTON_SINGLE
+          - NATURAL_GROCERS_PALLET_MULTI
+          - NATURAL_GROCERS_PALLET_SINGLE
+          - NAVY_EXCHANGE_SERVICE_COMMAND
+          - NEIMAN_MARCUS
+          - NEXCOM_CARTON_SINGLE
+          - NICHOLAS_AND_COMPANY_FREIGHT_CARTON_MULTI
+          - NICHOLAS_AND_COMPANY_FREIGHT_CARTON_SINGLE
+          - NICHOLAS_AND_COMPANY_FREIGHT_PALLET_MULTI
+          - NICHOLAS_AND_COMPANY_FREIGHT_PALLET_SINGLE
+          - NORDSTROM
+          - NORTH_STATE_GROCERY_INC_CARTON_MULTI
+          - NORTH_STATE_GROCERY_INC_CARTON_SINGLE
+          - OCEAN_STATE_CARTON_MIXED
+          - OCEAN_STATE_CARTON_SINGLE
+          - OFFICE_DEPOT_VEYER_CARTON_MIXED
+          - OFFICE_DEPOT_VEYER_CARTON_SINGLE
+          - OFFICE_DEPOT_VEYER_PALLET_MIXED
+          - OFFICE_DEPOT_VEYER_PALLET_SINGLE
+          - OLLIES_BARGAIN_OUTLET_CARTON_MULTI
+          - OLLIES_BARGAIN_OUTLET_CARTON_SINGLE
+          - OLLIES_BARGAIN_OUTLET_PALLET_MULTI
+          - OLLIES_BARGAIN_OUTLET_PALLET_SINGLE
+          - ORGILL_CARTON_MULTI
+          - ORGILL_CARTON_SINGLE
+          - ORGILL_PALLET_MULTI
+          - ORGILL_PALLET_SINGLE
+          - ORVIS
+          - PACSUN_CARTON_SINGLE
+          - Palmetto Moon_GS1-128
+          - PALMETTOMOON_SINGLE_CARTON
+          - PATTISON_GROUP_CARTON_MIXED
+          - PATTISON_GROUP_CARTON_SINGLE
+          - PATTISON_GROUP_PALLET_MIXED
+          - PATTISON_GROUP_PALLET_SINGLE
+          - PELTZ_SHOES_CARTON_MULTI
+          - PELTZ_SHOES_CARTON_SINGLE
+          - PETCO_CARTON_MIXED
+          - PETCO_CARTON_SINGLE
+          - PETCO_PALLET_MIXED
+          - PETCO_PALLET_SINGLE
+          - PETRA_INDUSTRIES_CARTON_SINGLE
+          - PETRA_INDUSTRIES_PALLET_MULTI
+          - PETRA_INDUSTRIES_PALLET_SINGLE
+          - PETSMART_US_AND_CANADA_CARTON_SINGLE
+          - PETSMART_US_AND_CANADA_PALLET_SINGLE
+          - PFG_CARTON_MIXED
+          - PFG_CARTON_SINGLE
+          - PFG_CUSTOMIZED_ANY_MIXED
+          - PFG_CUSTOMIZED_ANY_SINGLE
+          - PFG_PALLET_MIXED
+          - PFG_PALLET_SINGLE
+          - PGA_TOUR_ANY_MIXED
+          - PGA_TOUR_ANY_SINGLE
+          - PRICESMART_MULTI_SKU
+          - PRICESMART_SINGLE_SKU
+          - RALLY_HOUSE_CARTON_MIXED
+          - RALLY_HOUSE_CARTON_SINGLE
+          - REI_BULK_ORDER_MIXED
+          - REI_BULK_ORDER_SINGLE
+          - REXEL_MIXED_CARTON
+          - REXEL_SINGLE_CARTON
+          - RITE_AID_CARTON_MULTI
+          - RITE_AID_CARTON_SINGLE
+          - RITE_AID_PALLET_MULTI
+          - RITE_AID_PALLET_SINGLE
+          - ROAD_RUNNER_SPORTS_CARTON_MULTI
+          - ROAD_RUNNER_SPORTS_CARTON_SINGLE
+          - RSR_GROUP_CARTON_MULTI
+          - RSR_GROUP_CARTON_SINGLE
+          - RSR_GROUP_PALLET_MULTI
+          - RSR_GROUP_PALLET_SINGLE
+          - SAIL_CARTON_MULTI
+          - SAIL_CARTON_SINGLE
+          - SAIL_PALLET_MULTI
+          - SAIL_PALLET_SINGLE
+          - SAKS_FIFTH_AVENUE
+          - Sally_Beauty_Carton_Single
+          - Sally_Beauty_Pallet_Multi
+          - Sally_Beauty_Pallet_Single
+          - SCHEELS_MIXED_CARTON
+          - SCHEELS_SINGLE_CARTON
+          - SCHOOL_SPECIALTY_DIRECT_SHIP_CARTON_MIXED
+          - SCHOOL_SPECIALTY_DIRECT_SHIP_CARTON_SINGLE
+          - SCHOOL_SPECIALTY_WAREHOUSE_CARTON_MIXED
+          - SCHOOL_SPECIALTY_WAREHOUSE_CARTON_SINGLE
+          - SEPHORA
+          - SHAMROCK_FOODS_CARTON_MULTI
+          - SHAMROCK_FOODS_CARTON_SINGLE
+          - SHIPMONK_CARTON_SINGLE
+          - SHOPBOP_CARTON_MIXED
+          - SHOPBOP_CARTON_SINGLE
+          - SPORTING_LIFE_BULK
+          - SPORTING_LIFE_MARK_FOR_STORE
+          - SPORTS_BASEMENT_CARTON_MULTI
+          - SPORTS_BASEMENT_CARTON_SINGLE
+          - SPORTSMANS_GUIDE_CARTON_MIXED
+          - SPORTSMANS_GUIDE_CARTON_SINGLE
+          - SPROUTS_FARMERS_MARKET
+          - SPROUTS_FARMERS_MARKET_CARTON_MULTI
+          - SPROUTS_FARMERS_MARKET_PALLET_MULTI
+          - SPROUTS_FARMERS_MARKET_PALLET_SINGLE
+          - STAPLES_CARTON_MIXED
+          - STAPLES_CARTON_SINGLE
+          - STAPLES_PALLET_MIXED
+          - STAPLES_PALLET_SINGLE
+          - STITCH_FIX_MIXED_CARTON
+          - STITCH_FIX_SINGLE_CARTON
+          - TARGET_FOOD_DISTRIBUTION_CENTER_ORDER_MIXED_PALLET
+          - TARGET_FOOD_DISTRIBUTION_CENTER_ORDER_SINGLE_CARTON
+          - TARGET_FOOD_DISTRIBUTION_CENTER_ORDER_SINGLE_CARTON_EAN
+          - TARGET_FOOD_DISTRIBUTION_CENTER_ORDER_SINGLE_PALLET
+          - ' TARGET_REGIONAL_DISTRIBUTION_CENTER_ORDER_MIXED_PALLET'
+          - TARGET_REGIONAL_DISTRIBUTION_CENTER_ORDER_SINGLE_CARTON
+          - TARGET_REGIONAL_DISTRIBUTION_CENTER_ORDER_SINGLE_PALLET
+          - TARGET_REGIONAL_DISTRIBUTION_CENTER_ORDER_(SOTPI_WORKAROUND)_PALLET_ANY
+          - THE_HOME_DEPOT
+          - THE_MENS_WAREHOUSE_CARTON_MIXED
+          - THE_MENS_WAREHOUSE_CARTON_SINGLE
+          - THRIVE_MARKET_MULTI_CARTON
+          - THRIVE_MARKET_SINGLE_CARTON
+          - TILLYS_CARTON_MULTI
+          - TILLYS_CARTON_SINGLE
+          - TILLYS_PALLET_MULTI
+          - TILLYS_PALLET_SINGLE
+          - TRACTOR_SUPPLY_COMPANY_CARTON_ANY
+          - TRACTOR_SUPPLY_COMPANY_PALLET_ANY
+          - TRADER_JOES_ANY_MIXED
+          - TRADER_JOES_ANY_SINGLE
+          - TRUE_VALUE_CARTON_MIXED
+          - TRUE_VALUE_CARTON_SINGLE
+          - TRUE_VALUE_PALLET_MIXED
+          - TRUE_VALUE_PALLET_SINGLE
+          - ULTA_BEAUTY
+          - ULTA_CARTON_MIXED_SEPARATE_INFO
+          - ULTA_CARTON_PARTIAL
+          - ULTA_PALLET_ANY
+          - UNIFIRST_CORPORATION
+          - UNITED_HARDWARE_CARTON_MULTI
+          - UNITED_HARDWARE_CARTON_SINGLE
+          - UNITED_HARDWARE_PALLET_MULTI
+          - UNITED_HARDWARE_PALLET_SINGLE
+          - URBAN_OUTFITTERS_DROPSHIP
+          - URBAN_OUTFITTERS_DROPSHIP_CARTON_SINGLE
+          - US_FOODS
+          - VALLEN_CARTON_MULTI
+          - VALLEN_SINGLE_CARTON
+          - VISTAR_CARTON_MULTI
+          - VISTAR_CARTON_SINGLE
+          - VISTAR_PALLET_MULTI
+          - VISTAR_PALLET_SINGLE
+          - VITAMIN_SHOPPE
+          - VITAMIN_SHOPPE_MIXED
+          - VON_MAUR_CARTON
+          - WALGREENS
+          - WALMART_CASE_DOMESTIC
+          - WALMART_PALLET_MIXED
+          - WALMART_PALLET_PULL_SINGLE
+          - WALMART_PALLET_SINGLE
+          - WAYFAIR_LLC_CARTON_SINGLE
+          - WEGMANS_CARTON_MULTI
+          - WEGMANS_CARTON_SINGLE
+          - WEGMANS_PALLET_MULTI
+          - WEGMANS_PALLET_SINGLE
+          - WESCO_CARTON_MULTI
+          - WESCO_CARTON_SINGLE
+          - WESCO_PALLET_MULTI
+          - WESCO_PALLET_SINGLE
+          - WEST_COAST_KIDS_CARTON_MULTI
+          - WEST_COAST_KIDS_CARTON_SINGLE
+          - WEST_COAST_KIDS_PALLET_MULTI
+          - WEST_COAST_KIDS_PALLET_SINGLE
+          - WORLDWIDE_GOLF_SHOPS_CARTON_MIXED
+          - WORLDWIDE_GOLF_SHOPS_CARTON_SINGLE
+          - ZAPPOS_6PM_CARTON_MIXED
+          - ZAPPOS_6PM_CARTON_SINGLE
+        shipFrom:
+          description: Ship from address.
+          allOf:
+          - $ref: '#/components/schemas/LabelAddressDto'
+        shipTo:
+          description: Ship to address.
+          allOf:
+          - $ref: '#/components/schemas/LabelAddressDto'
+        vendor:
+          description: Vendor related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelVendorDto'
+        store:
+          description: Store related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelStoreDto'
+        distributionCenter:
+          description: Distribution center related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelDistributionCenterDto'
+        carrier:
+          description: Carrier related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelCarrierDto'
+        shipment:
+          description: Shipment related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelShipmentDto'
+        department:
+          description: Department related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelDepartmentDto'
+        purchaseOrder:
+          description: Purchase order related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelPurchaseOrderDto'
+        pallet:
+          description: Pallet related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelPalletDto'
+        case:
+          description: Case related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelCaseDto'
+        carton:
+          description: Carton related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelCartonDto'
+        item:
+          description: Item related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelItemDto'
+        merchandise:
+          description: Merchandise related information.
+          allOf:
+          - $ref: '#/components/schemas/LabelMerchandiseDto'
+        optionalInformation:
+          type: string
+          description: Optional information.
+    LabelCarrierDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Carrier name.
+        code:
+          type: string
+          description: Carrier code (SCAC).
+    LabelShipmentDto:
+      type: object
+      properties:
+        shipmentIdentification:
+          type: string
+          description: Shipment identification number.
+        billOfLadingNumber:
+          type: string
+          description: Bill of lading number.
+        proNumber:
+          type: string
+          description: PRO number.
+        sscc-18:
+          type: string
+          description: SSCC-18 barcode value.
+        finalDestination:
+          type: string
+          description: Final destination.
+        locationNumber:
+          type: string
+          description: Location number.
+        weight:
+          type: string
+          description: Shipment weight.
+        date:
+          type: string
+          description: Shipment date.
+        sscc18LastFour:
+          type: string
+          description: Last four digits of SSCC-18.
+    LabelPurchaseOrderDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Purchase order number.
+        type:
+          type: string
+          description: Purchase order type.
+        processHandlingCode:
+          type: string
+          description: Process handling code.
+        customerOrderNumber:
+          type: string
+          description: Customer order number.
+        eventCode:
+          type: string
+          description: Event code.
+        markForLocationNumber:
+          type: string
+          description: Mark-for location number.
+        suggestedRetailPrice:
+          type: string
+          description: Suggested retail price.
+    LabelStoreDto:
+      type: object
+      properties:
+        name:
+          type: string
+        careOf:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip:
+          type: string
+        number:
+          type: string
+          description: Store number.
+    LabelMerchandiseDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Merchandise type.
+    LabelCaseDto:
+      type: object
+      properties:
+        pack:
+          type: string
+          description: Case pack quantity.
+        innerPack:
+          type: string
+          description: Inner pack quantity.
+        unitsPerInnerPack:
+          type: string
+          description: Units per inner pack.
+    LabelDistributionCenterDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Distribution center name.
+        number:
+          type: string
+          description: Distribution center number.
+    LabelDepartmentDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Department number.
+        name:
+          type: string
+          description: Department name.
+    LabelItemDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Item number.
+        description:
+          type: string
+          description: Item description.
+        gtin:
+          type: string
+          description: GTIN identifier.
+        productDate:
+          type: string
+          description: Product date.
+        lotNumber:
+          type: string
+          description: Lot number.
+        expirationDate:
+          type: string
+          description: Expiration date.
+        upcNumber:
+          type: string
+          description: UPC number.
+        temperatureControl:
+          type: string
+          description: Temperature control requirements.
+        skuNumber:
+          type: string
+          description: SKU number.
+        color:
+          type: string
+          description: Item color.
+        size:
+          type: string
+          description: Item size.
+        style:
+          type: string
+          description: Item style.
+        buyerPartNumber:
+          type: string
+          description: Buyer part number.
+        countryOfOrigin:
+          type: string
+          description: Country of origin.
+    LabelAddressDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Recipient name.
+        careOf:
+          type: string
+          description: Recipient care-of.
+        address1:
+          type: string
+          description: Address line 1.
+        address2:
+          type: string
+          description: Address line 2.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: State code.
+        country:
+          type: string
+          description: Country.
+        zip:
+          type: string
+          description: Zip code.
+    LabelVendorDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Vendor number.
+        partNumber:
+          type: string
+          description: Vendor part number.
+    LabelPalletDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Pallet number.
+        max:
+          type: string
+          description: Maximum pallets.
+        cubicDimensions:
+          type: string
+          description: Cubic dimensions.
+        weight:
+          type: string
+          description: Pallet weight.
+        units:
+          type: string
+          description: Number of units.
+    LabelCartonDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Carton number.
+        max:
+          type: string
+          description: Maximum cartons.
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

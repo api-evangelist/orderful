@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Conversion
+  description: Convert data between EDI X12 and JSON formats.
+paths:
+  /v3/convert:
+    post:
+      operationId: ConversionController_convertData
+      summary: Convert Data Between Formats
+      description: This endpoint will convert JSON into X12, or X12 into JSON. Set the "Content-Type" header as the format you are sending, and the "Accept" header as the format you would like to receive back.
+      tags:
+      - Conversion
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/edi-x12
+          - application/json
+      - name: Accept
+        in: header
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/edi-x12
+          - application/json
+      requestBody:
+        required: true
+        content:
+          application/edi-x12:
+            schema:
+              type: string
+              format: blob
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Data converted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+            application/edi-x12:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Relationship API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Relationship
+  description: Manage trading partner relationships.
+paths:
+  /v3/relationships:
+    get:
+      operationId: RelationshipController_listV3
+      summary: List Relationships
+      description: 'Retrieves a paginated list of the Relationships for the current Organization.
+
+        '
+      tags:
+      - Relationship
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: autoSend
+        in: query
+        required: false
+        description: Filter by the relationship auto-send configuration.
+        schema:
+          type: string
+          enum:
+          - ENABLED
+          - DISABLED
+      - name: limit
+        in: query
+        required: false
+        description: The number of items to return in the result set.
+        schema:
+          type: integer
+          maximum: 100
+      - name: prevCursor
+        in: query
+        required: false
+        description: 'If results are <a href="https://docs.orderful.com/reference/pagination" target="_blank">paginated</a>, this will point to the previous set of results.
+
+          '
+        schema:
+          type: string
+      - name: nextCursor
+        in: query
+        required: false
+        description: 'If results are <a href="https://docs.orderful.com/reference/pagination" target="_blank">paginated</a>, this will point to the next set of results.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of relationships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRelationshipsResponseV3Dto'
+components:
+  schemas:
+    PaginationV3:
+      type: object
+      required:
+      - links
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinkV3'
+    PaginationLinkV3:
+      type: object
+      required:
+      - next
+      - prev
+      properties:
+        next:
+          type: string
+          nullable: true
+          description: Next URL which you can use to fetch the next page.
+        prev:
+          type: string
+          nullable: true
+          description: Previous URL which you can use to fetch the previous page.
+    ListRelationshipsResponseV3Dto:
+      type: object
+      required:
+      - metadata
+      - data
+      properties:
+        metadata:
+          description: Pagination metadata.
+          allOf:
+          - $ref: '#/components/schemas/ListRelationshipsResponseV3MetadataDto'
+        data:
+          description: List of relationships.
+          type: array
+          items:
+            $ref: '#/components/schemas/RelationshipResponseV3Dto'
+    ListRelationshipsResponseV3MetadataDto:
+      type: object
+      required:
+      - pagination
+      properties:
+        pagination:
+          description: Pagination information.
+          allOf:
+          - $ref: '#/components/schemas/PaginationV3'
+    RelationshipTransactionTypeV3Dto:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Transaction type name.
+          example: 810_INVOICE
+    RelationshipIdentityV3Dto:
+      type: object
+      required:
+      - ediAccountId
+      - liveIsaId
+      - testIsaId
+      - organizationId
+      - organizationName
+      - ediAccountName
+      properties:
+        ediAccountId:
+          type: number
+          description: EDI account ID.
+          example: 123
+        liveIsaId:
+          type: string
+          description: Live ISA ID.
+          example: ISA_ID
+        testIsaId:
+          type: string
+          nullable: true
+          description: Test ISA ID.
+          example: TEST_ISA_ID
+        organizationId:
+          type: number
+          description: Organization ID.
+          example: 123
+        organizationName:
+          type: string
+          description: Organization name.
+          example: Organization_Name
+        ediAccountName:
+          type: string
+          description: EDI account name.
+          example: EDI_Account_Name
+    RelationshipResponseV3Dto:
+      type: object
+      required:
+      - id
+      - createdAt
+      - updatedAt
+      - sender
+      - receiver
+      - transactionType
+      - status
+      properties:
+        id:
+          type: number
+          description: Unique relationship identifier.
+          example: 123
+        createdAt:
+          type: string
+          format: date-time
+          description: Datetime relationship was created.
+          example: '2025-12-24T14:01:25.246Z'
+        updatedAt:
+          type: string
+          format: date-time
+          description: Datetime relationship was last updated.
+          example: '2025-12-24T14:01:25.246Z'
+        sender:
+          description: Sender of the relationship.
+          allOf:
+          - $ref: '#/components/schemas/RelationshipIdentityV3Dto'
+        receiver:
+          description: Receiver of the relationship.
+          allOf:
+          - $ref: '#/components/schemas/RelationshipIdentityV3Dto'
+        transactionType:
+          description: Transaction type of the relationship.
+          allOf:
+          - $ref: '#/components/schemas/RelationshipTransactionTypeV3Dto'
+        status:
+          type: string
+          description: Relationship status.
+          enum:
+          - BLOCKED
+          - PENDING
+          - SETUP
+          - TEST
+          - READY
+          - LIVE
+          example: READY
+        autoSend:
+          type: string
+          description: Auto-send configuration.
+          enum:
+          - ENABLED
+          - DISABLED
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

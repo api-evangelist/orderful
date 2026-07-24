@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Delivery API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Delivery
+  description: Approve or fail transaction deliveries.
+paths:
+  /v3/deliveries/{deliveryId}/approve:
+    post:
+      operationId: DeliveryController_handleDeliveryApproved
+      summary: Approve a Delivery
+      description: "Approves the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket."
+      parameters:
+      - name: deliveryId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproveDeliveryRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Delivery
+      security:
+      - API_KEY: []
+  /v3/deliveries/{deliveryId}/fail:
+    post:
+      operationId: DeliveryController_handleFailDeliveryRequest
+      summary: Fail a Delivery
+      description: "Fails the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket."
+      parameters:
+      - name: deliveryId
+        required: true
+        in: path
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FailDeliveryRequestDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Delivery
+      security:
+      - API_KEY: []
+components:
+  schemas:
+    ApproveDeliveryRequestDto:
+      type: object
+      properties:
+        note:
+          type: string
+    FailDeliveryRequestDto:
+      type: object
+      properties:
+        note:
+          type: string
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Organization API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Organization
+  description: Retrieve organization information.
+paths:
+  /v3/organizations/me:
+    get:
+      operationId: OrganizationV3Controller_getOwn
+      summary: Get your Organization details
+      description: Retrieves the Organization information for the current user.
+      tags:
+      - Organization
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrganizationMeResponseV3'
+components:
+  schemas:
+    GetOrganizationMeResponseV3:
+      type: object
+      description: Organization details for the current user.
+      required:
+      - id
+      - name
+      - ediAccounts
+      properties:
+        id:
+          type: string
+          description: Unique organization identifier.
+          example: '123'
+        name:
+          type: string
+          description: Organization name.
+          example: Orderful
+        ediAccounts:
+          description: EDI accounts belonging to the organization.
+          type: array
+          items:
+            $ref: '#/components/schemas/GetOrganizationMeEdiAccount'
+    GetOrganizationMeEdiAccount:
+      type: object
+      required:
+      - id
+      - name
+      - liveIsaId
+      - testIsaId
+      properties:
+        id:
+          type: string
+          description: EDI account ID.
+        name:
+          type: string
+          description: EDI account name.
+        liveIsaId:
+          type: string
+          description: Live ISA ID.
+        testIsaId:
+          type: string
+          description: Test ISA ID.
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

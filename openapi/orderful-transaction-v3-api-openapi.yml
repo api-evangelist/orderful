@@ -1,0 +1,892 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Transaction (v3) API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Transaction (v3)
+  description: Create and manage EDI transactions using the v3 API.
+paths:
+  /v3/transactions/{transactionId}/acknowledgment:
+    post:
+      operationId: TransactionControllerV3_acknowledgeTransaction
+      summary: Create an Acknowledgment
+      description: Creates an acknowledgment with the specified status for the specified Transaction.
+      tags:
+      - Transaction (v3)
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: transactionId
+        in: path
+        required: true
+        description: The numeric transaction ID.
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetTransactionAcknowledgmentRequestDto'
+      responses:
+        '201':
+          description: Acknowledgment created successfully.
+    get:
+      operationId: TransactionControllerV3_getAcknowledgment
+      summary: Get an Acknowledgment
+      description: Returns the acknowledgment for the specified Transaction.
+      tags:
+      - Transaction (v3)
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: transactionId
+        in: path
+        required: true
+        description: The numeric transaction ID.
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Acknowledgment details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransactionAcknowledgmentResponseV3Dto'
+        '404':
+          description: Transaction or acknowledgment not found.
+  /v3/transactions/confirm-delivery:
+    post:
+      operationId: TransactionControllerV3_confirmDelivery
+      summary: Confirm the delivery of a set of Transactions
+      description: Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href="https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved" target="_blank">Approved</a> or <a href="https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest" target="_blank">Failed</a>. This will automatically remove the Transaction from the Bucket.
+      deprecated: true
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/BatchConfirmDeliveryBody'
+      responses:
+        '200':
+          description: The confirmation batch was successfully processed.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                example:
+                  '12345': Successfully confirmed failed delivery for transaction 12345
+                  '99999': Transaction ID 99999 not found
+                  '988765': Successfully confirmed delivery for transaction 988765
+                  NO_OP: Transaction ID NO_OP not found
+      tags:
+      - Transaction (v3)
+      security:
+      - API_KEY: []
+  /v3/transactions:
+    post:
+      operationId: TransactionControllerV3_create
+      summary: Create a Transaction
+      description: 'Creates a Transaction using the v3 API format. Either a `message` or `summary` must be provided, but not both. For guidance on how to use this endpoint, see the <a href="https://docs.orderful.com/docs/create-a-transaction" target="_blank">Create a Transaction guide</a>.
+
+        '
+      tags:
+      - Transaction (v3)
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionBodyV3'
+      responses:
+        '201':
+          description: Transaction created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionResponseV3'
+        '400':
+          description: Invalid request body.
+        '403':
+          description: Insufficient permissions.
+    get:
+      operationId: TransactionControllerV3_list
+      summary: List Transactions
+      description: 'Returns an array of Transactions sorted in descending order by their creation date. A maximum of 100 Transactions will be returned at a time.
+
+        '
+      tags:
+      - Transaction (v3)
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: prevCursor
+        in: query
+        required: false
+        description: 'If results are <a href="https://docs.orderful.com/reference/pagination" target="_blank">paginated</a>, this will point to the previous set of results.
+
+          '
+        schema:
+          type: string
+      - name: nextCursor
+        in: query
+        required: false
+        description: 'If results are <a href="https://docs.orderful.com/reference/pagination" target="_blank">paginated</a>, this will point to the next set of results.
+
+          '
+        schema:
+          type: string
+      - name: createdAt
+        in: query
+        required: false
+        description: 'The date and time that the Transactions were created on or before, in ISO-8601 format. This is used to <a href="https://docs.orderful.com/reference/filtering" target="_blank">filter results</a>.
+
+          '
+        schema:
+          type: string
+      - name: stream
+        in: query
+        required: false
+        description: Indicates whether you want results from the Test and/or Live stream.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - TEST
+            - LIVE
+      - name: businessNumber
+        in: query
+        required: false
+        description: 'Indicates which business number(s) you would like to list Transactions from. You may indicate up to 5 business numbers.
+
+          '
+        schema:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+      - name: transactionType
+        in: query
+        required: false
+        description: 'Indicates the Transaction Type(s) you would like to filter by. You may indicate up to 5 <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">Transaction Types</a>.
+
+          '
+        schema:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+      - name: validationStatus
+        in: query
+        required: false
+        description: The one or more validation status(es) you would like to filter by.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - PROCESSING
+            - VALID
+            - INVALID
+      - name: deliveryStatus
+        in: query
+        required: false
+        description: The one or more delivery status(es) you would like to filter by.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - PENDING
+            - SENT
+            - DELIVERED
+            - FAILED
+      - name: acknowledgmentStatus
+        in: query
+        required: false
+        description: The one or more acknowledgment status(es) you would like to filter by.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - NOT_ACKNOWLEDGED
+            - ACCEPTED
+            - REJECTED
+            - OVERDUE
+            - ACCEPTED_WITH_ERRORS
+      - name: senderIsaId
+        in: query
+        required: false
+        description: 'The Sender ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Sender ISA IDs.
+
+          '
+        schema:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+      - name: receiverIsaId
+        in: query
+        required: false
+        description: 'The Receiver ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Receiver ISA IDs.
+
+          '
+        schema:
+          type: array
+          maxItems: 5
+          items:
+            type: string
+      - name: referenceIdentifier
+        in: query
+        required: false
+        description: Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      - name: senderInterchangeReferenceIdentifier
+        in: query
+        required: false
+        description: Sender's Interchange Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      - name: senderGroupReferenceIdentifier
+        in: query
+        required: false
+        description: Sender's (Functional) Group Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      - name: senderTransactionReferenceIdentifier
+        in: query
+        required: false
+        description: Sender's Transaction Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      - name: receiverInterchangeReferenceIdentifier
+        in: query
+        required: false
+        description: Receiver's Interchange Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      - name: receiverGroupReferenceIdentifier
+        in: query
+        required: false
+        description: Receiver's (Functional) Group Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      - name: receiverTransactionReferenceIdentifier
+        in: query
+        required: false
+        description: Receiver's Transaction Reference Identifier Value you would like to filter by.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTransactionsResponseV3Dto'
+  /v3/transactions/raw:
+    post:
+      operationId: TransactionControllerV3_createRaw
+      summary: Create a raw Transaction
+      description: 'Creates a Transaction from a raw document. The request body should contain the raw document content (e.g. X12, XML, CSV). Routing metadata is provided via request headers rather than in the body.
+
+
+        > 🚧 Try It! playground limitation
+
+        >
+
+        > The in-page **Try It!** playground on this reference can only exercise `application/json` request bodies. If you are testing or experimenting with `application/xml`, `text/xml`, `text/csv`, `application/pdf`, `image/jpeg`, or `text/plain` payloads, use cURL or an HTTP client such as Postman for your ad-hoc requests. Your production integration is unaffected — this applies only to the in-browser Try It! tool. The endpoint itself accepts every supported content type from any HTTP client.'
+      parameters:
+      - name: orderful-business-number
+        in: header
+        description: A business reference number for the Transaction.
+        required: true
+        schema:
+          type: string
+      - name: orderful-stream
+        in: header
+        description: The stream for the Transaction.
+        required: true
+        schema:
+          type: string
+          enum:
+          - test
+          - live
+      - name: orderful-transaction-type
+        in: header
+        description: The Transaction Type name.
+        required: true
+        schema:
+          type: string
+      - name: orderful-receiver-id
+        in: header
+        description: The ISA ID of the receiver.
+        required: true
+        schema:
+          type: string
+      - name: orderful-sender-id
+        in: header
+        description: The ISA ID of the sender.
+        required: true
+        schema:
+          type: string
+      - name: Content-Type
+        in: header
+        description: 'The content type of the raw document. Supported types: `application/json`, `application/xml`, `text/xml`, `text/csv`, `application/pdf`, `image/jpeg`, `text/plain`.'
+        required: true
+        schema:
+          type: string
+          enum:
+          - application/json
+          - application/xml
+          - text/xml
+          - text/csv
+          - application/pdf
+          - image/jpeg
+          - text/plain
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              format: json
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionResponseV3'
+      tags:
+      - Transaction (v3)
+      security:
+      - API_KEY: []
+  /v3/transactions/{transactionId}:
+    get:
+      operationId: TransactionControllerV3_getById
+      summary: Get a Transaction
+      description: Returns the specified Transaction.
+      tags:
+      - Transaction (v3)
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: transactionId
+        in: path
+        required: true
+        description: The numeric transaction ID.
+        schema:
+          type: number
+      - name: expand
+        in: query
+        required: false
+        description: 'This optional parameter will embed the specified object into the return payload.
+
+          '
+        schema:
+          type: string
+          enum:
+          - message
+      responses:
+        '200':
+          description: Transaction details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionV3Dto'
+        '404':
+          description: Transaction not found.
+  /v3/transactions/{transactionId}/message:
+    get:
+      operationId: TransactionControllerV3_getMessage
+      summary: Get a Transaction Message
+      description: Returns the specified Transaction's message content.
+      tags:
+      - Transaction (v3)
+      parameters:
+      - name: orderful-api-key
+        in: header
+        required: true
+        description: Your Orderful API key.
+        schema:
+          type: string
+      - name: transactionId
+        in: path
+        required: true
+        description: The numeric transaction ID.
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Transaction message content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionMessageWithContentV3Dto'
+        '404':
+          description: Transaction not found.
+components:
+  schemas:
+    CreateTransactionBodyV3:
+      type: object
+      description: Request body for creating a v3 transaction.
+      required:
+      - type
+      - stream
+      - sender
+      - receiver
+      properties:
+        type:
+          description: Information about the type of Transaction to be created.
+          allOf:
+          - $ref: '#/components/schemas/CreateTransactionBodyTypeV3Dto'
+        stream:
+          type: string
+          description: Name of stream to create the transaction on.
+          enum:
+          - TEST
+          - LIVE
+          default: TEST
+        message:
+          type: string
+          format: json
+          description: 'Transaction document in the structure defined by the specified type. Either message or summary must be provided, but not both.
+
+            '
+        sender:
+          $ref: '#/components/schemas/CreateTransactionBodyIdentityV3Dto'
+        receiver:
+          $ref: '#/components/schemas/CreateTransactionBodyIdentityV3Dto'
+    TransactionRefV3Dto:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          description: Transaction URL.
+          example: https://api.orderful.com/v3/transactions/000000
+    PaginationV3:
+      type: object
+      required:
+      - links
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinkV3'
+    ListTransactionsResponseV3MetadataDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationV3'
+    TransactionErrorMessageV3Dto:
+      type: object
+      required:
+      - path
+      - code
+      - message
+      properties:
+        path:
+          type: string
+          description: The path where the error occurred.
+          example: /message
+        code:
+          type: string
+          description: Error code.
+          example: '00'
+        message:
+          type: string
+          description: Error message.
+          example: Message to show additional information on the error that occurred
+    TransactionV3Dto:
+      type: object
+      required:
+      - id
+      - href
+      - version
+      - sender
+      - receiver
+      - type
+      - stream
+      - businessNumber
+      - referenceIdentifiers
+      - message
+      - validationStatus
+      - deliveryStatus
+      - acknowledgmentStatus
+      - createdAt
+      - lastUpdatedAt
+      - acknowledgment
+      properties:
+        id:
+          type: string
+          example: '000000'
+          description: Transaction ID.
+        href:
+          type: string
+          example: https://api.orderful.com/v3/transactions/000000
+          description: Transaction URL.
+        version:
+          type: string
+          enum:
+          - v3
+          example: v3
+        sender:
+          description: Sender identity information.
+          example:
+            isaId: ISA_ID_SENDER
+            isaIdQualifier: ZZ
+            testIsaId: ISA_ID_SENDER_TEST
+            testIsaIdQualifier: ZZ
+            name: ''
+          allOf:
+          - $ref: '#/components/schemas/TransactionIdentityV3Dto'
+        receiver:
+          description: Receiver identity information.
+          example:
+            isaId: ISA_ID_RECEIVER
+            isaIdQualifier: ZZ
+            testIsaId: ISA_ID_RECEIVER_TEST
+            testIsaIdQualifier: ZZ
+            name: ''
+          allOf:
+          - $ref: '#/components/schemas/TransactionIdentityV3Dto'
+        type:
+          description: Transaction type information.
+          example:
+            name: 850_PURCHASE_ORDER
+          allOf:
+          - $ref: '#/components/schemas/TransactionTypeV3Dto'
+        stream:
+          type: string
+          enum:
+          - TEST
+          - LIVE
+          example: TEST
+        businessNumber:
+          type: string
+          description: Business identifier for the transaction.
+          example: BUSINESS_NUMBER
+        referenceIdentifiers:
+          type: array
+          description: Reference identifiers for the transaction.
+          example:
+          - value: '000000001'
+            type: INTERCHANGE
+            owner: SENDER
+          - value: '1'
+            type: GROUP
+            owner: SENDER
+          - value: '0001'
+            type: TRANSACTION
+            owner: SENDER
+          items:
+            $ref: '#/components/schemas/TransactionReferenceIdentifierV3Dto'
+        message:
+          type: object
+          description: 'Transaction message. Contains an href link to the message content. When expand=message is used, the full transactionSets array is included.
+
+            '
+          example:
+            href: https://api.orderful.com/v3/transactions/000000/message
+        validationStatus:
+          type: string
+          description: Validation status of the transaction.
+          enum:
+          - PROCESSING
+          - VALID
+          - INVALID
+          example: VALID
+        deliveryStatus:
+          type: string
+          description: Delivery status of the transaction.
+          enum:
+          - PENDING
+          - SENT
+          - DELIVERED
+          - FAILED
+          example: DELIVERED
+        acknowledgmentStatus:
+          type: string
+          description: Acknowledgment status of the transaction.
+          enum:
+          - NOT_ACKNOWLEDGED
+          - ACCEPTED
+          - REJECTED
+          - OVERDUE
+          - ACCEPTED_WITH_ERRORS
+          example: ACCEPTED
+        createdAt:
+          type: string
+          format: date-time
+          description: Datetime the transaction was created.
+          example: '2025-12-24T14:01:23.613Z'
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          description: Datetime the transaction was last updated.
+          example: '2025-12-24T14:01:23.613Z'
+        acknowledgment:
+          description: Acknowledgment reference.
+          example:
+            href: https://api.orderful.com/v3/transactions/000000/acknowledgment
+          allOf:
+          - $ref: '#/components/schemas/TransactionAcknowledgmentRefV3Dto'
+    TransactionAcknowledgmentRefV3Dto:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+          description: Acknowledgment URL.
+          example: https://api.orderful.com/v3/transactions/000000/acknowledgment
+    TransactionIdentityV3Dto:
+      type: object
+      required:
+      - isaId
+      - isaIdQualifier
+      - testIsaId
+      - testIsaIdQualifier
+      - name
+      properties:
+        isaId:
+          type: string
+          description: ISA ID for production.
+        isaIdQualifier:
+          type: string
+          description: ISA ID qualifier.
+        testIsaId:
+          type: string
+          description: ISA ID for test stream.
+        testIsaIdQualifier:
+          type: string
+          description: Test ISA ID qualifier.
+        name:
+          type: string
+          description: EDI account name.
+    TransactionTypeV3Dto:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Transaction type name (e.g., 850_PURCHASE_ORDER).
+    SetTransactionAcknowledgmentRequestDto:
+      type: object
+      required:
+      - status
+      properties:
+        status:
+          type: string
+          description: Status of the acknowledgment.
+          enum:
+          - ACCEPTED
+          - REJECTED
+        errors:
+          type: array
+          description: Error messages.
+          example:
+          - path: /message
+            code: '00'
+            message: This is a top-level error message for JSON transaction
+          items:
+            $ref: '#/components/schemas/TransactionErrorMessageV3Dto'
+    BatchConfirmDeliveryBody:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          minLength: 1
+        deliveryStatus:
+          type: string
+          enum:
+          - DELIVERED
+          - FAILED
+        note:
+          type: string
+          maxLength: 240
+          description: Note will be added to the audit trail.
+      required:
+      - transactionId
+      - deliveryStatus
+    GetTransactionAcknowledgmentResponseV3Dto:
+      type: object
+      required:
+      - href
+      - createdAt
+      - status
+      - transaction
+      - transactionId
+      properties:
+        href:
+          type: string
+          description: Acknowledgment URL.
+          example: https://api.orderful.com/v3/transactions/000000/acknowledgment
+        createdAt:
+          type: string
+          format: date-time
+          description: Acknowledgment creation timestamp.
+          example: '2026-03-03T00:36:28.099Z'
+        status:
+          type: string
+          description: Acknowledgment status.
+        transaction:
+          description: Transaction reference.
+          allOf:
+          - $ref: '#/components/schemas/TransactionRefV3Dto'
+        transactionId:
+          type: string
+          description: Transaction ID.
+          example: '123'
+        errors:
+          type: array
+          description: Error messages.
+          example:
+          - path: /message
+            code: '00'
+            message: Message to show additional information on the error that occurred
+          items:
+            $ref: '#/components/schemas/TransactionErrorMessageV3Dto'
+    CreateTransactionBodyIdentityV3Dto:
+      type: object
+      required:
+      - isaId
+      properties:
+        isaId:
+          type: string
+          minLength: 1
+          maxLength: 35
+          description: The unique ISA identifier.
+    PaginationLinkV3:
+      type: object
+      required:
+      - next
+      - prev
+      properties:
+        next:
+          type: string
+          nullable: true
+          description: Next URL which you can use to fetch the next page.
+        prev:
+          type: string
+          nullable: true
+          description: Previous URL which you can use to fetch the previous page.
+    CreateTransactionBodyTypeV3Dto:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: 'The type of Transaction to be created. Please refer to our <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">list of available Transaction Types</a>.
+
+            '
+    CreateTransactionResponseV3:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The transaction ID.
+    ListTransactionsResponseV3Dto:
+      type: object
+      required:
+      - metadata
+      - data
+      properties:
+        metadata:
+          description: Pagination metadata.
+          allOf:
+          - $ref: '#/components/schemas/ListTransactionsResponseV3MetadataDto'
+        data:
+          description: List of transactions.
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionV3Dto'
+    TransactionReferenceIdentifierV3Dto:
+      type: object
+      required:
+      - value
+      - type
+      - owner
+      properties:
+        value:
+          type: string
+          description: Reference identifier value.
+        type:
+          type: string
+          description: Reference identifier type.
+          enum:
+          - INTERCHANGE
+          - GROUP
+          - TRANSACTION
+        owner:
+          type: string
+          description: Owner of the reference identifier.
+          enum:
+          - SENDER
+          - RECEIVER
+    TransactionMessageWithContentV3Dto:
+      type: object
+      required:
+      - href
+      - transactionSets
+      properties:
+        href:
+          type: string
+          description: Message endpoint URL.
+          example: https://api.orderful.com/v3/transactions/000000/message
+        transactionSets:
+          type: array
+          description: 'Array of transaction set objects containing the EDI transaction data in Orderful JSON format.
+
+            '
+          items:
+            type: object
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

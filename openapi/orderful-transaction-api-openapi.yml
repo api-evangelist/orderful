@@ -1,0 +1,2961 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Transaction API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Transaction
+  description: Create and manage EDI transactions.
+paths:
+  /transactions:
+    post:
+      operationId: TransactionController_create
+      summary: Create a Transaction
+      description: 'Creates a Transaction. Only one Transaction can be posted at a time. For guidance on how to use this page, see the <a href="https://docs.orderful.com/docs/create-a-transaction#make-an-api-call-using-our-api-explorer" target="_blank">Create a Transaction guide</a>. Check the status field to determine if the transaction was successfully accepted for processing or failed.
+
+        '
+      tags:
+      - Transaction
+      parameters:
+      - name: orderful-api-version
+        in: header
+        description: Specifies the API version to use.
+        schema:
+          type: string
+          default: v4
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionBodyV4Dto'
+            examples:
+              purchaseOrder:
+                summary: Purchase Order (850)
+                value:
+                  type: 850_PURCHASE_ORDER
+                  stream: test
+                  senderId: BUYERISA
+                  receiverId: SELLERISA
+                  message:
+                    purpose: original
+                    purchaseOrderType: standalone
+                    purchaseOrderNumber: PO5786344061670677
+                    purchaseOrderDate: '2026-02-12'
+                    releaseNumber: '004010'
+                    conditionsAndRestrictions:
+                    - conditionType: doNotBackorder
+                    parties:
+                      buyer:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: sendersId
+                      shipTo:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: sendersId
+                        addressLine1: 4055 MAIN ST
+                        city: NEW YORK
+                        stateOrProvinceCode: NY
+                        postalCode: '10001'
+                        countryCode: US
+                      billTo:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: sendersId
+                        addressLine1: 4055 MAIN ST
+                        city: NEW YORK
+                        stateOrProvinceCode: NY
+                        postalCode: '10001'
+                        countryCode: US
+                    termsOfSale:
+                      type: basic
+                      basisDate: deliveryDate
+                      discountPercent: '1'
+                      discountDaysDue: 45
+                      description: Net 45 Days
+                    references:
+                      vendorNumber:
+                        value: '4875905'
+                      departmentNumber:
+                        value: '011'
+                    dates:
+                      earliestShipDate: '2026-02-17'
+                      latestShipDate: '2026-02-22'
+                    carrierDetails:
+                      routing:
+                      - description: '2'
+                      freeOnBoard:
+                      - methodOfPayment: mutuallyAgreed
+                    allowances:
+                    - type: discount
+                      amount: '196.2475'
+                      description: Discount
+                    charges:
+                    - type: freight
+                      amount: '784.99'
+                      description: Freight Charge
+                    lineItems:
+                    - purchaseOrderLineId: '1'
+                      quantity:
+                        value: '5'
+                        unitOfMeasure: each
+                      unitCostPrice: '101.00'
+                      productIds:
+                        buyerItemNumber: '10000002'
+                        gtin12: 2837465832
+                        caseCode: 2837465832
+                      productAttributes:
+                        description: Green toothpaste
+                      outerPack:
+                        numberOfUnits: '10'
+                      innerPack:
+                        numberOfUnits: '10'
+                    - purchaseOrderLineId: '2'
+                      quantity:
+                        value: '20'
+                        unitOfMeasure: each
+                      unitCostPrice: '88.00'
+                      productIds:
+                        buyerItemNumber: '10000004'
+                        gtin12: 2837465837
+                        caseCode: 2837465837
+                      productAttributes:
+                        description: Orange toothpaste
+                      outerPack:
+                        numberOfUnits: '8'
+                      innerPack:
+                        numberOfUnits: '8'
+                    - purchaseOrderLineId: '3'
+                      quantity:
+                        value: '5'
+                        unitOfMeasure: each
+                      unitCostPrice: '112.00'
+                      productIds:
+                        buyerItemNumber: '10000003'
+                        gtin12: 2837465836
+                        caseCode: 2837465836
+                      productAttributes:
+                        description: Purple toothpaste
+                      outerPack:
+                        numberOfUnits: '12'
+                      innerPack:
+                        numberOfUnits: '12'
+                    - purchaseOrderLineId: '4'
+                      quantity:
+                        value: '10'
+                        unitOfMeasure: each
+                      unitCostPrice: '100.00'
+                      productIds:
+                        buyerItemNumber: '10000001'
+                        gtin12: 2837465831
+                        caseCode: 2837465831
+                      productAttributes:
+                        description: Yellow toothpaste
+                      outerPack:
+                        numberOfUnits: '10'
+                      innerPack:
+                        numberOfUnits: '10'
+                    - purchaseOrderLineId: '5'
+                      quantity:
+                        value: '5'
+                        unitOfMeasure: each
+                      unitCostPrice: '19.99'
+                      productIds:
+                        buyerItemNumber: ORDERFUL-TEST-SKU-005
+                        gtin12: 12345678005
+                        caseCode: 12345678005
+                      productAttributes:
+                        description: Placeholder product for scenario testing
+                      outerPack:
+                        numberOfUnits: '1'
+                      innerPack:
+                        numberOfUnits: '1'
+              poAcknowledgment:
+                summary: Purchase Order Acknowledgment (855)
+                value:
+                  type: 855_PURCHASE_ORDER_ACKNOWLEDGMENT
+                  stream: test
+                  senderId: SELLERISA
+                  receiverId: BUYERISA
+                  message:
+                    purchaseOrderNumber: PO5786344061670677
+                    status: accepted
+                    statusNote:
+                      description: Order Confirmation
+                      text:
+                      - Order acknowledged with exceptions on lines 3 and 5.
+                      - Purple toothpaste is out of stock and cannot be backordered per PO instructions.
+                      - Placeholder SKU substituted with equivalent test product.
+                    dates:
+                      purchaseOrderDate: '2026-02-12'
+                      scheduledShipDate: '2026-02-19'
+                      estimatedDeliveryDate: '2026-02-21'
+                    parties:
+                      shipFrom:
+                        name: Toothpaste Warehouse West
+                        identificationCode: WH-WEST-01
+                        identificationCodeType: warehouse
+                        addressLine1: 2200 Distribution Pkwy
+                        city: Edison
+                        stateOrProvinceCode: NJ
+                        postalCode: 8817
+                        countryCode: US
+                        contacts:
+                        - type: shipping
+                          name: Fulfillment Desk
+                          phoneNumber: 732-555-0100
+                          email: shipping@toothpastewarehouse.com
+                      supplier:
+                        name: Toothpaste Co.
+                        identificationCode: '4875905'
+                        identificationCodeType: sendersId
+                        addressLine1: 500 Oral Care Blvd
+                        city: Newark
+                        stateOrProvinceCode: NJ
+                        postalCode: '07102'
+                        countryCode: US
+                        contacts:
+                        - type: primary
+                          name: Order Management
+                          phoneNumber: 973-555-0200
+                          email: orders@toothpasteco.com
+                    termsOfSale:
+                      type: basic
+                      basisDate: deliveryDate
+                      discountPercent: '1'
+                      discountDaysDue: 45
+                      description: Net 45 Days
+                    references:
+                      vendorNumber:
+                        value: '4875905'
+                      departmentNumber:
+                        value: '011'
+                    lineItems:
+                    - purchaseOrderLineId: '1'
+                      productIds:
+                        buyerItemNumber: '10000002'
+                        gtin12: 2837465832
+                      productAttributes:
+                        description: Green toothpaste
+                      actions:
+                      - status: accepted
+                        quantity:
+                          value: '5'
+                          unitOfMeasure: each
+                        unitCostPrice: '101.00'
+                        scheduledShipDate: '2026-02-19'
+                        estimatedDeliveryDate: '2026-02-21'
+                    - purchaseOrderLineId: '2'
+                      productIds:
+                        buyerItemNumber: '10000004'
+                        gtin12: 2837465837
+                      productAttributes:
+                        description: Orange toothpaste
+                      actions:
+                      - status: accepted
+                        quantity:
+                          value: '20'
+                          unitOfMeasure: each
+                        unitCostPrice: '88.00'
+                        scheduledShipDate: '2026-02-19'
+                        estimatedDeliveryDate: '2026-02-21'
+                    - purchaseOrderLineId: '3'
+                      productIds:
+                        buyerItemNumber: '10000003'
+                        gtin12: 2837465836
+                      productAttributes:
+                        description: Purple toothpaste
+                      actions:
+                      - status: rejected
+                        statusReasonCode: outOfStock
+                        statusNote:
+                          description: Out of Stock
+                          text:
+                          - Purple toothpaste is currently unavailable.
+                          - Do-not-backorder instruction honored. Please reorder when stock replenishes.
+                        quantity:
+                          value: '5'
+                          unitOfMeasure: each
+                    - purchaseOrderLineId: '4'
+                      productIds:
+                        buyerItemNumber: '10000001'
+                        gtin12: 2837465831
+                      productAttributes:
+                        description: Yellow toothpaste
+                      actions:
+                      - status: accepted
+                        quantity:
+                          value: '10'
+                          unitOfMeasure: each
+                        unitCostPrice: '95.00'
+                        scheduledShipDate: '2026-02-19'
+                        estimatedDeliveryDate: '2026-02-21'
+                        statusNote:
+                          description: Price Adjustment
+                          text:
+                          - Unit price reduced from $100.00 to $95.00 per promotional agreement.
+                    - purchaseOrderLineId: '5'
+                      productIds:
+                        buyerItemNumber: ORDERFUL-TEST-SKU-005
+                        gtin12: 12345678005
+                      productAttributes:
+                        description: Placeholder product for scenario testing
+                      actions:
+                      - status: accepted
+                        quantity:
+                          value: '5'
+                          unitOfMeasure: each
+                        unitCostPrice: '19.99'
+                        scheduledShipDate: '2026-02-19'
+                        estimatedDeliveryDate: '2026-02-21'
+                        substitutedItem:
+                          productIds:
+                            buyerItemNumber: ORDERFUL-TEST-SKU-005A
+                            gtin12: 12345678015
+                        statusNote:
+                          description: Substitution
+                          text:
+                          - Original test SKU replaced with updated revision SKU-005A at same price.
+              shipNotice:
+                summary: Ship Notice / ASN (856)
+                value:
+                  type: 856_SHIP_NOTICE_MANIFEST
+                  stream: test
+                  senderId: SELLERISA
+                  receiverId: BUYERISA
+                  message:
+                    purpose: original
+                    shipmentId: SHP-2026-0219-4875905
+                    carrierDetails:
+                      quantityAndWeight:
+                      - packageForm: carton
+                        weightUOM: pound
+                        grossWeight: '285.00'
+                      routing:
+                      - sequenceType: origin
+                        standardCarrierAlphaCode: FEDX
+                        transportationMethod: commonCarrier
+                        serviceLevel: ground
+                      equipment:
+                        equipmentType: trailer
+                        equipmentId: FEDX-TRL-88412
+                      freeOnBoard:
+                      - methodOfPayment: mutuallyAgreed
+                    references:
+                      billOfLadingNumber:
+                        value: BOL-2026-0219-001
+                      proNumber:
+                        value: PRO7742859301
+                      vendorNumber:
+                        value: '4875905'
+                    dates:
+                      shipDate: '2026-02-19'
+                      deliveryDate: '2026-02-21'
+                    parties:
+                      shipFrom:
+                        name: Toothpaste Warehouse West
+                        identificationCode: WH-WEST-01
+                        identificationCodeType: warehouse
+                        addressLine1: 2200 Distribution Pkwy
+                        city: Edison
+                        stateOrProvinceCode: NJ
+                        postalCode: 8817
+                        countryCode: US
+                        contacts:
+                        - type: shipping
+                          name: Fulfillment Desk
+                          phoneNumber: 732-555-0100
+                          email: shipping@toothpastewarehouse.com
+                      shipTo:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: sendersId
+                        addressLine1: 4055 MAIN ST
+                        city: NEW YORK
+                        stateOrProvinceCode: NY
+                        postalCode: '10001'
+                        countryCode: US
+                      supplier:
+                        name: Toothpaste Co.
+                        identificationCode: '4875905'
+                        identificationCodeType: sendersId
+                    orders:
+                    - purchaseOrderNumber: PO5786344061670677
+                      purchaseOrderDate: '2026-02-12'
+                      pallets:
+                      - palletType: standard
+                        serialShippingId: 100487590500000100
+                        layersPerPallet: 2
+                        cartonsPerLayer: 1
+                        cartons:
+                        - serialShippingId: 100487590500000210
+                          trackingNumber: '794644790132'
+                          items:
+                          - purchaseOrderLineId: '1'
+                            productIds:
+                              buyerItemNumber: '10000002'
+                              gtin12: 2837465832
+                            productAttributes:
+                              description: Green toothpaste
+                            quantityShipped:
+                              value: '5'
+                              unitOfMeasure: each
+                            outerPack:
+                              numberOfUnits: '10'
+                            innerPack:
+                              numberOfUnits: '10'
+                        - serialShippingId: 100487590500000210
+                          trackingNumber: '794644790133'
+                          items:
+                          - purchaseOrderLineId: '2'
+                            productIds:
+                              buyerItemNumber: '10000004'
+                              gtin12: 2837465837
+                            productAttributes:
+                              description: Orange toothpaste
+                            quantityShipped:
+                              value: '20'
+                              unitOfMeasure: each
+                            outerPack:
+                              numberOfUnits: '8'
+                            innerPack:
+                              numberOfUnits: '8'
+                      - palletType: standard
+                        serialShippingId: 100487590500000100
+                        layersPerPallet: 2
+                        cartonsPerLayer: 1
+                        cartons:
+                        - serialShippingId: 100487590500000210
+                          trackingNumber: '794644790134'
+                          items:
+                          - purchaseOrderLineId: '4'
+                            productIds:
+                              buyerItemNumber: '10000001'
+                              gtin12: 2837465831
+                            productAttributes:
+                              description: Yellow toothpaste
+                            quantityShipped:
+                              value: '10'
+                              unitOfMeasure: each
+                            outerPack:
+                              numberOfUnits: '10'
+                            innerPack:
+                              numberOfUnits: '10'
+                        - serialShippingId: 100487590500000210
+                          trackingNumber: '794644790135'
+                          items:
+                          - purchaseOrderLineId: '5'
+                            productIds:
+                              buyerItemNumber: ORDERFUL-TEST-SKU-005A
+                              gtin12: 12345678015
+                            productAttributes:
+                              description: Placeholder product for scenario testing
+                            quantityShipped:
+                              value: '5'
+                              unitOfMeasure: each
+                            outerPack:
+                              numberOfUnits: '1'
+                            innerPack:
+                              numberOfUnits: '1'
+                    - purchaseOrderNumber: PO9921004488220031
+                      purchaseOrderDate: '2026-02-10'
+                      parties:
+                        markFor:
+                          name: Metals Distribution Center
+                          identificationCode: MDC-044
+                          identificationCodeType: sendersId
+                      pallets:
+                      - palletType: steel
+                        serialShippingId: 100487590500000300
+                        items:
+                        - purchaseOrderLineId: '1'
+                          references:
+                            heatCode:
+                              value: HT-2026-A4819
+                            billOfMaterial:
+                              value: BOM-SS304-COIL-48
+                          productIds:
+                            vendorItemNumber: SS304-48-020
+                          productAttributes:
+                            description: 304 Stainless Steel Coil 48in x 0.020in
+                            materialAttributes:
+                              type: 304 Stainless Steel
+                              annealMethod: bright anneal
+                              temper: quarter hard
+                              finish: 2B
+                              surfaceProtection: PVC film
+                          coilNumber: COIL-2026-SS304-00219
+                          quantityShipped:
+                            value: '12000'
+                            unitOfMeasure: pound
+                          manufactureDate: '2026-01-28'
+                          countryOfOrigin: US
+                        - purchaseOrderLineId: '2'
+                          references:
+                            heatCode:
+                              value: HT-2026-A4820
+                            barCode:
+                              value: SN00100487590500000302
+                          productIds:
+                            vendorItemNumber: CS1018-36-125
+                          productAttributes:
+                            description: 1018 Carbon Steel Sheet 36in x 0.125in
+                            materialAttributes:
+                              type: 1018 Carbon Steel
+                              temper: hot rolled
+                              finish: mill
+                              outerCoating: oil
+                              treatment: pickled
+                          coilNumber: COIL-2026-CS1018-00084
+                          quantityShipped:
+                            value: '8500'
+                            unitOfMeasure: pound
+                          manufactureDate: '2026-02-03'
+                          countryOfOrigin: US
+              invoice:
+                summary: Invoice (810)
+                value:
+                  type: 810_INVOICE
+                  stream: test
+                  senderId: SELLERISA
+                  receiverId: BUYERISA
+                  message:
+                    invoiceDate: '2026-02-22'
+                    invoiceNumber: INV-2026-0222-4875905
+                    purchaseOrderNumber: PO5786344061670677
+                    releaseNumber: '004010'
+                    references:
+                      vendorNumber:
+                        value: '4875905'
+                      departmentNumber:
+                        value: '011'
+                      billOfLadingNumber:
+                        value: BOL-2026-0219-001
+                      proNumber:
+                        value: PRO7742859301
+                      shipmentId:
+                        value: SHP-2026-0219-4875905
+                    dates:
+                      shipDate: '2026-02-19'
+                      deliveryDate: '2026-02-21'
+                    parties:
+                      buyer:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: receiversId
+                      shipTo:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: receiversId
+                        addressLine1: 4055 MAIN ST
+                        city: NEW YORK
+                        stateOrProvinceCode: NY
+                        postalCode: '10001'
+                        countryCode: US
+                      billTo:
+                        name: Retail Integration Testing
+                        identificationCode: '5438'
+                        identificationCodeType: receiversId
+                        addressLine1: 4055 MAIN ST
+                        city: NEW YORK
+                        stateOrProvinceCode: NY
+                        postalCode: '10001'
+                        countryCode: US
+                      accountsReceivable:
+                        name: Toothpaste Co.
+                        identificationCode: '4875905'
+                        identificationCodeType: sendersId
+                        addressLine1: 500 Oral Care Blvd
+                        city: Newark
+                        stateOrProvinceCode: NJ
+                        postalCode: '07102'
+                        countryCode: US
+                        contacts:
+                        - type: primary
+                          name: Accounts Receivable
+                          phoneNumber: 973-555-0300
+                          email: ar@toothpasteco.com
+                    termsOfSale:
+                      type: basic
+                      basisDate: deliveryDate
+                      discountPercent: '1'
+                      discountDaysDue: 45
+                      description: Net 45 Days
+                    carrierDetails:
+                      quantityAndWeight:
+                      - packageForm: carton
+                        ladingQuantity: '4'
+                        weightUOM: pound
+                        grossWeight: '285.00'
+                      routing:
+                      - sequenceType: origin
+                        standardCarrierAlphaCode: FEDX
+                        transportationMethod: commonCarrier
+                        serviceLevel: ground
+                      equipment:
+                        equipmentType: trailer
+                        equipmentId: FEDX-TRL-88412
+                      freeOnBoard:
+                      - methodOfPayment: mutuallyAgreed
+                    lineItems:
+                    - purchaseOrderLineId: '1'
+                      quantityInvoiced:
+                        value: '5'
+                        unitOfMeasure: each
+                      unitPrice: '101.00'
+                      productIds:
+                        buyerItemNumber: '10000002'
+                        gtin12: 2837465832
+                      productAttributes:
+                        description: Green toothpaste
+                      outerPack:
+                        numberOfUnits: '10'
+                      innerPack:
+                        numberOfUnits: '10'
+                    - purchaseOrderLineId: '2'
+                      quantityInvoiced:
+                        value: '20'
+                        unitOfMeasure: each
+                      unitPrice: '88.00'
+                      productIds:
+                        buyerItemNumber: '10000004'
+                        gtin12: 2837465837
+                      productAttributes:
+                        description: Orange toothpaste
+                      outerPack:
+                        numberOfUnits: '8'
+                      innerPack:
+                        numberOfUnits: '8'
+                    - purchaseOrderLineId: '4'
+                      quantityInvoiced:
+                        value: '10'
+                        unitOfMeasure: each
+                      unitPrice: '95.00'
+                      productIds:
+                        buyerItemNumber: '10000001'
+                        gtin12: 2837465831
+                      productAttributes:
+                        description: Yellow toothpaste
+                      outerPack:
+                        numberOfUnits: '10'
+                      innerPack:
+                        numberOfUnits: '10'
+                    - purchaseOrderLineId: '5'
+                      quantityInvoiced:
+                        value: '5'
+                        unitOfMeasure: each
+                      unitPrice: '19.99'
+                      productIds:
+                        buyerItemNumber: ORDERFUL-TEST-SKU-005A
+                        gtin12: 12345678015
+                      productAttributes:
+                        description: Placeholder product for scenario testing
+                      outerPack:
+                        numberOfUnits: '1'
+                      innerPack:
+                        numberOfUnits: '1'
+                    allowances:
+                    - type: discount
+                      amount: '165.75'
+                      description: Discount
+                    charges:
+                    - type: freight
+                      amount: '784.99'
+                      description: Freight Charge
+                    invoiceSalesTotal: '3314.95'
+                    invoiceTermsDiscount: '33.15'
+                    invoiceTotal: '3934.19'
+              inventoryAdvice:
+                summary: Inventory Advice (846)
+                value:
+                  type: 846_INVENTORY_ADVICE
+                  stream: test
+                  senderId: ACMEPRODUCTS
+                  receiverId: RETAILPARTNER
+                  message:
+                    purpose: full
+                    reportType: sellerInventory
+                    reportNumber: INV-2024-001234
+                    reportDate: '2024-01-15'
+                    parties:
+                      inventoryLocation:
+                        name: West Coast Distribution Center
+                        identificationCode: WH001
+                        identificationCodeType: warehouse
+                        addressLine1: 1234 Logistics Way
+                        city: Los Angeles
+                        stateOrProvinceCode: CA
+                        postalCode: '90001'
+                        countryCode: US
+                      buyer:
+                        name: Retail Partner Inc
+                        identificationCode: RETAILPARTNER
+                        identificationCodeType: receiversId
+                      supplier:
+                        name: Acme Products LLC
+                        identificationCode: ACMEPRODUCTS
+                        identificationCodeType: sendersId
+                        contacts:
+                        - type: primary
+                          name: John Smith
+                          email: inventory@acmeproducts.com
+                          phoneNumber: 555-123-4567
+                    references:
+                      vendorNumber:
+                        value: VN-98765
+                      departmentNumber:
+                        value: DEPT-100
+                    dates:
+                      reportStartDate: '2024-01-01'
+                      reportEndDate: '2024-01-15'
+                    sellersCurrency:
+                      currencyCode: USD
+                    notes:
+                      general:
+                        description: Weekly inventory snapshot
+                        text:
+                        - Full inventory count as of January 15, 2024
+                    lineItems:
+                    - lineNumber: '1'
+                      productIds:
+                        buyerItemNumber: SKU-ABC-001
+                        vendorItemNumber: ACME-WIDGET-100
+                        gtin12: 12345678901
+                      productAttributes:
+                        description: Premium Widget - Blue
+                        colorDescription: Blue
+                        sizeDescription: Large
+                      itemStatus: inStock
+                      unitOfMeasure: each
+                      inventoryQuantities:
+                      - locationId: WH001
+                        type: available
+                        quantity: '500'
+                        availableDate: '2024-01-15'
+                      - locationId: WH001
+                        type: allocated
+                        quantity: '75'
+                      - locationId: WH001
+                        type: incoming
+                        quantity: '200'
+                        availableDate: '2024-01-22'
+                      unitCostPrice: '12.50'
+                    - lineNumber: '2'
+                      productIds:
+                        buyerItemNumber: SKU-ABC-002
+                        vendorItemNumber: ACME-WIDGET-200
+                        gtin12: 12345678902
+                      productAttributes:
+                        description: Premium Widget - Red
+                        colorDescription: Red
+                        sizeDescription: Medium
+                      itemStatus: inStock
+                      unitOfMeasure: each
+                      inventoryQuantities:
+                      - locationId: WH001
+                        type: available
+                        quantity: '1250'
+                      - locationId: WH001
+                        type: unavailable
+                        quantity: '25'
+                      unitCostPrice: '10.00'
+                    - lineNumber: '3'
+                      productIds:
+                        buyerItemNumber: SKU-XYZ-001
+                        vendorItemNumber: ACME-GADGET-50
+                      productAttributes:
+                        description: Deluxe Gadget
+                      unlimitedAvailability: true
+                      unitOfMeasure: each
+                      inventoryQuantities:
+                      - locationId: WH001
+                        type: available
+                        quantity: '9999'
+                      unitCostPrice: '45.00'
+                      references:
+                        productType:
+                          value: dropship
+              purchaseOrderChange:
+                summary: Purchase Order Change (860)
+                value:
+                  type: 860_PURCHASE_ORDER_CHANGE
+                  stream: test
+                  senderId: RETAILCORP
+                  receiverId: ACMEPRODUCTS
+                  message:
+                    purpose: change
+                    purchaseOrderType: standalone
+                    purchaseOrderChangeType: order
+                    purchaseOrderNumber: PO-2024-001234
+                    purchaseOrderDate: '2024-01-10'
+                    purchaseOrderChangeDate: '2024-01-15'
+                    changeSequenceNumber: '001'
+                    acknowledgmentType: withDetail
+                    parties:
+                      buyer:
+                        name: Retail Corp
+                        identificationCode: RETAILCORP
+                        identificationCodeType: receiversId
+                        addressLine1: 100 Commerce Street
+                        city: New York
+                        stateOrProvinceCode: NY
+                        postalCode: '10001'
+                        countryCode: US
+                        contacts:
+                        - type: primary
+                          name: Jane Doe
+                          email: purchasing@retailcorp.com
+                          phoneNumber: 555-987-6543
+                      shipTo:
+                        name: Retail Corp - Distribution Center
+                        identificationCode: DC-EAST-01
+                        identificationCodeType: warehouse
+                        addressLine1: 500 Warehouse Blvd
+                        city: Newark
+                        stateOrProvinceCode: NJ
+                        postalCode: '07101'
+                        countryCode: US
+                      supplier:
+                        name: Acme Products LLC
+                        identificationCode: ACMEPRODUCTS
+                        identificationCodeType: sendersId
+                    buyersCurrency:
+                      currencyCode: USD
+                    notes:
+                      general:
+                        description: Order modification
+                        text:
+                        - Increasing quantity on line 1, cancelling line 3
+                      shippingInstructions:
+                        text:
+                        - Please expedite shipment due to increased demand
+                    termsOfSale:
+                      type: basic
+                      basisDate: invoiceDate
+                      discountPercent: '2'
+                      discountDaysDue: 10
+                      netDaysDue: 30
+                    references:
+                      departmentNumber:
+                        value: DEPT-200
+                      vendorNumber:
+                        value: VN-12345
+                    dates:
+                      requestedDeliveryDate: '2024-02-01'
+                      cancelAfterDate: '2024-02-15'
+                    carrierDetails:
+                      routing:
+                      - transportationMethod: lessThanTrailerLoad
+                        standardCarrierAlphaCode: UPSN
+                        serviceLevel: ground
+                      freeOnBoard:
+                      - methodOfPayment: prepaidBySeller
+                        locationType: destination
+                    lineItems:
+                    - purchaseOrderLineId: '001'
+                      changeReason: changeToItem
+                      originalQuantity:
+                        value: '100'
+                        unitOfMeasure: each
+                      changeInQuantity:
+                        value: '50'
+                        unitOfMeasure: each
+                      quantity:
+                        value: '150'
+                        unitOfMeasure: each
+                      unitCostPrice: '25.00'
+                      unitPriceBasis: perEach
+                      productIds:
+                        buyerItemNumber: SKU-WIDGET-001
+                        vendorItemNumber: ACME-W100
+                        gtin12: 12345678901
+                      productAttributes:
+                        description: Premium Widget - Standard
+                        colorDescription: Black
+                      dates:
+                        requestedShipDate: '2024-01-25'
+                    - purchaseOrderLineId: '002'
+                      changeReason: addItem
+                      quantity:
+                        value: '75'
+                        unitOfMeasure: each
+                      unitCostPrice: '18.50'
+                      unitPriceBasis: perEach
+                      productIds:
+                        buyerItemNumber: SKU-GADGET-002
+                        vendorItemNumber: ACME-G200
+                        gtin12: 12345678902
+                      productAttributes:
+                        description: Deluxe Gadget - New Item
+                      notes:
+                        general:
+                          text:
+                          - New item added to order
+                    - purchaseOrderLineId: '003'
+                      changeReason: deleteItem
+                      originalQuantity:
+                        value: '50'
+                        unitOfMeasure: each
+                      quantity:
+                        value: '0'
+                        unitOfMeasure: each
+                      productIds:
+                        buyerItemNumber: SKU-TOOL-003
+                        vendorItemNumber: ACME-T300
+                      productAttributes:
+                        description: Basic Tool - Cancelled
+      responses:
+        '202':
+          description: Transaction processing. Check the status field to determine if the transaction was successfully accepted for processing or failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTransactionResponseV4Dto'
+              examples:
+                accepted:
+                  summary: Transaction Accepted
+                  value:
+                    id: '802210971'
+                    status: ACCEPTED
+                    detail: ''
+                failed:
+                  summary: Transaction Failed (Validation Error)
+                  value:
+                    id: '802210972'
+                    status: FAILED
+                    detail: Validation failed
+                    validationErrors:
+                    - payloadPaths:
+                      - message.lineItems[0].productIds
+                      errorMessage: At least one product identifier is required
+                      outputPath: PO1
+  /transactions/{transactionId}/deliveries/{deliveryId}:
+    get:
+      operationId: TransactionController_getDelivery
+      summary: Get a Delivery.
+      description: Returns the specified transaction delivery. Links to Delivery objects are available in Transactions retrieved from a <a href="https://docs.orderful.com/reference/pollingcontroller_list" target="_blank">Inbox</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.
+      tags:
+      - Transaction
+      parameters:
+      - name: transactionId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: deliveryId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: orderful-api-version
+        in: header
+        description: Specifies the API version to use.
+        schema:
+          type: string
+          default: v4
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransactionDeliveryResponseDto'
+  /transactions/{transactionId}/deliveries/{deliveryId}/accept:
+    post:
+      operationId: TransactionController_handleDeliveryApproved
+      summary: Accept a transaction delivery.
+      description: Accepts the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href="https://docs.orderful.com/reference/inboxcontroller_list" target="_blank">Inbox</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.If this Delivery is associated with one or more Transactions in a inbox, this will also remove the Transactions from that inbox.
+      tags:
+      - Transaction
+      parameters:
+      - name: transactionId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: deliveryId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: orderful-api-version
+        in: header
+        description: Specifies the API version to use.
+        schema:
+          type: string
+          default: v4
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApproveTransactionDeliveryRequestV4Dto'
+      responses:
+        '200':
+          description: Transaction delivery marked as accepted.
+  /transactions/{transactionId}/deliveries/{deliveryId}/fail:
+    post:
+      operationId: TransactionController_handleFailDeliveryRequest
+      summary: Fail a transaction delivery.
+      description: 'Fails the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href="https://docs.orderful.com/reference/pollingcontroller_list" target="_blank">Inbox</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.
+
+
+        If this Delivery is the most recent one associated with a Transaction, this will update the Transaction''s `deliveryStatus` to `FAILED`.
+
+
+        If this Delivery is associated with one or more Transactions in a inbox, this will also remove the Transactions from that inbox.
+
+        '
+      tags:
+      - Transaction
+      parameters:
+      - name: transactionId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: deliveryId
+        required: true
+        in: path
+        schema:
+          type: string
+      - name: orderful-api-version
+        in: header
+        description: Specifies the API version to use.
+        schema:
+          type: string
+          default: v4
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FailTransactionDeliveryRequestV4Dto'
+      responses:
+        '200':
+          description: Transaction marked as failed.
+components:
+  schemas:
+    ProductIdDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          description: REQUIRED. Product ID type.
+        value:
+          type: string
+          description: REQUIRED. Product ID value.
+    PhysicalDetails:
+      type: object
+      properties:
+        numberOfUnits:
+          type: string
+        packageForm:
+          type: string
+          enum:
+          - carton
+          - case
+          - pallet
+          - bag
+          - box
+          - bundle
+          - drum
+          - roll
+        weight:
+          type: string
+        weightUnit:
+          type: string
+          enum:
+          - pound
+          - kilogram
+          - ounce
+          - gram
+        volume:
+          type: string
+        volumeUnit:
+          type: string
+    860_PURCHASE_ORDER_CHANGE:
+      type: object
+      description: Purchase Order Change document - Buyer modifies an existing order.
+      properties:
+        purpose:
+          type: string
+          description: REQUIRED. Change purpose.
+          enum:
+          - change
+          - cancellation
+        purchaseOrderType:
+          type: string
+          description: PO type.
+          enum:
+          - blanketEstimated
+          - blanketFirm
+          - dropship
+          - release
+          - rushOrder
+          - standalone
+        purchaseOrderChangeType:
+          type: string
+          description: Type of change.
+          enum:
+          - order
+          - standing
+        purchaseOrderNumber:
+          type: string
+          description: REQUIRED. Original PO number being changed.
+        purchaseOrderDate:
+          type: string
+          format: date
+          description: REQUIRED. Original PO date.
+        purchaseOrderChangeDate:
+          type: string
+          format: date
+          description: REQUIRED. Date of the change.
+        changeSequenceNumber:
+          type: string
+          description: Sequence number for tracking multiple changes.
+        acknowledgmentType:
+          type: string
+          description: Acknowledgment request type.
+          enum:
+          - withDetail
+          - withoutDetail
+        parties:
+          $ref: '#/components/schemas/Parties'
+        references:
+          $ref: '#/components/schemas/References'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        notes:
+          $ref: '#/components/schemas/Notes'
+        termsOfSale:
+          $ref: '#/components/schemas/TermsOfSale'
+        carrierDetails:
+          $ref: '#/components/schemas/CarrierDetails'
+        buyersCurrency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+        lineItems:
+          type: array
+          description: REQUIRED. Changed line items.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/POChangeLineItem'
+    NoteDetail:
+      type: object
+      properties:
+        description:
+          type: string
+        text:
+          type: array
+          items:
+            type: string
+          description: Note text lines.
+    InvoiceTaxes:
+      type: object
+      description: Invoice tax details (TXI segments).
+      properties:
+        harmonizedSalesTax:
+          description: Harmonized sales tax (TXI01='BE').
+          allOf:
+          - $ref: '#/components/schemas/TaxDetails'
+        goodsAndServicesTax:
+          description: Goods and services tax (TXI01='GS').
+          allOf:
+          - $ref: '#/components/schemas/TaxDetails'
+        stateProvincialTax:
+          description: State/provincial tax (TXI01='SP').
+          allOf:
+          - $ref: '#/components/schemas/TaxDetails'
+        stateProvincialGoodsTax:
+          description: State/provincial goods tax (TXI01='PG').
+          allOf:
+          - $ref: '#/components/schemas/TaxDetails'
+        localTax:
+          description: Local tax (TXI01='SL' or 'LS').
+          allOf:
+          - $ref: '#/components/schemas/TaxDetails'
+    References:
+      type: object
+      description: Reference numbers.
+      properties:
+        accountNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        arrivalCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+        associatedPurchaseOrderNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        reservationNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        customerOrderNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        deliveryReference:
+          $ref: '#/components/schemas/ReferenceDetail'
+        divisionId:
+          $ref: '#/components/schemas/ReferenceDetail'
+        departmentNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        internalCustomerNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        vendorNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        merchandiseTypeCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+        promotionNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        storeNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        thirdPartyReferenceNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        warehouseStorageLocation:
+          $ref: '#/components/schemas/ReferenceDetail'
+        shipmentNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        invoiceNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+    Contact:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - primary
+          - customerRelations
+          - orderInquiry
+          - department
+          - shipping
+          - receiving
+          - hazmat
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        faxNumber:
+          type: string
+        email:
+          type: string
+    AsnCarton:
+      type: object
+      description: Carton in shipment.
+      properties:
+        trackingNumber:
+          type: string
+        serialShippingId:
+          type: string
+          description: SSCC-18 code.
+        cartonPhysicalDetails:
+          $ref: '#/components/schemas/PhysicalDetails'
+        specialHandling:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecialHandlingDetails'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AsnItem'
+    855_PURCHASE_ORDER_ACKNOWLEDGMENT:
+      type: object
+      description: Purchase Order Acknowledgment document - Supplier confirms or rejects order.
+      properties:
+        purchaseOrderNumber:
+          type: string
+          description: REQUIRED. Original PO number being acknowledged (BAK03).
+        status:
+          type: string
+          description: REQUIRED. Overall acknowledgment status (BAK02).
+          enum:
+          - accepted
+          - rejected
+        statusReasonCode:
+          type: string
+          description: Reason code for status.
+          enum:
+          - discontinued
+          - invalidAddress
+          - invalidBillToCode
+          - invalidItemNumber
+          - invalidPrice
+          - invalidItemQuantity
+          - invalidShipFrom
+          - invalidShipMethod
+          - invalidShipToName
+          - invalidShipToAddress1
+          - invalidShipToAddress2
+          - invalidShipToCity
+          - invalidShipToStateOrProvince
+          - invalidShipToPostalCode
+          - invalidShipToCountry
+          - itemRecall
+          - itemSetupIssue
+          - mainlandOnly
+          - missingLineItemId
+          - missingOrderId
+          - missingShipId
+          - naturalDisaster
+          - outOfStock
+          - seasonalOrEndOfLife
+          - shippingInFull
+          - systemIssue
+          - taxNexusIssue
+          - transportationIssuePrepaid
+          - transportationIssueCollect
+          - undeliverableAddress
+          - weather
+        statusNote:
+          $ref: '#/components/schemas/NoteDetail'
+        dates:
+          $ref: '#/components/schemas/POAckDates'
+        parties:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/Party'
+            supplier:
+              $ref: '#/components/schemas/Party'
+        termsOfSale:
+          $ref: '#/components/schemas/TermsOfSale'
+        lineItems:
+          type: array
+          description: Acknowledgment line items.
+          items:
+            $ref: '#/components/schemas/POAckLineItem'
+    GetTransactionDeliveryResponseDto:
+      type: object
+      required:
+      - deliveryId
+      - transactionId
+      - href
+      - status
+      - createdAt
+      - lastUpdatedAt
+      - note
+      - approve
+      - fail
+      - sendSucceededAt
+      - sendFailedAt
+      - lastConfirmedAt
+      properties:
+        deliveryId:
+          type: string
+          description: Delivery ID
+          example: 1aadf1a68-abcd-4981-abcd-012345678901
+        transactionId:
+          type: number
+          description: Transaction ID
+          example: 0
+        href:
+          type: string
+          description: Delivery URL
+          example: https://api.orderful.com/transactions/00000/deliveries/1aadf1a68-abcd-4981-abcd-012345678901
+        status:
+          type: string
+          description: Delivery status
+          example: CREATED
+          enum:
+          - CREATED
+          - SENT
+          - FAILED
+          - DELIVERED
+        createdAt:
+          type: string
+          format: date-time
+          description: Datetime the delivery was created
+          example: '2025-10-02T16:46:11.943Z'
+        lastUpdatedAt:
+          type: string
+          format: date-time
+          description: Datetime the delivery was last updated
+          example: '2025-10-02T16:46:11.943Z'
+        note:
+          type: string
+          description: Delivery note
+          example: Transaction received by the ERP
+        approve:
+          description: Approve delivery
+          example:
+            href: https://api.orderful.com/transactions/00000/deliveries/1aadf1a68-abcd-4981-abcd-012345678901/approve
+          allOf:
+          - $ref: '#/components/schemas/HrefLink'
+        fail:
+          description: Fail delivery
+          example:
+            href: https://api.orderful.com/transactions/00000/deliveries/1aadf1a68-abcd-4981-abcd-012345678901/fail
+          allOf:
+          - $ref: '#/components/schemas/HrefLink'
+        sendSucceededAt:
+          type: string
+          format: date-time
+          description: Datetime the delivery was successfully sent
+          example: '2025-10-02T16:46:11.943Z'
+        sendFailedAt:
+          type: string
+          format: date-time
+          description: Datetime the delivery permanently failed to be sent
+          example: '2025-10-02T16:46:11.943Z'
+        lastConfirmedAt:
+          type: string
+          format: date-time
+          description: Datetime the delivery was failed or approved
+          example: '2025-10-02T16:46:11.943Z'
+    FOBDetails:
+      type: object
+      description: Freight on Board details.
+      properties:
+        methodOfPayment:
+          type: string
+          enum:
+          - airCollect
+          - airPrepaid
+          - paidByBuyer
+          - collect
+          - mutuallyAgreed
+          - portOfCall
+          - halfPrepaid
+          - mixed
+          - serviceFreightNoCharge
+          - advancePrepaid
+          - customerPickupBackhaul
+          - prepaidChargeCustomer
+          - prepaidBySeller
+          - paidBySeller
+          - pickup
+          - thirdPartyPay
+        locationType:
+          type: string
+          enum:
+          - cityAndState
+          - country
+          - destination
+          - origin
+          - stateProvince
+          - warehouse
+        locationDescription:
+          type: string
+          description: FOB location description.
+        titlePassageType:
+          type: string
+          enum:
+          - cityAndState
+          - country
+          - destination
+          - origin
+          - stateProvince
+          - warehouse
+        titlePassageDescription:
+          type: string
+        transportationTermsSource:
+          type: string
+          enum:
+          - incoTerms
+          - tradeTerms
+          - mutuallyDefined
+        transportationTerms:
+          type: string
+          enum:
+          - costAndFreight
+          - costInsuranceAndFreight
+          - carriageAndInsurancePaidTo
+          - carriagePaidTo
+          - deliveredAtFrontier
+          - deliverDutyPaid
+          - deliverDutyUnpaid
+          - deliveredDutyUnpaid
+          - deliveredExQuay
+          - deliveredExShip
+          - domesticallySupplied
+          - exQuay
+          - exShip
+          - exWorks
+          - freeAlongsideShip
+          - freeCarrier
+          - freightCarriageInsurancePaidTo
+          - freightCarriagePaidTo
+          - freeOnBoard
+          - freeOnRail
+          - freePnTruck
+          - nonPrivilegedForeign
+          - privilegedForeign
+          - mutuallyDefined
+        riskOfLoss:
+          type: string
+          enum:
+          - toDestinationBuyer
+          - toFreightEqPointSeller
+          - toPoolPointSeller
+          - toDestinationSeller
+          - mutuallyDefined
+        description:
+          type: string
+    TaxDetails:
+      type: object
+      description: Tax details (TXI or TAX segment).
+      properties:
+        amount:
+          type: string
+          description: Tax amount (TXI02).
+        percent:
+          type: string
+          description: Tax percentage (TXI03).
+        taxIdNumber:
+          type: string
+          description: Tax ID number (TXI09 or TAX01).
+        locationId:
+          type: string
+          description: Location identifier (TAX03).
+        exemptionCode:
+          type: string
+          enum:
+          - exempt
+          - notExempt
+          - notTaxable
+        jurisdictionType:
+          type: string
+          description: Tax jurisdiction type (TXI04).
+        jurisdictionCode:
+          type: string
+          description: Tax jurisdiction code (TXI05).
+        assignedId:
+          type: string
+          description: Assigned identification (TXI10).
+    AsnOrder:
+      type: object
+      description: Order within a shipment.
+      properties:
+        purchaseOrderNumber:
+          type: string
+          description: REQUIRED. PO number.
+        releaseNumber:
+          type: string
+        purchaseOrderDate:
+          type: string
+          format: date
+        customerOrderNumber:
+          type: string
+        parties:
+          type: object
+          properties:
+            markFor:
+              $ref: '#/components/schemas/Party'
+        pallets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AsnPallet'
+        cartons:
+          type: array
+          description: Cartons (when not using pallets, SOPI hierarchy).
+          items:
+            $ref: '#/components/schemas/AsnCarton'
+        items:
+          type: array
+          description: Items directly on order (no pallets or cartons, SOI hierarchy).
+          items:
+            $ref: '#/components/schemas/AsnItem'
+    InvoiceLineItem:
+      type: object
+      description: Invoice line item details.
+      properties:
+        purchaseOrderLineId:
+          type: string
+          description: Original PO line ID.
+        quantityInvoiced:
+          description: REQUIRED. Quantity invoiced.
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: string
+          description: REQUIRED. Unit price (IT104).
+        extendedPrice:
+          type: string
+          description: Extended price (quantity × unit price).
+        productIds:
+          description: REQUIRED. Product identifiers.
+          allOf:
+          - $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        shipDate:
+          type: string
+          format: date
+        allowances:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxDetails'
+        notes:
+          $ref: '#/components/schemas/Notes'
+    ShipmentParties:
+      type: object
+      description: Parties involved in shipment.
+      properties:
+        shipFrom:
+          $ref: '#/components/schemas/Party'
+        shipTo:
+          $ref: '#/components/schemas/Party'
+        supplier:
+          $ref: '#/components/schemas/Party'
+    InventoryQuantity:
+      type: object
+      description: Inventory quantity for a specific location and type.
+      properties:
+        locationId:
+          type: string
+          description: Location identifier.
+        type:
+          type: string
+          description: Quantity type.
+          enum:
+          - available
+          - allocated
+          - incoming
+          - unavailable
+          - onHand
+          - committed
+        quantity:
+          type: string
+          description: Quantity value.
+        availableDate:
+          type: string
+          format: date
+          description: Date when quantity becomes available.
+    AllowanceCharge:
+      type: object
+      properties:
+        type:
+          type: string
+        amount:
+          type: string
+        percent:
+          type: string
+        description:
+          type: string
+    AsnReferences:
+      type: object
+      properties:
+        appointmentNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        billOfLadingNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        loadPlanningNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        pickupReferenceNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        proNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        trackingNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        vendorNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+    ProductIds:
+      type: object
+      description: Product identifiers.
+      properties:
+        buyerItemNumber:
+          type: string
+        vendorItemNumber:
+          type: string
+        gtin12:
+          type: string
+        gtin13:
+          type: string
+        gtin14:
+          type: string
+        caseCode:
+          type: string
+        drugCode:
+          type: string
+        standardBookNumber:
+          type: string
+        buyerItemIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductIdDetail'
+        vendorItemIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductIdDetail'
+    Parties:
+      type: object
+      description: Trading partner information.
+      properties:
+        buyer:
+          $ref: '#/components/schemas/Party'
+        shipTo:
+          $ref: '#/components/schemas/Party'
+        billTo:
+          $ref: '#/components/schemas/Party'
+        shipFrom:
+          $ref: '#/components/schemas/Party'
+        accountsPayable:
+          $ref: '#/components/schemas/Party'
+        soldTo:
+          $ref: '#/components/schemas/Party'
+        supplier:
+          $ref: '#/components/schemas/Party'
+    856_SHIP_NOTICE_MANIFEST:
+      type: object
+      description: Ship Notice / Advanced Shipping Notice (ASN) document - Supplier notifies shipment details.
+      properties:
+        purpose:
+          type: string
+          description: Transaction purpose.
+          enum:
+          - original
+          - cancellation
+          - change
+        shipmentId:
+          type: string
+          description: REQUIRED. Unique shipment ID (BSN02).
+        carrierDetails:
+          type: object
+          properties:
+            quantityAndWeight:
+              type: array
+              items:
+                $ref: '#/components/schemas/CarrierWeightDetails'
+            routing:
+              type: array
+              items:
+                $ref: '#/components/schemas/RoutingDetails'
+            equipment:
+              $ref: '#/components/schemas/EquipmentDetails'
+            freeOnBoard:
+              type: array
+              items:
+                $ref: '#/components/schemas/FOBDetails'
+            specialHandling:
+              type: array
+              items:
+                $ref: '#/components/schemas/SpecialHandlingDetails'
+        references:
+          $ref: '#/components/schemas/AsnReferences'
+        dates:
+          type: object
+          properties:
+            shipDate:
+              type: string
+              format: date
+            deliveryDate:
+              type: string
+              format: date
+        shippingPaymentTerms:
+          type: string
+          enum:
+          - prepaidBySeller
+          - collect
+        parties:
+          $ref: '#/components/schemas/ShipmentParties'
+        allowances:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        orders:
+          type: array
+          description: REQUIRED. Orders in this shipment (HL loops).
+          items:
+            $ref: '#/components/schemas/AsnOrder'
+    850_PURCHASE_ORDER:
+      type: object
+      description: Purchase Order document - Buyer sends order to supplier.
+      properties:
+        purpose:
+          type: string
+          description: REQUIRED. Transaction purpose (BEG01).
+          enum:
+          - original
+          - cancellation
+          - change
+          - replace
+          - confirmation
+        purchaseOrderType:
+          type: string
+          description: REQUIRED. PO type (BEG02).
+          enum:
+          - blanketEstimated
+          - blanketFirm
+          - dropship
+          - release
+          - rushOrder
+          - standalone
+        purchaseOrderNumber:
+          type: string
+          description: REQUIRED. Unique PO number (BEG03).
+        purchaseOrderDate:
+          type: string
+          format: date
+          description: REQUIRED. PO issue date (BEG05).
+        contractNumber:
+          type: string
+          description: Contract number (BEG06).
+        releaseNumber:
+          type: string
+          description: Release number for blanket orders (BEG04).
+        acknowledgmentType:
+          type: string
+          description: Acknowledgment request type.
+        parties:
+          $ref: '#/components/schemas/Parties'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        references:
+          $ref: '#/components/schemas/References'
+        termsOfSale:
+          $ref: '#/components/schemas/TermsOfSale'
+        carrierDetails:
+          $ref: '#/components/schemas/CarrierDetails'
+        notes:
+          $ref: '#/components/schemas/Notes'
+        monetaryAmounts:
+          $ref: '#/components/schemas/HeaderMonetaryAmounts'
+        conditionsAndRestrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conditions'
+        lineItems:
+          type: array
+          description: REQUIRED. Order line items (PO1 loop).
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/POLineItem'
+    TermsOfSale:
+      type: object
+      description: Payment terms.
+      properties:
+        type:
+          type: string
+          enum:
+          - basic
+          - basicDiscountOffered
+          - discountNotApplicable
+          - endOfMonth
+          - endOfMonth10
+          - instant
+          - mutuallyDefined
+        basisDate:
+          type: string
+          enum:
+          - invoiceDate
+          - receiptOfGoods
+          - deliveryDate
+          - shipDate
+          - mutuallyDefined
+          - gageApprovalDate
+          - specifiedDate
+          - acceptanceDate
+          - invoiceTransmissionDate
+          - effectiveDate
+        discountPercent:
+          type: string
+        discountDaysDue:
+          type: integer
+          description: Number of days in the discount period.
+        discountDueDate:
+          type: string
+          format: date
+        dayOfMonth:
+          type: integer
+        netDaysDue:
+          type: integer
+          description: Number of days until total invoice amount is due.
+        netDueDate:
+          type: string
+          format: date
+        discountAmount:
+          type: string
+          description: Total discount amount.
+        description:
+          type: string
+        paymentMethodType:
+          type: string
+          enum:
+          - check
+          - letterOfCredit
+          - wireTransfer
+          - corporateTradePayment
+          - specialAccount
+          - directPayOthers
+    Quantity:
+      type: object
+      properties:
+        value:
+          type: string
+          description: REQUIRED. Quantity value.
+        unitOfMeasure:
+          type: string
+          enum:
+          - ball
+          - assortment
+          - ocularInsertSystem
+          - bundle
+          - bag
+          - bottle
+          - belt
+          - box
+          - cell
+          - case
+          - card
+          - container
+          - can
+          - cartridge
+          - cassette
+          - carton
+          - coil
+          - combo
+          - drum
+          - display
+          - dozen
+          - each
+          - knots
+          - order
+          - flakeTon
+          - foot
+          - gallon
+          - gram
+          - person
+          - kit
+          - pound
+          - linearFoot
+          - monetaryValue
+          - milliliter
+          - meter
+          - ounce
+          - threePack
+          - sixPack
+          - pail
+          - pairInches
+          - piece
+          - pad
+          - palletLift
+          - packPAK
+          - package
+          - palletUnitLoad
+          - pair
+          - pint
+          - quart
+          - reel
+          - roll
+          - section
+          - squareFoot
+          - sheet
+          - set
+          - syringe
+          - tube
+          - tote
+          - thousand
+          - unit
+          - vial
+    InvoiceDates:
+      type: object
+      description: Invoice-related dates.
+      properties:
+        shipDate:
+          type: string
+          format: date
+        deliveryDate:
+          type: string
+          format: date
+        termsNetDueDate:
+          type: string
+          format: date
+        termsDiscountDueDate:
+          type: string
+          format: date
+    HrefLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
+          type: string
+    InventoryDates:
+      type: object
+      description: Inventory report date range.
+      properties:
+        reportStartDate:
+          type: string
+          format: date
+        reportEndDate:
+          type: string
+          format: date
+    POLineItem:
+      type: object
+      description: Purchase order line item.
+      properties:
+        purchaseOrderLineId:
+          type: string
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        unitCostPrice:
+          type: string
+        unitPriceBasis:
+          type: string
+        additionalPricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingInfo'
+        productIds:
+          description: REQUIRED. Product identifiers.
+          allOf:
+          - $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        outerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+        innerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+        packaging:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackagingDetails'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        references:
+          $ref: '#/components/schemas/References'
+        destinationQuantities:
+          type: array
+          items:
+            $ref: '#/components/schemas/DestinationQuantity'
+        allowances:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        monetaryAmounts:
+          $ref: '#/components/schemas/MonetaryAmounts'
+        sublineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/SublineItem'
+        notes:
+          $ref: '#/components/schemas/Notes'
+        paperwork:
+          type: array
+          items:
+            $ref: '#/components/schemas/Paperwork'
+        conditionsAndRestrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conditions'
+        carrierDetails:
+          $ref: '#/components/schemas/CarrierDetails'
+    EquipmentDetails:
+      type: object
+      properties:
+        equipmentType:
+          type: string
+          enum:
+          - reefer
+          - trailer
+        equipmentId:
+          type: string
+        sealNumber:
+          type: string
+    846_INVENTORY_ADVICE:
+      type: object
+      description: Inventory Advice document - Supplier reports inventory levels to buyer.
+      properties:
+        purpose:
+          type: string
+          description: REQUIRED. Report purpose.
+          enum:
+          - full
+          - incremental
+        reportType:
+          type: string
+          description: REQUIRED. Type of inventory report.
+          enum:
+          - sellerInventory
+        reportNumber:
+          type: string
+          description: REQUIRED. Unique report identifier.
+        reportDate:
+          type: string
+          format: date
+          description: REQUIRED. Report date.
+        parties:
+          $ref: '#/components/schemas/InventoryParties'
+        references:
+          $ref: '#/components/schemas/References'
+        dates:
+          $ref: '#/components/schemas/InventoryDates'
+        sellersCurrency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+        notes:
+          $ref: '#/components/schemas/Notes'
+        lineItems:
+          type: array
+          description: REQUIRED. Inventory line items.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/InventoryLineItem'
+    POAckDates:
+      type: object
+      properties:
+        estimatedDeliveryDate:
+          type: string
+          format: date
+        requestedPickupDate:
+          type: string
+          format: date
+        scheduledShipDate:
+          type: string
+          format: date
+    AsnItem:
+      type: object
+      description: Item in shipment.
+      properties:
+        purchaseOrderLineId:
+          type: string
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        references:
+          $ref: '#/components/schemas/AsnItemReferences'
+        lotNumber:
+          type: string
+        coilNumber:
+          type: string
+          description: Coil number for industrial materials.
+        quantityShipped:
+          $ref: '#/components/schemas/Quantity'
+        expirationDate:
+          type: string
+          format: date
+        manufactureDate:
+          type: string
+          format: date
+          description: Manufacture date.
+        countryOfOrigin:
+          type: string
+        outerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+        innerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+    AsnItemReferences:
+      type: object
+      description: Item-level references for ASN shipments.
+      properties:
+        heatCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+        billOfMaterial:
+          $ref: '#/components/schemas/ReferenceDetail'
+        barCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+    ReferenceDetail:
+      type: object
+      properties:
+        value:
+          type: string
+          description: REQUIRED. Reference value.
+        description:
+          type: string
+    CarrierDetails:
+      type: object
+      description: Shipping details.
+      properties:
+        routing:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutingDetails'
+        freeOnBoard:
+          type: array
+          items:
+            $ref: '#/components/schemas/FOBDetails'
+        specialHandling:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecialHandlingDetails'
+    CreateTransactionBodyV4Dto:
+      type: object
+      required:
+      - type
+      - stream
+      - message
+      - senderId
+      - receiverId
+      properties:
+        type:
+          type: string
+          description: The type of Transaction to be created. Please refer to our <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">list of available Transaction Types</a>.
+          enum:
+          - 850_PURCHASE_ORDER
+          - 855_PURCHASE_ORDER_ACKNOWLEDGMENT
+          - 856_SHIP_NOTICE_MANIFEST
+          - 810_INVOICE
+          - 846_INVENTORY_ADVICE
+          - 860_PURCHASE_ORDER_CHANGE
+          example: 850_PURCHASE_ORDER
+        stream:
+          type: string
+          description: Name of stream to create the transaction on.
+          enum:
+          - test
+          - live
+          example: test
+          default: test
+        senderId:
+          type: string
+          description: Sender identifier.
+        receiverId:
+          type: string
+          description: Receiver identifier.
+        message:
+          description: Transaction document in the structure defined by the specified type.
+          oneOf:
+          - $ref: '#/components/schemas/850_PURCHASE_ORDER'
+          - $ref: '#/components/schemas/855_PURCHASE_ORDER_ACKNOWLEDGMENT'
+          - $ref: '#/components/schemas/856_SHIP_NOTICE_MANIFEST'
+          - $ref: '#/components/schemas/810_INVOICE'
+          - $ref: '#/components/schemas/846_INVENTORY_ADVICE'
+          - $ref: '#/components/schemas/860_PURCHASE_ORDER_CHANGE'
+    PackagingDetails:
+      type: object
+      properties:
+        packagingCode:
+          type: string
+        packagingDescription:
+          type: string
+    ValidationErrorDto:
+      type: object
+      required:
+      - payloadPaths
+      - errorMessage
+      - outputPath
+      properties:
+        payloadPaths:
+          description: Path in the original payload where the error occurred.
+          nullable: true
+          type: array
+          items:
+            type: string
+        errorMessage:
+          type: string
+          description: Error message describing the validation failure.
+        outputPath:
+          type: string
+          description: Path in the output/transformed message where the error occurred.
+    Paperwork:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+        required:
+          type: boolean
+    DestinationQuantity:
+      type: object
+      properties:
+        identificationCode:
+          type: string
+        identificationCodeType:
+          type: string
+        quantity:
+          type: string
+    RoutingDetails:
+      type: object
+      properties:
+        sequenceType:
+          type: string
+          enum:
+          - origin
+          - 1stAfterOrigin
+          - 4thAfterOrigin
+          - haulage
+        standardCarrierAlphaCode:
+          type: string
+          description: SCAC code.
+        customCarrierCode:
+          type: string
+        transportationMethod:
+          type: string
+          enum:
+          - air
+          - airExpress
+          - airFreightForward
+          - backhaul
+          - bestWay
+          - commonCarrier
+          - consolidation
+          - customerPickup
+          - expeditedTruck
+          - lessThanTrailerLoad
+          - mail
+          - ocean
+          - oceanContainerized
+          - parcelPost
+          - privateCarrier
+          - rail
+          - shipperAgent
+          - supplierTruck
+          - mutuallyDefined
+        locationType:
+          type: string
+          enum:
+          - inStore
+          - receiversLocation
+          - allPoints
+          - portOfArrival
+          - portOfEmbarkation
+          - origin
+          - mutuallyDefined
+        location:
+          type: string
+        description:
+          type: string
+        serviceLevel:
+          type: string
+          enum:
+          - deliveryConfirmation
+          - doorService
+          - economy
+          - eveningService
+          - expedited
+          - firstClass
+          - ground
+          - groundHundredWeight
+          - international
+          - metro
+          - morning
+          - nextDayAir
+          - nextDayHundredWeight
+          - nextDayEvening
+          - nextDayMorning1030
+          - nextDayMorning930
+          - overnight
+          - poBoxZipCode
+          - priorityMail
+          - priorityMailInsured
+          - proofOfDelivery
+          - sameDay
+          - saturdayService
+          - secondDay
+          - secondDayHundredWeight
+          - secondDayAir
+          - standard
+          - standardGround
+          - threeDay
+        orderStatus:
+          type: string
+          enum:
+          - shipCompleteOnDate
+          - complete
+          - partialShipment
+          - shipPartialBackorderToShipOnDate
+          - partialShipOnDate
+          - shipped
+          - backordered
+          - mutuallyDefined
+          - availableScheduledToShip
+          - availableNoShipSchedule
+          - multiPickup
+          - availableToShipUnBilledQuantity
+          - stopOff
+        transitDirectionType:
+          type: string
+          enum:
+          - buyerToSeller
+          - sellerToBuyer
+          - subcontractorToSeller
+          - sellerToDropShipLocation
+          - sellToForwarder
+          - sellerToSubcontractor
+          - mutuallyDefined
+        transitTimeType:
+          type: string
+          enum:
+          - calendarDays
+          - hours
+          - workingDays
+        transitTime:
+          type: string
+    810_INVOICE:
+      type: object
+      description: Invoice document - Supplier bills for shipped goods.
+      properties:
+        invoiceNumber:
+          type: string
+          description: REQUIRED. Unique invoice number (BIG02).
+        invoiceDate:
+          type: string
+          format: date
+          description: REQUIRED. Invoice date (BIG01).
+        invoiceType:
+          type: string
+          description: Invoice type.
+          enum:
+          - invoice
+          - creditMemo
+          - debitMemo
+          default: invoice
+        purchaseOrderNumber:
+          type: string
+          description: Related PO number (BIG04).
+        purchaseOrderDate:
+          type: string
+          format: date
+          description: PO date (BIG03).
+        shipmentIdentification:
+          type: string
+          description: Related shipment ID.
+        originalInvoiceNumber:
+          type: string
+          description: Original invoice (for credit/debit memos).
+        parties:
+          $ref: '#/components/schemas/InvoiceParties'
+        termsOfSale:
+          $ref: '#/components/schemas/TermsOfSale'
+        dates:
+          $ref: '#/components/schemas/InvoiceDates'
+        references:
+          $ref: '#/components/schemas/References'
+        lineItems:
+          type: array
+          description: REQUIRED. Invoice line items (IT1 loop).
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/InvoiceLineItem'
+        allowances:
+          type: array
+          description: Header-level allowances (SAC loop).
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        charges:
+          type: array
+          description: Header-level charges (SAC loop).
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        taxes:
+          description: Tax details (TXI).
+          allOf:
+          - $ref: '#/components/schemas/InvoiceTaxes'
+        invoiceTotal:
+          type: string
+          description: Total invoice amount (TDS01).
+        invoiceSalesTotal:
+          type: string
+          description: Amount used to calculate terms discount amount (TDS02).
+        invoiceTermsDiscount:
+          type: string
+          description: Terms discount amount (TDS04).
+    FailTransactionDeliveryRequestV4Dto:
+      type: object
+      required:
+      - note
+      properties:
+        note:
+          type: string
+          description: Additional information about the failure.
+    POChangeLineItem:
+      type: object
+      description: Purchase order change line item.
+      properties:
+        purchaseOrderLineId:
+          type: string
+          description: Line item identifier.
+        changeReason:
+          type: string
+          description: REQUIRED. Reason for the change.
+          enum:
+          - changeToItem
+          - addItem
+          - deleteItem
+          - priceChange
+          - quantityChange
+        originalQuantity:
+          description: Original ordered quantity before change.
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        changeInQuantity:
+          description: Quantity delta (increase or decrease).
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        quantity:
+          description: New total quantity after change.
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        unitCostPrice:
+          type: string
+          description: Unit cost price.
+        unitPriceBasis:
+          type: string
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        notes:
+          $ref: '#/components/schemas/Notes'
+    PricingInfo:
+      type: object
+      properties:
+        priceType:
+          type: string
+          enum:
+          - retail
+          - wholesale
+          - promotional
+          - contract
+        price:
+          type: string
+        quantity:
+          type: string
+    SpecialHandlingDetails:
+      type: object
+      properties:
+        handlingType:
+          type: string
+        description:
+          type: string
+        materialId:
+          type: string
+        materialClass:
+          type: string
+        conditionResponse:
+          type: boolean
+    InvoiceParties:
+      type: object
+      description: Parties involved in invoice.
+      properties:
+        buyer:
+          description: Buyer company (N1 segment, BY).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        shipTo:
+          description: Ship-to location (N1 segment, ST).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        billTo:
+          description: Bill-to location (N1 segment, BT).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        accountsReceivable:
+          description: Accounts receivable / Remit To / Payee (N1*RI or PER*AR).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        accountsPayable:
+          description: Accounts payable / Payer for credits (N1*15 or PER*AP).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+    Party:
+      type: object
+      description: Party details.
+      properties:
+        name:
+          type: string
+          description: Party name (N102).
+        additionalName1:
+          type: string
+        additionalName2:
+          type: string
+        identificationCode:
+          type: string
+          description: ID code (N104).
+        identificationCodeType:
+          type: string
+          enum:
+          - sendersId
+          - receiversId
+          - duns
+          - pantCode
+          - dunsPlus4
+          - drugEnforcementAdmin
+          - telephone
+          - federalReserveRouting
+          - standardAddressSAN
+          - healthIndustryHIN
+          - warehouse
+          - schoolId
+          - memberId
+          - stateLicenseId
+          - globalLocationId
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        addressLine4:
+          type: string
+        city:
+          type: string
+        stateOrProvinceCode:
+          type: string
+        postalCode:
+          type: string
+        countryCode:
+          type: string
+        zoneType:
+          type: string
+          enum:
+          - residential
+          - commercial
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+    CarrierWeightDetails:
+      type: object
+      properties:
+        packageForm:
+          type: string
+          enum:
+          - bag
+          - carton
+          - pallet
+        packageMaterial:
+          type: string
+          enum:
+          - corrugated
+          - plastic
+          - plasticVacuumed
+          - standard
+          - wood
+        weightUOM:
+          type: string
+          enum:
+          - pound
+          - kilogram
+        grossWeight:
+          type: string
+        netWeight:
+          type: string
+    POAckAction:
+      type: object
+      description: Acknowledgment action (accepted, rejected, or backordered).
+      properties:
+        status:
+          type: string
+          description: REQUIRED. Action status.
+          enum:
+          - accepted
+          - rejected
+          - backordered
+        statusReasonCode:
+          type: string
+          description: Reason code for rejected/backordered status.
+        statusNote:
+          $ref: '#/components/schemas/NoteDetail'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        scheduledShipDate:
+          type: string
+          format: date
+          description: Scheduled ship date.
+        estimatedDeliveryDate:
+          type: string
+          format: date
+          description: Estimated delivery date.
+        unitCostPrice:
+          type: string
+          description: Acknowledged unit price (for price changes).
+        substitutedItem:
+          type: object
+          description: Substituted product (for substitutions).
+          properties:
+            productIds:
+              $ref: '#/components/schemas/ProductIds'
+    CreateTransactionResponseV4Dto:
+      type: object
+      required:
+      - id
+      - status
+      - detail
+      properties:
+        id:
+          type: string
+          example: '000000'
+          description: Transaction id.
+        status:
+          type: string
+          description: Status of the request.
+          enum:
+          - FAILED
+          - ACCEPTED
+        detail:
+          type: string
+          description: Error detail message.
+        validationErrors:
+          description: Validation errors.
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorDto'
+    ApproveTransactionDeliveryRequestV4Dto:
+      type: object
+      required:
+      - note
+      properties:
+        note:
+          type: string
+          description: Additional information about the approval.
+    InventoryLineItem:
+      type: object
+      description: Inventory line item with stock levels.
+      properties:
+        lineNumber:
+          type: string
+          description: Line item number.
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        itemStatus:
+          type: string
+          description: Current item availability status.
+          enum:
+          - inStock
+          - outOfStock
+          - discontinued
+          - backorder
+        unitOfMeasure:
+          type: string
+          description: Unit of measure for inventory quantities.
+        inventoryQuantities:
+          type: array
+          description: Inventory quantity details by type and location.
+          items:
+            $ref: '#/components/schemas/InventoryQuantity'
+        unlimitedAvailability:
+          type: boolean
+          description: Whether the item has unlimited availability (e.g., dropship).
+        unitCostPrice:
+          type: string
+          description: Unit cost price.
+        references:
+          $ref: '#/components/schemas/References'
+    ProductAttributes:
+      type: object
+      properties:
+        description:
+          type: string
+        colorCode:
+          type: string
+        colorDescription:
+          type: string
+        sizeCode:
+          type: string
+        sizeDescription:
+          type: string
+        materialCode:
+          type: string
+        materialDescription:
+          type: string
+        processCode:
+          type: string
+        processDescription:
+          type: string
+        height:
+          type: string
+        width:
+          type: string
+    SublineItem:
+      type: object
+      properties:
+        sublineId:
+          type: string
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+    Notes:
+      type: object
+      description: Notes and instructions.
+      properties:
+        general:
+          $ref: '#/components/schemas/NoteDetail'
+        orderInstructions:
+          $ref: '#/components/schemas/NoteDetail'
+        shippingInstructions:
+          $ref: '#/components/schemas/NoteDetail'
+        giftMessage:
+          $ref: '#/components/schemas/NoteDetail'
+        packingSlipMessage:
+          $ref: '#/components/schemas/NoteDetail'
+    MonetaryAmounts:
+      type: object
+      properties:
+        lineTotal:
+          type: string
+        unitPrice:
+          type: string
+        extendedPrice:
+          type: string
+    Dates:
+      type: object
+      description: Order dates.
+      properties:
+        cancelAfterDate:
+          type: string
+          format: date
+        customerOrderDate:
+          type: string
+          format: date
+        earliestDeliveryDate:
+          type: string
+          format: date
+        earliestShipDate:
+          type: string
+          format: date
+        latestShipDate:
+          type: string
+          format: date
+        latestDeliveryDate:
+          type: string
+          format: date
+        pickupDate:
+          type: string
+          format: date
+        promotionStartDate:
+          type: string
+          format: date
+        purchaseOrderDate:
+          type: string
+          format: date
+        requestedDeliveryDate:
+          type: string
+          format: date
+        requestedShipDate:
+          type: string
+          format: date
+        requestedDeliveryWeekOfDate:
+          type: string
+          format: date
+    HeaderMonetaryAmounts:
+      type: object
+      description: Header-level monetary amounts.
+      properties:
+        net:
+          type: string
+          description: Net amount.
+        gross:
+          type: string
+          description: Gross amount.
+        discount:
+          type: string
+          description: Discount amount.
+        freight:
+          type: string
+          description: Freight amount.
+    AsnPallet:
+      type: object
+      description: Pallet in shipment.
+      properties:
+        palletType:
+          type: string
+          enum:
+          - chep
+          - iGps
+          - peco
+          - whiteWood
+          - hardWood
+          - aluminum
+          - specifiedByDOT
+          - metal
+          - standard
+          - steel
+          - wood
+          - slipsheet
+          - softWood
+        trackingNumber:
+          type: string
+        serialShippingId:
+          type: string
+          description: SSCC-18 code.
+        layersPerPallet:
+          type: integer
+        cartonsPerLayer:
+          type: integer
+        palletExchangeType:
+          type: string
+          description: Pallet exchange type.
+          enum:
+          - noExchangeOrReturn
+          - exchange
+          - return
+          - customerPurchase
+          - thirdPartyExchange
+        palletPhysicalDetails:
+          $ref: '#/components/schemas/PhysicalDetails'
+        cartons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AsnCarton'
+        items:
+          type: array
+          description: Items directly on pallet (no cartons).
+          items:
+            $ref: '#/components/schemas/AsnItem'
+    POAckLineItem:
+      type: object
+      description: Line item acknowledgment details.
+      properties:
+        purchaseOrderLineId:
+          type: string
+          description: Original PO line item ID.
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        actions:
+          type: array
+          description: REQUIRED. Actions for this line item.
+          items:
+            $ref: '#/components/schemas/POAckAction'
+    Conditions:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+    InventoryParties:
+      type: object
+      description: Parties involved in inventory reporting.
+      properties:
+        inventoryLocation:
+          description: Warehouse or distribution center holding inventory.
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        buyer:
+          description: Buyer receiving the inventory report.
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        supplier:
+          description: Supplier providing the inventory report.
+          allOf:
+          - $ref: '#/components/schemas/Party'
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key

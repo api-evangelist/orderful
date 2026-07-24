@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: Orderful Conversion Poller API
+  description: The official Orderful API documentation.
+  version: 2.15.0
+  contact:
+    name: Orderful
+    url: https://orderful.com
+    email: developers@orderful.com
+  termsOfService: https://orderful.com/terms-and-conditions/
+servers:
+- url: https://api.orderful.com
+tags:
+- name: Poller
+  description: Retrieve and confirm transactions from polling buckets.
+paths:
+  /v3/polling-buckets/{id}/confirm-retrieval:
+    post:
+      operationId: PollingController_confirmDelivery
+      summary: Remove a set of Transactions from a Bucket
+      description: Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href="https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved" target="_blank">Approved</a> or <a href="https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest" target="_blank">Failed</a>. This will automatically remove the Transaction from the Bucket.
+      deprecated: true
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmDeliveryItems'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfirmDeliveryResponse'
+      tags:
+      - Poller
+      security:
+      - API_KEY: []
+  /v3/polling-buckets/{bucketId}:
+    get:
+      operationId: PollingController_list
+      summary: Get Transactions from Poller Bucket
+      description: Retrieves the Transactions from the specified Poller Bucket.
+      parameters:
+      - name: bucketId
+        required: true
+        in: path
+        schema:
+          type: number
+      - name: limit
+        required: false
+        in: query
+        description: Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size.
+        schema:
+          maximum: 100
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PollingDeliveryResponseDto'
+      tags:
+      - Poller
+      security:
+      - API_KEY: []
+components:
+  schemas:
+    PollingDeliveryResponseDto:
+      type: object
+      properties:
+        delivery:
+          type: object
+    ConfirmDeliveryItems:
+      type: object
+      properties:
+        resourceIds:
+          type: array
+          items:
+            type: string
+            minLength: 1
+      required:
+      - resourceIds
+    ConfirmDeliveryResponse:
+      type: object
+      properties:
+        confirmedTransactions:
+          type: number
+      required:
+      - confirmedTransactions
+  securitySchemes:
+    API_KEY:
+      type: apiKey
+      in: header
+      name: orderful-api-key
