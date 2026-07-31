@@ -1,0 +1,116 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/orderful-openapi-original.yml
+note: Entity graph derived from OpenAPI component schemas ($ref links). Orderful models EDI documents (X12/EDIFACT transaction
+  sets) as schemas; the core runtime entities are Transaction, Delivery, Relationship, Organization, Inbox/PollingBucket and
+  Label.
+entities:
+- name: 810_INVOICE
+  references:
+  - AllowanceCharge
+  - InvoiceDates
+  - InvoiceLineItem
+  - InvoiceParties
+  - InvoiceTaxes
+  - References
+  - TermsOfSale
+- name: 846_INVENTORY_ADVICE
+  references:
+  - InventoryDates
+  - InventoryLineItem
+  - InventoryParties
+  - Notes
+  - References
+- name: 850_PURCHASE_ORDER
+  references:
+  - CarrierDetails
+  - Conditions
+  - Dates
+  - HeaderMonetaryAmounts
+  - Notes
+  - POLineItem
+  - Parties
+  - References
+  - TermsOfSale
+- name: 855_PURCHASE_ORDER_ACKNOWLEDGMENT
+  references:
+  - NoteDetail
+  - POAckDates
+  - POAckLineItem
+  - Party
+  - TermsOfSale
+- name: 856_SHIP_NOTICE_MANIFEST
+  references:
+  - AllowanceCharge
+  - AsnOrder
+  - AsnReferences
+  - CarrierWeightDetails
+  - EquipmentDetails
+  - FOBDetails
+  - RoutingDetails
+  - ShipmentParties
+  - SpecialHandlingDetails
+- name: 860_PURCHASE_ORDER_CHANGE
+  references:
+  - CarrierDetails
+  - Dates
+  - Notes
+  - POChangeLineItem
+  - Parties
+  - References
+  - TermsOfSale
+- name: InboxDelivery
+  references:
+  - HrefLink
+- name: InboxTransactionsResponseDto
+  references:
+  - 810_INVOICE
+  - 846_INVENTORY_ADVICE
+  - 850_PURCHASE_ORDER
+  - 855_PURCHASE_ORDER_ACKNOWLEDGMENT
+  - 856_SHIP_NOTICE_MANIFEST
+  - 860_PURCHASE_ORDER_CHANGE
+  - InboxDelivery
+resources:
+- name: Transaction
+  id_field: id
+  endpoints:
+  - /v3/transactions
+  - /v3/transactions/{transactionId}
+  has_many:
+  - Delivery
+  - Acknowledgment
+  note: An EDI document (850, 855, 856, 810, ...) exchanged with a trading partner.
+- name: Delivery
+  id_field: deliveryId
+  belongs_to: Transaction
+  endpoints:
+  - /v3/deliveries/{deliveryId}/approve
+  - /v3/deliveries/{deliveryId}/fail
+  note: A delivery attempt of a Transaction to a partner or inbound endpoint.
+- name: Acknowledgment
+  belongs_to: Transaction
+  endpoints:
+  - /v3/transactions/{transactionId}/acknowledgment
+  note: 997/functional-ack status for a Transaction.
+- name: Relationship
+  endpoints:
+  - /v3/relationships
+  note: A trading partnership between two organizations.
+- name: Organization
+  id_field: id
+  endpoints:
+  - /v3/organizations/me
+  has_many:
+  - Relationship
+- name: PollingBucket
+  id_field: bucketId
+  endpoints:
+  - /v3/polling-buckets/{bucketId}
+  has_many:
+  - Transaction
+  note: Inbox/queue from which inbound Transactions are polled.
+- name: Label
+  endpoints:
+  - /v3/labels
+  note: GS1 UCC-128 shipping label (PDF/ZPL).

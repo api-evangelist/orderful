@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.orderful.com/docs/inbound-http
+spec_type: Webhooks
+# Orderful publishes no AsyncAPI document. It does expose a real event-push surface:
+# the "Inbound HTTP (Webhook) Communication Channel", which POSTs transactions from
+# Orderful to a customer-configured HTTPS endpoint. Captured here as a webhook catalog.
+transport: http-post
+delivery:
+  description: Orderful POSTs each inbound Transaction (same shape as the Get-a-Transaction
+    response) to the customer endpoint configured on the Inbound HTTP Communication Channel.
+  payload_reference: openapi/orderful-openapi-original.yml#TransactionControllerV3_getById
+  callback_auth:
+  - none
+  - basic
+  - oauth2
+  custom_headers: true
+  response_protocol:
+  - status: 200
+    effect: Transaction marked DELIVERED automatically.
+  - status: 202
+    effect: Received but not finished; caller must confirm via the Delivery API (approve/fail).
+setup: Configured in the Orderful UI under Communication Channels > Create New > HTTP (Inbound).
+events:
+- name: transaction.inbound
+  description: An inbound EDI transaction (e.g. 850 Purchase Order) is delivered to your endpoint.
+related_operations:
+- openapi/orderful-openapi-original.yml#DeliveryController_handleDeliveryApproved
+- openapi/orderful-openapi-original.yml#DeliveryController_handleFailDeliveryRequest
+docs:
+- https://docs.orderful.com/docs/inbound-http
+- https://docs.orderful.com/docs/transaction-status-monitoring
+- https://docs.orderful.com/docs/subscribe-to-transaction-notifications

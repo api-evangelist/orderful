@@ -1,0 +1,30 @@
+{
+  "provider": "orderful",
+  "sources": [
+    "orderful-conversion-api-openapi.yml",
+    "orderful-delivery-api-openapi.yml",
+    "orderful-inbox-api-openapi.yml",
+    "orderful-label-api-openapi.yml",
+    "orderful-organization-api-openapi.yml",
+    "orderful-poller-api-openapi.yml",
+    "orderful-relationship-api-openapi.yml",
+    "orderful-transaction-api-openapi.yml",
+    "orderful-transaction-v3-api-openapi.yml"
+  ],
+  "outputs": [
+    "orderful-conversion-api-openapi.yml",
+    "orderful-delivery-api-openapi.yml",
+    "orderful-inbox-api-openapi.yml",
+    "orderful-label-api-openapi.yml",
+    "orderful-organization-api-openapi.yml",
+    "orderful-poller-api-openapi.yml",
+    "orderful-relationship-api-openapi.yml",
+    "orderful-transaction-api-openapi.yml",
+    "orderful-transaction-v3-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/orderful-openapi-original.yml
+skills:
+- file: orderful-order-to-cash.md
+  name: Orderful Order-to-Cash (seller)
+  api: openapi/orderful-openapi-original.yml
+  operations:
+  - PollingController_list
+  - TransactionControllerV3_getById
+  - DeliveryController_handleDeliveryApproved
+  - TransactionControllerV3_acknowledgeTransaction
+  - TransactionControllerV3_create
+- file: orderful-convert-and-send-edi.md
+  name: Orderful convert and send an EDI document
+  api: openapi/orderful-openapi-original.yml
+  operations:
+  - ConversionController_convertData
+  - TransactionControllerV3_create
+  - TransactionControllerV3_createRaw
+  - TransactionControllerV3_getMessage
+  - RelationshipController_listV3

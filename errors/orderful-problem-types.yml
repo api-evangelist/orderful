@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/orderful-openapi-original.yml
+# Orderful returns conventional HTTP status codes with a JSON body; the published
+# OpenAPI (v2.15.0) does not declare application/problem+json, so this is NOT an
+# RFC 9457 problem-details API. Error descriptions below are captured verbatim
+# from the spec's 4xx/5xx response objects.
+format: http-status-json
+envelope:
+  note: JSON error body accompanies non-2xx responses; schema not declared in the published spec.
+problems:
+- status: 400
+  title: Invalid request body
+  meaning: The request payload failed validation (e.g. both `message` and `summary`
+    supplied, or neither).
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_create
+- status: 403
+  title: Insufficient permissions
+  meaning: The API key is valid but the organization lacks permission for the requested action.
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_create
+- status: 404
+  title: Transaction not found
+  meaning: No transaction exists for the supplied transactionId in the account's region.
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_getById
+- status: 404
+  title: Transaction or acknowledgment not found
+  meaning: No transaction or acknowledgment exists for the supplied identifier.
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_getAcknowledgment

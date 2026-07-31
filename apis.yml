@@ -1,27 +1,253 @@
 aid: orderful
 name: Orderful
-description: Orderful is a company surfaced as a portfolio company of a16z, initialized-capital and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Orderful is a modern B2B trading and EDI platform that lets companies connect once to
+  transact with any partner in their supply chain without building custom integrations. Its
+  Mosaic API turns X12 and EDIFACT electronic data interchange into simple JSON, handling
+  mapping, validation, testing, and compliance so suppliers, retailers, 3PLs, and carriers
+  can exchange purchase orders (850), acknowledgments (855), ship notices (856), invoices
+  (810), inventory advices (846), warehouse (940-series) and other transaction sets over a
+  REST API, HTTP webhooks, AS2, SFTP, and VAN. The platform advertises 10,000+ trading
+  partners, 50M+ transactions, and 99.99% network uptime, with US and EU regional data
+  residency, Web EDI (Pixel), and GS1 UCC-128 shipping labels.
 url: https://raw.githubusercontent.com/api-evangelist/orderful/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - a16z
 - initialized-capital
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-live-docs
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+image: https://www.orderful.com/cms/og-image.png
 tags:
 - Company
-apis: []
+- EDI
+- Electronic Data Interchange
+- Supply Chain
+- B2B
+- Logistics
+- Retail
+- Transactions
+- Integration
+apis:
+- aid: orderful:orderful-conversion-api
+  name: Orderful Conversion API
+  description: Convert data between EDI X12 and JSON formats.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Conversion
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-conversion-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-delivery-api
+  name: Orderful Delivery API
+  description: Approve or fail transaction deliveries.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Delivery
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-delivery-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-inbox-api
+  name: Orderful Inbox API
+  description: Retrieve transactions from inboxes.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Inbox
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-inbox-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-label-api
+  name: Orderful Label API
+  description: Generate UCC-128 shipping labels.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Label
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-label-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-organization-api
+  name: Orderful Organization API
+  description: Retrieve organization information.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-organization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-poller-api
+  name: Orderful Poller API
+  description: Retrieve and confirm transactions from polling buckets.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Poller
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-poller-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-relationship-api
+  name: Orderful Relationship API
+  description: Manage trading partner relationships.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Relationship
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-relationship-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-transaction-api
+  name: Orderful Transaction API
+  description: Create and manage EDI transactions.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-transaction-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
+- aid: orderful:orderful-transaction-v3-api
+  name: Orderful Transaction (v3) API
+  description: Create and manage EDI transactions using the v3 API.
+  humanURL: https://docs.orderful.com/reference/overview
+  baseURL: https://api.orderful.com
+  tags:
+  - Transaction (v3)
+  properties:
+  - type: OpenAPI
+    url: openapi/orderful-transaction-v3-api-openapi.yml
+  - type: Documentation
+    url: https://docs.orderful.com/
+  - type: APIReference
+    url: https://docs.orderful.com/reference/overview
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://docs.orderful.com/
+- type: Documentation
+  url: https://docs.orderful.com/
+- type: APIReference
+  url: https://docs.orderful.com/reference/overview
+- type: GettingStarted
+  url: https://docs.orderful.com/reference/welcome-to-mosaic
+- type: Support
+  url: https://support.orderful.com/en/
+- type: Blog
+  url: https://www.orderful.com/blog
+- type: Pricing
+  url: https://www.orderful.com/pricing
+- type: SignUp
+  url: https://www.orderful.com/book-a-demo
+- type: TermsOfService
+  url: https://www.orderful.com/terms/terms-of-use
+- type: PrivacyPolicy
+  url: https://www.orderful.com/terms/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/orderful
+- type: StatusPage
+  url: https://status.orderful.com/
+- type: Authentication
+  url: authentication/orderful-authentication.yml
+- type: Conventions
+  url: conventions/orderful-conventions.yml
+- type: ErrorCatalog
+  url: errors/orderful-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/orderful-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/orderful-lifecycle.yml
+- type: ChangeLog
+  url: changelog/orderful-changelog.yml
+- type: MCPServer
+  url: mcp/orderful-mcp.yml
+- type: Conformance
+  url: conformance/orderful-conformance.yml
+- type: DataModel
+  url: data-model/orderful-data-model.yml
+- type: Sandbox
+  url: sandbox/orderful-sandbox.yml
+- type: Webhooks
+  url: asyncapi/orderful-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Arazzo
+  name: Orderful Order-to-Cash
+  url: arazzo/orderful-order-to-cash.yml
+- type: AgenticAccess
+  url: agentic-access/orderful-agentic-access.yml
+- type: LLMsTxt
+  url: llms/orderful-llms.txt
+- type: WellKnown
+  url: well-known/orderful-well-known.yml
+- type: SecurityTxt
+  url: well-known/orderful-security.txt
+- type: Security
+  url: security/orderful-vulnerability-disclosure.yml
+- type: VulnerabilityDisclosure
+  url: security/orderful-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/orderful-trust-center.yml
+- type: DomainSecurity
+  url: security/orderful-domain-security.yml
 - type: Website
-  url: http://orderful.com/
+  url: https://www.orderful.com/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 24
+  pass: local-v1

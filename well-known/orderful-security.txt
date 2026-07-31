@@ -1,0 +1,17 @@
+# Our security address
+Contact: mailto:security@orderful.com
+
+# When this document is considered to be expired/out of date
+Expires: 2035-09-05T04:00:00.000Z
+
+# Our preferred language to be contacted in
+Preferred-Languages: en
+
+# Location of this document
+Canonical: https://www.orderful.com/.well-known/security.txt
+
+# Our vulnerability disclosure policy
+Policy: https://www.orderful.com/security/vulnerability-disclosure
+
+# Our Hiring Page
+Hiring: https://www.orderful.com/about/careers

@@ -1,0 +1,60 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.orderful.com/reference/authentication
+docs:
+- https://docs.orderful.com/reference/overview
+- https://docs.orderful.com/reference/regional-endpoints
+- https://docs.orderful.com/reference/best-practices
+# Cross-cutting request/response semantics for the Orderful Mosaic / v3 API,
+# captured from the docs and derived from the published OpenAPI (v2.15.0).
+authentication:
+  style: api-key
+  header: orderful-api-key
+  notes: API token generated per organization in the UI (Organization Settings > API
+    Credentials); required on nearly every request. See authentication/orderful-authentication.yml.
+regional_routing:
+  note: Account and data are pinned to a region; use the matching base URL. Keys are
+    not portable across regions.
+  hosts:
+  - region: US
+    base_url: https://api.orderful.com
+  - region: EU
+    base_url: https://api-eu.orderful.com
+versioning:
+  scheme: uri-path
+  current: v3
+  notes: v3 endpoints under /v3/*; a legacy unversioned Transaction API (/transactions)
+    also remains. See lifecycle/orderful-lifecycle.yml.
+pagination:
+  style: offset
+  request_params:
+  - limit
+  - offset
+  response_fields:
+    container: items
+    meta:
+    - limit
+    - offset
+    - total
+  notes: List endpoints return up to 100 records; `meta` carries limit/offset/total.
+idempotency:
+  supported: false
+  notes: No idempotency-key header or parameter is documented or present in the published
+    OpenAPI. Transaction creation is not idempotent; avoid blind retries on timeouts.
+content_negotiation:
+  notes: The Convert and raw-Transaction endpoints use Content-Type / Accept headers
+    to switch between JSON, X12, XML, CSV and other supported payload formats.
+  default: application/json
+error_handling:
+  envelope: http-status-json
+  spec_declares_problem_json: false
+  see: errors/orderful-problem-types.yml
+webhooks:
+  supported: true
+  mechanism: Inbound HTTP (Webhook) Communication Channel — Orderful POSTs transactions
+    to a customer-configured endpoint; endpoint replies 200 (DELIVERED) or 202 (processing,
+    then Delivery API confirms).
+  see: asyncapi/orderful-webhooks.yml
+rate_limiting:
+  documented: false
+  notes: No published rate-limit headers or quota policy found in the docs or OpenAPI.

@@ -1,0 +1,64 @@
+arazzo: 1.0.1
+info:
+  title: Orderful Order-to-Cash
+  version: 1.0.0
+  summary: Receive a Purchase Order from an inbox, approve delivery, acknowledge it, and send back the acknowledgment.
+sourceDescriptions:
+- name: orderful
+  url: ../openapi/orderful-openapi-original.yml
+  type: openapi
+workflows:
+- workflowId: order-to-cash
+  summary: Poll an inbox for a PO, fetch it, approve the delivery, acknowledge it, and create the 855 response.
+  inputs:
+    type: object
+    properties:
+      bucketId:
+        type: string
+      apiKey:
+        type: string
+  steps:
+  - stepId: pollInbox
+    description: Retrieve inbound transactions waiting in the polling bucket.
+    operationId: PollingController_list
+    parameters:
+    - name: bucketId
+      in: path
+      value: $inputs.bucketId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionId: $response.body#/items/0/id
+      deliveryId: $response.body#/items/0/deliveryId
+  - stepId: getTransaction
+    description: Fetch the full Purchase Order transaction.
+    operationId: TransactionControllerV3_getById
+    parameters:
+    - name: transactionId
+      in: path
+      value: $steps.pollInbox.outputs.transactionId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: approveDelivery
+    description: Confirm the delivery so it leaves the bucket and is marked DELIVERED.
+    operationId: DeliveryController_handleDeliveryApproved
+    parameters:
+    - name: deliveryId
+      in: path
+      value: $steps.pollInbox.outputs.deliveryId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: acknowledge
+    description: Create a functional acknowledgment for the received PO.
+    operationId: TransactionControllerV3_acknowledgeTransaction
+    parameters:
+    - name: transactionId
+      in: path
+      value: $steps.pollInbox.outputs.transactionId
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: sendAcknowledgment
+    description: Send the Purchase Order Acknowledgment (855) back to the partner.
+    operationId: TransactionControllerV3_create
+    successCriteria:
+    - condition: $statusCode == 200

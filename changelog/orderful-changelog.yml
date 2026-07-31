@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.orderful.com/changelog
+scheme: dated-entries
+# Recent changelog entries captured from the docs changelog index (llms.txt).
+# Publish dates are not exposed in the index; see the live changelog for dates.
+url: https://docs.orderful.com/changelog
+entries:
+- title: Audit log on 14 new resources
+  url: https://docs.orderful.com/changelog/audit-log-on-14-new-resources
+  type: addition
+- title: MFA is now enforced for all non-SSO users
+  url: https://docs.orderful.com/changelog/mfa-is-now-enforced-for-all-non-sso-users
+  type: security
+  breaking: true
+- title: Audit log on Relationships and Rules
+  url: https://docs.orderful.com/changelog/audit-log-on-relationships-and-rules
+  type: addition
+- title: Smarter Address Handling for Label Generation
+  url: https://docs.orderful.com/changelog/smarter-address-handling-for-label-generation
+  type: improvement
+- title: Any file over MFT
+  url: https://docs.orderful.com/changelog/any-file-over-mft
+  type: addition

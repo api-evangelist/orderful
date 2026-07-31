@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/orderful-openapi-original.yml
+# Cross-cutting / industry standards the Orderful API conforms to, derived from the
+# published OpenAPI and docs. Orderful is an EDI interoperability platform, so the
+# relevant standards are the EDI document standards it translates to/from.
+standards:
+- id: ansi-x12
+  conforms: true
+  evidence: Full X12 transaction-set support (850, 855, 856, 810, 846, 940-series, etc.)
+    and X12 passthrough / X12<->JSON conversion endpoint.
+- id: un-edifact
+  conforms: true
+  evidence: EDIFACT transaction types documented in Available Transaction Types.
+- id: gs1-ucc128
+  conforms: true
+  evidence: Generates GS1-compliant UCC-128 shipping labels via the Label endpoint.
+- id: oauth2
+  conforms: false
+  evidence: API uses apiKey (orderful-api-key header); OAuth2 only appears as an option
+    for authenticating outbound webhook callbacks, not the API itself.
+- id: openapi-3.0
+  conforms: true
+  evidence: Publishes an OpenAPI 3.0.0 definition (v2.15.0).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Error responses are HTTP-status JSON; application/problem+json is not declared.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: Deprecated operations flagged in-spec, but no documented Sunset/Deprecation header support.

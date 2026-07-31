@@ -1,0 +1,73 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/orderful-openapi-original.yml
+note: No official hosted Orderful MCP server found. Candidate tool list derived one-per-operation from the published OpenAPI
+  (v2.15.0).
+server:
+  name: orderful
+  transport: stdio
+tools:
+- name: conversion_controller_convert_data
+  description: Convert Data Between Formats
+  source_operation: openapi/orderful-openapi-original.yml#ConversionController_convertData
+- name: delivery_controller_handle_delivery_approved
+  description: Approve a Delivery
+  source_operation: openapi/orderful-openapi-original.yml#DeliveryController_handleDeliveryApproved
+- name: delivery_controller_handle_fail_delivery_request
+  description: Fail a Delivery
+  source_operation: openapi/orderful-openapi-original.yml#DeliveryController_handleFailDeliveryRequest
+- name: inbox_controller_list
+  description: Inbox
+  source_operation: openapi/orderful-openapi-original.yml#InboxController_list
+- name: label_controller_generate
+  description: Generate Label
+  source_operation: openapi/orderful-openapi-original.yml#LabelController_generate
+- name: organization_v3_controller_get_own
+  description: Get your Organization details
+  source_operation: openapi/orderful-openapi-original.yml#OrganizationV3Controller_getOwn
+- name: polling_controller_confirm_delivery
+  description: Remove a set of Transactions from a Bucket
+  source_operation: openapi/orderful-openapi-original.yml#PollingController_confirmDelivery
+- name: polling_controller_list
+  description: Get Transactions from Poller Bucket
+  source_operation: openapi/orderful-openapi-original.yml#PollingController_list
+- name: relationship_controller_list_v3
+  description: List Relationships
+  source_operation: openapi/orderful-openapi-original.yml#RelationshipController_listV3
+- name: transaction_controller_create
+  description: Create a Transaction
+  source_operation: openapi/orderful-openapi-original.yml#TransactionController_create
+- name: transaction_controller_get_delivery
+  description: Get a Delivery.
+  source_operation: openapi/orderful-openapi-original.yml#TransactionController_getDelivery
+- name: transaction_controller_handle_delivery_approved
+  description: Accept a transaction delivery.
+  source_operation: openapi/orderful-openapi-original.yml#TransactionController_handleDeliveryApproved
+- name: transaction_controller_handle_fail_delivery_request
+  description: Fail a transaction delivery.
+  source_operation: openapi/orderful-openapi-original.yml#TransactionController_handleFailDeliveryRequest
+- name: transaction_controller_v3_acknowledge_transaction
+  description: Create an Acknowledgment
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_acknowledgeTransaction
+- name: transaction_controller_v3_get_acknowledgment
+  description: Get an Acknowledgment
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_getAcknowledgment
+- name: transaction_controller_v3_confirm_delivery
+  description: Confirm the delivery of a set of Transactions
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_confirmDelivery
+- name: transaction_controller_v3_create
+  description: Create a Transaction
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_create
+- name: transaction_controller_v3_list
+  description: List Transactions
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_list
+- name: transaction_controller_v3_create_raw
+  description: Create a raw Transaction
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_createRaw
+- name: transaction_controller_v3_get_by_id
+  description: Get a Transaction
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_getById
+- name: transaction_controller_v3_get_message
+  description: Get a Transaction Message
+  source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_getMessage

@@ -1,0 +1,22 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.orderful.com/changelog
+versioning:
+  scheme: uri-path
+  current: v3
+  docs: https://docs.orderful.com/reference/overview
+deprecation:
+  policy_documented: true
+  notes: 'Two v3 confirm-delivery endpoints are explicitly flagged for deprecation in
+    the API reference ("Orderful will soon deprecate this endpoint"), with the Delivery
+    API named as the replacement. Deprecated operations are marked deprecated=true
+    in the published OpenAPI.'
+  docs: https://docs.orderful.com/reference/transactioncontrollerv3_confirmdelivery
+sla:
+  uptime_claim: 99.99%
+  source: https://www.orderful.com/ (network uptime)
+status_page: https://status.orderful.com/
+changelog: https://docs.orderful.com/changelog
+deprecated_operations:
+- openapi/orderful-openapi-original.yml#TransactionControllerV3_confirmDelivery
+- openapi/orderful-openapi-original.yml#PollingController_confirmDelivery

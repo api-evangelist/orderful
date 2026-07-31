@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Orderful API
+  version: 1.0.0
+extends: openapi/orderful-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: orderful
+    x-apievangelist-category: edi
+    x-apievangelist-auth: api-key (orderful-api-key header)
+    x-apievangelist-regional-hosts:
+    - https://api.orderful.com
+    - https://api-eu.orderful.com
+    x-apievangelist-webhooks: asyncapi/orderful-webhooks.yml
+    x-apievangelist-conventions: conventions/orderful-conventions.yml
+- target: $.paths['/v3/transactions/confirm-delivery'].post
+  update:
+    x-apievangelist-deprecation-note: Superseded by the Delivery API (approve/fail); see lifecycle/orderful-lifecycle.yml.
+- target: $.paths['/v3/polling-buckets/{id}/confirm-retrieval'].post
+  update:
+    x-apievangelist-deprecation-note: Superseded by the Delivery API (approve/fail); see lifecycle/orderful-lifecycle.yml.

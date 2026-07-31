@@ -1,0 +1,8 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/orderful-openapi-original.yml
+workflows:
+- file: orderful-order-to-cash.yml
+  workflowId: order-to-cash
+  title: Orderful Order-to-Cash
+  summary: Poll an inbox for a PO, fetch it, approve delivery, acknowledge it, and send the 855 response.

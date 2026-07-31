@@ -1,0 +1,232 @@
+# Orderful Developer Hub Documentation
+
+> Orderful is the Modern B2B Trading Platform. Connect once to transact with any partner in your supply chain without custom integrations. Orderful simplifies EDI to provide frictionless transactions, transparency, and data insights.
+
+## Guides
+- [Getting started with Orderful](https://docs.orderful.com/docs/getting-started.md)
+- [About Orderful](https://docs.orderful.com/docs/about-orderful.md)
+- [Orderful terms](https://docs.orderful.com/docs/orderful-terms.md)
+- [Getting started as a Follower](https://docs.orderful.com/docs/getting-started-as-a-follower.md)
+- [1. Set up your organization as a Follower](https://docs.orderful.com/docs/set-up-org-follower.md)
+- [2. Set up a Trading Partnership as a Follower](https://docs.orderful.com/docs/set-up-trading-partnership-follower.md)
+- [3. Test and Go Live as a Follower](https://docs.orderful.com/docs/test-go-live-follower.md)
+- [Getting started as a Leader](https://docs.orderful.com/docs/getting-started-as-a-leader.md)
+- [1. Set up your organization as a Leader](https://docs.orderful.com/docs/set-up-org-leader.md)
+- [2. Set up a Trading Partnership as a Leader](https://docs.orderful.com/docs/set-up-trading-partnership-leader.md)
+- [3. Test and Go Live as a Leader](https://docs.orderful.com/docs/test-go-live-leader.md)
+- [EDI 101](https://docs.orderful.com/docs/edi-101.md)
+- [Introduction to EDI](https://docs.orderful.com/docs/introduction-to-edi.md)
+- [EDI Processing](https://docs.orderful.com/docs/edi-processing.md)
+- [X12 envelopes](https://docs.orderful.com/docs/x12-concepts.md)
+- [X12 characters](https://docs.orderful.com/docs/x12-characters.md)
+- [X12 Qualifiers](https://docs.orderful.com/docs/x12-qualifiers.md)
+- [X12 to JSON conversion](https://docs.orderful.com/docs/x12-to-json-conversion.md)
+- [Communication Channel basics](https://docs.orderful.com/docs/communication-channel-basics.md)
+- [Onboarding Overview](https://docs.orderful.com/docs/onboarding-overview.md)
+- [Onboarding Trainings](https://docs.orderful.com/docs/onboarding-trainings.md)
+- [Organization Setup](https://docs.orderful.com/docs/organization-setup-1.md)
+- [Leader Requirements](https://docs.orderful.com/docs/design-leader-requirements.md)
+- [Integration](https://docs.orderful.com/docs/integration.md)
+- [Partnership Setup](https://docs.orderful.com/docs/partnership-setup.md)
+- [Partnership Testing and Go Live](https://docs.orderful.com/docs/partnership-testing-and-go-live.md)
+- [Common EDI Workflows](https://docs.orderful.com/docs/common-edi-workflows.md): The most common EDI data transmitted, per industry vertical.
+- [Orderful UI visual walkthrough](https://docs.orderful.com/docs/orderful-ui-visual-guides.md)
+- [Transactions](https://docs.orderful.com/docs/transactions.md)
+- [EDI vs Any File](https://docs.orderful.com/docs/standard-edi-vs-any-file.md)
+- [Create a Transaction](https://docs.orderful.com/docs/create-a-transaction.md)
+- [Listing Transactions](https://docs.orderful.com/docs/listing-transactions.md)
+- [Copy a Transaction](https://docs.orderful.com/docs/copy-a-transaction.md)
+- [Delete Transactions](https://docs.orderful.com/docs/delete-transactions.md)
+- [Download Transactions](https://docs.orderful.com/docs/download-a-transaction.md)
+- [Transaction statuses](https://docs.orderful.com/docs/transaction-statuses.md)
+- [Fix an Invalid Transaction](https://docs.orderful.com/docs/fix-an-invalid-transaction.md)
+- [Transaction status monitoring](https://docs.orderful.com/docs/transaction-status-monitoring.md)
+- [Transaction delivery success and failure](https://docs.orderful.com/docs/transaction-success-and-failure.md)
+- [Subscribe to Transaction Notifications](https://docs.orderful.com/docs/subscribe-to-transaction-notifications.md)
+- [Unprocessed Transactions](https://docs.orderful.com/docs/unprocessed-transactions.md)
+- [Acknowledge a Transaction](https://docs.orderful.com/docs/acknowledge-a-transaction.md)
+- [Use the Inbound Poller API](https://docs.orderful.com/docs/inbound-poller-api.md)
+- [Workflows](https://docs.orderful.com/docs/workflows.md)
+- [Workflow validation](https://docs.orderful.com/docs/workflow-validation.md)
+- [Workflow Notifications](https://docs.orderful.com/docs/workflow-notifications.md)
+- [Rules Engine](https://docs.orderful.com/docs/rules-engine.md)
+- [Use the Rules Engine](https://docs.orderful.com/docs/use-the-rules-engine.md)
+- [Live vs Test Rules](https://docs.orderful.com/docs/live-vs-test-rules.md)
+- [Add data to a JSON transaction](https://docs.orderful.com/docs/add-data-to-json.md)
+- [Use Rules for multiple Trading Partners](https://docs.orderful.com/docs/use-rules-for-multiple-tps.md)
+- [Rule date & time format](https://docs.orderful.com/docs/rule-date-time-format.md)
+- [Partnerships](https://docs.orderful.com/docs/partnerships.md)
+- [Key concepts](https://docs.orderful.com/docs/key-concepts.md)
+- [Partnership Page](https://docs.orderful.com/docs/partnership-page.md): Overview
+- [Partnership Tasks List](https://docs.orderful.com/docs/partnership-tasks-list.md): Detailed list of all the onboarding tasks a user can expect to encounter in the context of a partnership
+- [Common workflows involving Partnerships](https://docs.orderful.com/docs/common-workflows-involving-partnerships.md)
+- [FAQ](https://docs.orderful.com/docs/faq.md)
+- [Set up a Trading Partnership to trade Any file over MFT](https://docs.orderful.com/docs/set-up-a-trading-partnership-to-trade-any-file-over-mft.md)
+- [Relationships](https://docs.orderful.com/docs/relationships.md)
+- [Relationship Page](https://docs.orderful.com/docs/relationship-statuses.md)
+- [Manually Set State of a Relationship](https://docs.orderful.com/docs/manually-set-state-of-a-relationship.md)
+- [Search Relationships](https://docs.orderful.com/docs/search-relationships.md)
+- [Trade Request statuses](https://docs.orderful.com/docs/trade-request-statuses.md)
+- [Transaction forwarding](https://docs.orderful.com/docs/transaction-forwarding.md)
+- [EDI Accounts](https://docs.orderful.com/docs/edi-accounts.md)
+- [Create an EDI Account](https://docs.orderful.com/docs/create-an-edi-account.md)
+- [Understand the Interchange ID and Qualifier](https://docs.orderful.com/docs/understand-the-isa-id-and-qualifier.md)
+- [AS2](https://docs.orderful.com/docs/as2.md)
+- [Connecting to Orderful via AS2](https://docs.orderful.com/docs/connecting-to-orderful-via-as2.md): A step-by-step onboarding guide for trading partners setting up a direct AS2 connection with Orderful — IP allowlisting, detail exchange, profile configuration, and connectivity testing.
+- [AS2 Troubleshooting](https://docs.orderful.com/docs/as2-troubleshooting.md)
+- [Orderful AS2 information](https://docs.orderful.com/docs/orderful-as2-information-for-non-orderful-users.md)
+- [AS2 software-specific configuration details](https://docs.orderful.com/docs/as2-software-specific-configuration-details.md)
+- [Scenarios](https://docs.orderful.com/docs/scenarios.md)
+- [Archive a Scenario](https://docs.orderful.com/docs/manage-scenarios.md)
+- [Guidelines](https://docs.orderful.com/docs/guidelines.md)
+- [Create a Guideline](https://docs.orderful.com/docs/create-a-guideline.md)
+- [Configure Guideline Requirements](https://docs.orderful.com/docs/enter-guideline-requirements.md)
+- [Configure Conditional Guideline Requirements](https://docs.orderful.com/docs/configure-conditional-guideline-requirements.md)
+- [Publishing a Guideline](https://docs.orderful.com/docs/publishing-defaults-and-versioning.md)
+- [Guideline Versioning](https://docs.orderful.com/docs/guideline-versioning.md)
+- [Validate Outbound Transactions](https://docs.orderful.com/docs/validate-outbound-transactions.md): Check outbound transactions against your guideline before they are delivered.
+- [User Management](https://docs.orderful.com/docs/user-management.md)
+- [Manage users](https://docs.orderful.com/docs/add-or-remove-users.md)
+- [Role Permissions](https://docs.orderful.com/docs/role-permissions.md)
+- [Single Sign-On (SSO)](https://docs.orderful.com/docs/single-sign-on-sso.md)
+- [Multi-Factor Authentication (MFA)](https://docs.orderful.com/docs/multi-factor-authentication-mfa.md)
+- [Audit Log Overview](https://docs.orderful.com/docs/audit-log-overview.md)
+- [Navigating the Audit Log](https://docs.orderful.com/docs/navigating-the-audit-log.md)
+- [Credential Vault](https://docs.orderful.com/docs/credential-vault.md): Securely store and manage credentials used by your communication channels and integrations.
+- [Integration Assistance](https://docs.orderful.com/docs/integration-assistance.md)
+- [Generate a UCC-128 (GS1-128) Label](https://docs.orderful.com/docs/generate-shipping-label.md)
+- [Communication Channels](https://docs.orderful.com/docs/communication-channels.md)
+- [Inbound HTTP (Webhook)](https://docs.orderful.com/docs/inbound-http.md)
+- [Inbound Poller](https://docs.orderful.com/docs/inbound-poller.md)
+- [Inbound AS2](https://docs.orderful.com/docs/inbound-as2.md)
+- [Inbound FTP and SFTP](https://docs.orderful.com/docs/inbound-ftp-and-sftp.md)
+- [Inbound VAN](https://docs.orderful.com/docs/inbound-van.md)
+- [Inbound MFT — Receive Any file](https://docs.orderful.com/docs/inbound-mft-receive-any-file.md)
+- [Outbound HTTP (Webhook)](https://docs.orderful.com/docs/outbound-http.md)
+- [Outbound AS2](https://docs.orderful.com/docs/outbound-as2.md)
+- [Outbound FTP and SFTP](https://docs.orderful.com/docs/outbound-ftp-and-sftp.md)
+- [Outbound VAN](https://docs.orderful.com/docs/outbound-van.md)
+- [Outbound MFT — Create and Send Any file](https://docs.orderful.com/docs/outbound-mft-create-and-send-any-file.md)
+- [IP Whitelisting](https://docs.orderful.com/docs/ip-whitelisting.md)
+- [Advanced Delivery Settings](https://docs.orderful.com/docs/advanced-delivery-settings.md)
+- [Orderful Example Transactions](https://docs.orderful.com/docs/orderful-example-transactions.md)
+- [Overview](https://docs.orderful.com/docs/orderful-for-netsuite.md)
+- [Features](https://docs.orderful.com/docs/features-limitations.md): Features Supported
+- [855 Purchase Order Acknowledgement](https://docs.orderful.com/docs/855-purchase-order-acknowledgement.md)
+- [810 Invoice](https://docs.orderful.com/docs/810-invoice.md)
+- [856 Advanced Shipment Notice](https://docs.orderful.com/docs/856-asn.md)
+- [875 Grocery Products Purchase Order](https://docs.orderful.com/docs/880-grocery-products-invoice-copy.md)
+- [880 Grocery Products Invoice](https://docs.orderful.com/docs/880-grocery-products-invoice.md)
+- [850 Purchase Order](https://docs.orderful.com/docs/850-purchase-order.md)
+- [Quick Start](https://docs.orderful.com/docs/netsuite-quick-start.md)
+- [Grant Orderful Access](https://docs.orderful.com/docs/grant-orderful-access.md): How to Grant Orderful Access to Your NetSuite Account
+- [Global Settings](https://docs.orderful.com/docs/global-settings.md): These settings are available at the global level. Choosing the same setting on a Company level will override the global defaults.
+- [Orderful for NetSuite Release Notes](https://docs.orderful.com/docs/orderful-for-netsuite-release-notes.md): The latest updates, features, and fixes for Orderful's EDI connector SuiteApp
+- [Outbound Transaction Consolidation](https://docs.orderful.com/docs/outbound-transaction-consolidation.md)
+- [Items](https://docs.orderful.com/docs/items.md): How to configure and maintain Item records to work with Orderful for NetSuite.
+- [Custom Item Lookups](https://docs.orderful.com/docs/custom-item-lookups.md): Orderful for NetSuite management of advanced item cross references
+- [Kit & SLN Item Handling](https://docs.orderful.com/docs/kit-sln-item-handling.md)
+- [UOM Mapping](https://docs.orderful.com/docs/uom-mapping.md): Configure automatic EDI unit of measure translation and quantity conversion for inbound orders
+- [Enabling Customers for EDI](https://docs.orderful.com/docs/enabling-customers-for-edi.md)
+- [Order Management Config](https://docs.orderful.com/docs/order-management-config.md)
+- [Store Mapping](https://docs.orderful.com/docs/store-mapping.md): Used to cross reference your trading partner store ID to either an address book entry or an Orderful Distribution Center Mapping Entry.
+- [Distribution Center Mapping](https://docs.orderful.com/docs/distribution-center-mapping.md): Used to cross reference your trading partner DC ID to either an address book entry. Can be paired with Orderful Store Mapping Entries for multi-ship orders where the DC is not provided in the EDI order.
+- [Locations For Customer](https://docs.orderful.com/docs/locations-for-customer.md): Used to cross reference NetSuite locations to the ID your partner has assigned.  The ID will be used as the Ship From for outbound transactions and as the reporting location for the 846.
+- [Orderful Authorized Discount](https://docs.orderful.com/docs/orderful-authorized-discount.md): Use to map Allowances or Charges to Discount items in NetSuite.  We cross reference the SAC02, allowance charge code, from your partner to the related NetSuite discount item.
+- [Shipping Lookup](https://docs.orderful.com/docs/shipping-lookup.md)
+- [Automation](https://docs.orderful.com/docs/automation.md): Both sending of transactions and consolidation of transactions can be automated from the following settings.
+- [Grocery 875 and 880](https://docs.orderful.com/docs/grocery-875-and-880.md)
+- [Working with Parent/Child Customers](https://docs.orderful.com/docs/parent-child-customers.md): Configure parent and child customer relationships for multi-location EDI trading partners.
+- [Importing Orders](https://docs.orderful.com/docs/importing-orders.md)
+- [Discounts & Allowances](https://docs.orderful.com/docs/sac-discount-handling.md): How EDI SAC discounts map to NetSuite Discount Items on Sales Orders
+- [Sales Order Dates](https://docs.orderful.com/docs/sales-order-faq.md)
+- [Acknowledging Orders](https://docs.orderful.com/docs/acknowledging-orders.md)
+- [Fulfilling Orders](https://docs.orderful.com/docs/shipping-orders.md)
+- [Custom Packing Source](https://docs.orderful.com/docs/alternative-packing-source.md)
+- [Manual Packing](https://docs.orderful.com/docs/manual-packing.md)
+- [Auto Packing](https://docs.orderful.com/docs/auto-packing-1.md): Packing Item Fulfillments for processing 856s through Orderful's SuiteApp for NetSuite
+- [Orderful for NetSuite Packing App](https://docs.orderful.com/docs/new-orderful-netsuite-packing-app.md)
+- [Shipping Labels](https://docs.orderful.com/docs/shipping-labels.md)
+- [Invoicing  Orders](https://docs.orderful.com/docs/invoicing-orders.md)
+- [SAC Loop Documentation](https://docs.orderful.com/docs/sac-loop-documentation.md): 810 SAC Segment Mapping Guide for NetSuite Invoices
+- [Tax Handling on Invoices](https://docs.orderful.com/docs/tax-handling-on-invoices.md): How tax line items on NetSuite invoices are mapped to SAC entries on the outbound 810.
+- [Off-Invoice Discounts](https://docs.orderful.com/docs/off-invoice-discounts.md): Configure how discount items added outside the 850 flow generate SAC data on outbound 810 invoices.
+- [Credit Memo Invoicing](https://docs.orderful.com/docs/credit-memo-invoicing.md): Generate 810 EDI credit transactions from NetSuite Credit Memo records.
+- [Inventory Advice](https://docs.orderful.com/docs/inventory-advice.md): Used to set up the inventory feed for the 846 transaction.
+- [Developer Extensibility Guide](https://docs.orderful.com/docs/developer-extensibility-guide.md)
+- [JSONata FAQs](https://docs.orderful.com/docs/jsonata-faqs.md)
+- [850 JSONata Example](https://docs.orderful.com/docs/850-jsonata-example.md)
+- [875 JSONata Example](https://docs.orderful.com/docs/875-jsonata.md)
+- [880 JSONata Example](https://docs.orderful.com/docs/880-jsonata-example.md)
+- [Amazon Dropship 856](https://docs.orderful.com/docs/amazon-dropship-856.md)
+- [Custom Process Inbound Transactions](https://docs.orderful.com/docs/custom-process-inbound-transactions.md): A guide for supporting non-native EDI transaction workflows and types in NetSuite
+- [Outbound Transaction Handling Preferences](https://docs.orderful.com/docs/outbound-transaction-handling-preferences.md)
+- [Writing to Orderful Packaging Records](https://docs.orderful.com/docs/writing-to-orderful-packaging-records.md)
+- [Custom Process Outbound Transactions](https://docs.orderful.com/docs/custom-process-outbound-transactions.md)
+- [3PLs and 900-Series Transactions](https://docs.orderful.com/docs/enabling-3pl-vendors-for-edi.md): Overview of 900-series EDI transactions for 3PL warehouse communication
+- [943 Warehouse Stock Transfer Shipment Advice](https://docs.orderful.com/docs/943-warehouse-stock-transfer-shipment.md): Confirm stock transfer shipments from Item Fulfillments on Transfer Orders
+- [944 Warehouse Stock Transfer Receipt Advice](https://docs.orderful.com/docs/944-warehouse-stock-transfer-receipt.md): Receive stock transfer confirmations and create Item Receipts
+- [945 Warehouse Shipping Advice](https://docs.orderful.com/docs/945-warehouse-shipping-advice.md): Receive shipment confirmations with tracking numbers, carton data, and lot assignments
+- [947 Warehouse Inventory Adjustment Advice](https://docs.orderful.com/docs/947-inventory-adjustment-advice.md): Receive inventory adjustments with configurable reason codes and GL account mapping
+- [940 Warehouse Shipping Order](https://docs.orderful.com/docs/940-warehouse-shipping-order.md): Send fulfillment instructions to your 3PL from Sales Orders or Transfer Orders
+
+## API Reference
+- [Quick Start](https://docs.orderful.com/reference/welcome-to-mosaic.md): Get up and running with Orderful's API in 5 minutes. This guide walks you through making your first API call
+- [Authentication](https://docs.orderful.com/reference/authentication.md)
+- [Regional Endpoints](https://docs.orderful.com/reference/regional-endpoints.md)
+- [Integration Overview](https://docs.orderful.com/reference/overview.md): Orderful supports three integration approaches. Choose the one that best fits your technical requirements and existing infrastructure.
+- [Orderful Transactions](https://docs.orderful.com/reference/orderful-transactions.md)
+- [Inbound Transactions](https://docs.orderful.com/reference/inbound.md)
+- [Outbound Transactions](https://docs.orderful.com/reference/outbound-transactions.md)
+- [Testing your Integration](https://docs.orderful.com/reference/testing-your-integration.md)
+- [Testing for Retail](https://docs.orderful.com/reference/testing-for-retail.md): Order to cash integration testing for sellers
+- [Testing for Transportation ](https://docs.orderful.com/reference/testing-for-transportation.md): Receiving and reposing to load tenders
+- [Leader Linked Testing ](https://docs.orderful.com/reference/leader-linked-testing.md): Extend integration testing to include your partners in the test
+- [Best Practices](https://docs.orderful.com/reference/best-practices.md)
+- [Create a Transaction](https://docs.orderful.com/reference/transactioncontroller_create.md): Creates a Transaction. Only one Transaction can be posted at a time. For guidance on how to use this page, see the <a href="https://docs.orderful.com/docs/create-a-transaction#make-an-api-call-using-our-api-explorer" target="_blank">Create a Transaction guide</a>. Check the status field to determine if the transaction was successfully accepted for processing or failed.
+- [Accept a transaction delivery.](https://docs.orderful.com/reference/transactioncontroller_handledeliveryapproved.md): Accepts the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href="https://docs.orderful.com/reference/inboxcontroller_list" target="_blank">Inbox</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.If this Delivery is associated with one or more Transactions in a inbox, this will also remove the Transactions from that inbox.
+- [Fail a transaction delivery.](https://docs.orderful.com/reference/transactioncontroller_handlefaildeliveryrequest.md): Fails the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href="https://docs.orderful.com/reference/pollingcontroller_list" target="_blank">Inbox</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.  If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.  If this Delivery is associated with one or more Transactions in a inbox, this will also remove the Transactions from that inbox.
+- [Get a Delivery.](https://docs.orderful.com/reference/transactioncontroller_getdelivery.md): Returns the specified transaction delivery. Links to Delivery objects are available in Transactions retrieved from a <a href="https://docs.orderful.com/reference/pollingcontroller_list" target="_blank">Inbox</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.
+- [Inbox](https://docs.orderful.com/reference/inboxcontroller_list.md): Retrieves the Transactions from the specified Inbox.  **Note:** The `inboxId` can be found by logging in to [ui.orderful.com](https://ui.orderful.com) and navigating to "Communication Channels".
+- [Mosaic Schemas](https://docs.orderful.com/reference/mosaic-schemas.md)
+- [Purchase Order](https://docs.orderful.com/reference/purchase-order-no-table.md)
+- [Order Acknowledgement](https://docs.orderful.com/reference/order-acknowledgement.md)
+- [Invoice](https://docs.orderful.com/reference/invoice.md)
+- [Shipping Notice](https://docs.orderful.com/reference/shipping-notice.md)
+- [Inventory Advice](https://docs.orderful.com/reference/inventory-advice.md)
+- [Purchase Order Change](https://docs.orderful.com/reference/purchase-order-change.md)
+- [Warehouse Shipping Order](https://docs.orderful.com/reference/warehouse-shipping-order.md)
+- [Warehouse Stock Transfer Shipment](https://docs.orderful.com/reference/warehouse-stock-transfer-shipment.md)
+- [Warehouse Stock Transfer Receipt](https://docs.orderful.com/reference/warehouse-stock-transfer-receipt.md)
+- [Warehouse Shipping Advice](https://docs.orderful.com/reference/warehouse-shipping-advice.md)
+- [Price/Sales Catalog](https://docs.orderful.com/reference/price-sales-catalog.md)
+- [Available Transaction Types](https://docs.orderful.com/reference/available-transaction-types.md): Reference list of supported EDIFACT, X12, and Any File transaction types for creating transactions through the traditional API.
+- [Create a Transaction](https://docs.orderful.com/reference/transactioncontrollerv3_create.md): Creates a Transaction using the v3 API format. Either a `message` or `summary` must be provided, but not both. For guidance on how to use this endpoint, see the <a href="https://docs.orderful.com/docs/create-a-transaction" target="_blank">Create a Transaction guide</a>.
+- [Create a raw Transaction](https://docs.orderful.com/reference/transactioncontrollerv3_createraw.md): Creates a Transaction from a raw document. The request body should contain the raw document content (e.g. X12, XML, CSV). Routing metadata is provided via request headers rather than in the body.  > 🚧 Try It! playground limitation > > The in-page **Try It!** playground on this reference can only exercise `application/json` request bodies. If you are testing or experimenting with `application/xml`, `text/xml`, `text/csv`, `application/pdf`, `image/jpeg`, or `text/plain` payloads, use cURL or an HTTP client such as Postman for your ad-hoc requests. Your production integration is unaffected — this applies only to the in-browser Try It! tool. The endpoint itself accepts every supported content type from any HTTP client.
+- [List Transactions](https://docs.orderful.com/reference/transactioncontrollerv3_list.md): Returns an array of Transactions sorted in descending order by their creation date. A maximum of 100 Transactions will be returned at a time.
+- [Get a Transaction](https://docs.orderful.com/reference/transactioncontrollerv3_getbyid.md): Returns the specified Transaction.
+- [Get a Transaction Message](https://docs.orderful.com/reference/transactioncontrollerv3_getmessage.md): Returns the specified Transaction's message content.
+- [Create an Acknowledgment](https://docs.orderful.com/reference/transactioncontrollerv3_acknowledgetransaction.md): Creates an acknowledgment with the specified status for the specified Transaction.
+- [Get an Acknowledgment](https://docs.orderful.com/reference/transactioncontrollerv3_getacknowledgment.md): Returns the acknowledgment for the specified Transaction.
+- [Confirm the delivery of a set of Transactions](https://docs.orderful.com/reference/transactioncontrollerv3_confirmdelivery.md): Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href="https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved" target="_blank">Approved</a> or <a href="https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest" target="_blank">Failed</a>. This will automatically remove the Transaction from the Bucket.
+- [Get Transactions from Poller Bucket](https://docs.orderful.com/reference/pollingcontroller_list.md): Retrieves the Transactions from the specified Poller Bucket.
+- [Remove a set of Transactions from a Bucket](https://docs.orderful.com/reference/pollingcontroller_confirmdelivery.md): Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href="https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved" target="_blank">Approved</a> or <a href="https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest" target="_blank">Failed</a>. This will automatically remove the Transaction from the Bucket.
+- [Approve a Delivery](https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved.md): Approves the specified Delivery. This link is included when a Transaction is retrieved from a <a href="https://docs.orderful.com/reference/pollingcontroller_list" target="_blank">Poller Bucket</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.   If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.  If this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket.
+- [Fail a Delivery](https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest.md): Fails the specified Delivery. This link is included when a Transaction is retrieved from a <a href="https://docs.orderful.com/reference/pollingcontroller_list" target="_blank">Poller Bucket</a> or via an <a href="https://docs.orderful.com/docs/inbound-http" target="_blank">Inbound HTTP Communication Channel</a>.   If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.  If this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket.
+- [Convert Data Between Formats](https://docs.orderful.com/reference/conversioncontroller_convertdata.md): This endpoint will convert JSON into X12, or X12 into JSON. Set the "Content-Type" header as the format you are sending, and the "Accept" header as the format you would like to receive back.
+- [Get your Organization details](https://docs.orderful.com/reference/organizationv3controller_getown.md): Retrieves the Organization information for the current user.
+- [List Relationships](https://docs.orderful.com/reference/relationshipcontroller_listv3.md): Retrieves a paginated list of the Relationships for the current Organization.
+- [Generate Label](https://docs.orderful.com/reference/labelcontroller_generate.md): Generates a PDF or ZPL file to be used for label printing. For more information, see the <a href="https://docs.orderful.com/docs/generate-shipping-label" target="_blank">Create a Label guide</a>. Supports single label or batch generation.
+- [Order to Cash / Procure to Pay](https://docs.orderful.com/reference/order-to-cash.md): This guide walks through a complete Order-to-Cash (O2C) workflow, the most common EDI integration pattern for suppliers working with retail trading partners
+- [Legacy Alternative: OrderfulJSON](https://docs.orderful.com/reference/orderfuljson-integration-guide.md): This guide walks you through building a complete integration using Orderful's JSON format (OrderfulJSON). This approach provides full control over EDI document structure while using JSON instead of raw X12
+- [Freight Transport](https://docs.orderful.com/reference/freight-transport.md)
+
+## Pages
+- [EDI API](https://docs.orderful.com/edi-api.md)
+
+## Changelog
+- [Audit log on 14 new resources](https://docs.orderful.com/changelog/audit-log-on-14-new-resources.md)
+- [MFA is now enforced for all non-SSO users](https://docs.orderful.com/changelog/mfa-is-now-enforced-for-all-non-sso-users.md)
+- [Audit log on Relationships and Rules](https://docs.orderful.com/changelog/audit-log-on-relationships-and-rules.md)
+- [Smarter Address Handling for Label Generation](https://docs.orderful.com/changelog/smarter-address-handling-for-label-generation.md)
+- [Any file over MFT](https://docs.orderful.com/changelog/any-file-over-mft.md)

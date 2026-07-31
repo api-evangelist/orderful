@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+url: https://trust.orderful.com/
+# Verified live: the page is titled "Orderful Trust Center". The certification list is
+# rendered client-side (JS) and could not be read verbatim, so named certifications are
+# left unlisted rather than fabricated. Update on a future pass if the cert list is captured.
+certifications: []
+evidence:
+- source: https://trust.orderful.com/
+  keywords:
+  - orderful trust center

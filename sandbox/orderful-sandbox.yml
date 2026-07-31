@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.orderful.com/reference/testing-your-integration
+# Orderful ships a built-in integration-testing surface rather than card-style test
+# credentials. Test vs live is selected per transaction by the `stream` field.
+test_vs_live:
+  mechanism: stream field on each transaction
+  values:
+  - test
+  - production
+  notes: Transactions created with stream=test are routed through test partnerships
+    and are not sent to real trading partners.
+built_in_test_partner:
+  name: Retail Scenario Testing Demo
+  setup: Integration Testing > select EDI Account > "Add Retail Scenario Testing Demo"
+  capabilities:
+  - Receive sample Purchase Orders (850)
+  - Send Purchase Order Acknowledgments (855)
+  - Send Advance Ship Notices (856)
+  - Send Invoices (810)
+testing_flows:
+- name: Testing for Retail
+  url: https://docs.orderful.com/reference/testing-for-retail
+  summary: Order-to-cash integration testing for sellers.
+- name: Testing for Transportation
+  url: https://docs.orderful.com/reference/testing-for-transportation
+  summary: Receiving and responding to load tenders.
+- name: Leader Linked Testing
+  url: https://docs.orderful.com/reference/leader-linked-testing
+  summary: Extend integration testing to include your partners in the test.
+webhook_testing:
+  note: Inbound HTTP Communication Channels support a "Send a test" action with a chosen
+    or uploaded test file.
+  source: https://docs.orderful.com/docs/inbound-http
+docs:
+- https://docs.orderful.com/reference/testing-your-integration
+- https://docs.orderful.com/reference/welcome-to-mosaic
