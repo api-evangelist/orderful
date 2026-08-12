@@ -177,6 +177,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/orderful-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://docs.orderful.com/
 - type: Documentation
