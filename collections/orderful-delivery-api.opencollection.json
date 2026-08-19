@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Delivery API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delivery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Approve a Delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/deliveries/:deliveryId/approve",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "orderful-api-key",
+              "value": "{{orderful-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Approves the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.\n\nIf this Delivery is associated with one o"
+        },
+        {
+          "info": {
+            "name": "Fail a Delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/deliveries/:deliveryId/fail",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "orderful-api-key",
+              "value": "{{orderful-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fails the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or more"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

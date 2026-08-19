@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Poller API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Poller",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Remove a set of Transactions from a Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/polling-buckets/:id/confirm-retrieval",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "orderful-api-key",
+              "value": "{{orderful-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href=\"https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved\" target=\"_blank\">Approved</a> or <a href=\"https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest\" target=\"_blank\">Failed</a>. This will automatically remove the Transaction from the Bucket."
+        },
+        {
+          "info": {
+            "name": "Get Transactions from Poller Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/polling-buckets/:bucketId",
+            "params": [
+              {
+                "name": "bucketId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "orderful-api-key",
+              "value": "{{orderful-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the Transactions from the specified Poller Bucket."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

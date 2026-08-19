@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "b3458bea-faf4-4ea7-872d-6d9b7cb803d1",
+      "name": "Inbox",
+      "description": {
+        "content": "Retrieve transactions from inboxes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1ae411d-11ae-4c3c-a1e6-2310289dc6b5",
+          "name": "Inbox",
+          "request": {
+            "name": "Inbox",
+            "description": {
+              "content": "Retrieves the Transactions from the specified Inbox.\n\n**Note:** The `inboxId` can be found by logging in to [ui.orderful.com](https://ui.orderful.com) and navigating to \"Communication Channels\".\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "inboxes",
+                ":inboxId",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<number>",
+                  "description": "Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "inboxId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies the API version to use.",
+                "key": "orderful-api-version",
+                "value": "v4"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d25f1bd-cc6c-4606-8b6e-f48e72e19a14",
+              "name": "Transactions retrieved successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "inboxes",
+                    ":inboxId",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "inboxId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies the API version to use.",
+                    "key": "orderful-api-version",
+                    "value": "v4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"integrationPayloadId\": \"019be412-5a85-714c-8ba6-436c1c06efd8\",\n    \"transactionId\": 802210971,\n    \"senderId\": \"MosaicNT\",\n    \"receiverId\": \"MosaicDemo\",\n    \"stream\": \"test\",\n    \"message\": {\n      \"purpose\": \"original\",\n      \"purchaseOrderType\": \"standalone\",\n      \"purchaseOrderNumber\": \"PO-2024-001234\",\n      \"purchaseOrderDate\": \"2024-02-01\",\n      \"parties\": {\n        \"billTo\": {\n          \"name\": \"Acme Corporation\",\n          \"addressLine1\": \"123 Main Street\",\n          \"addressLine2\": \"Accounts Payable\",\n          \"city\": \"Chicago\",\n          \"stateOrProvinceCode\": \"IL\",\n          \"postalCode\": \"60601\",\n          \"countryCode\": \"US\",\n          \"contacts\": [\n            {\n              \"type\": \"primary\",\n              \"name\": \"Accounts Payable\",\n              \"phoneNumber\": \"312-555-0400\",\n              \"email\": \"ap@acme.com\"\n            }\n          ]\n        },\n        \"shipTo\": {\n          \"name\": \"Acme Corporation - Warehouse\",\n          \"identificationCode\": \"987654321\",\n          \"addressLine1\": \"456 Warehouse Boulevard\",\n          \"city\": \"Elk Grove Village\",\n          \"stateOrProvinceCode\": \"IL\",\n          \"postalCode\": \"60007\",\n          \"countryCode\": \"US\",\n          \"contacts\": [\n            {\n              \"type\": \"primary\",\n              \"name\": \"Receiving Department\",\n              \"phoneNumber\": \"847-555-0300\"\n            }\n          ]\n        },\n        \"buyer\": {\n          \"contacts\": [\n            {\n              \"type\": \"primary\",\n              \"name\": \"John Smith\",\n              \"phoneNumber\": \"312-555-0100\",\n              \"email\": \"john.smith@acme.com\"\n            }\n          ]\n        }\n      },\n      \"termsOfSale\": {\n        \"discountDaysDue\": 10,\n        \"netDaysDue\": 30\n      },\n      \"notes\": {\n        \"general\": {\n          \"text\": [\n            \"Please ensure all items are properly packaged\",\n            \"Contact receiving department 24 hours before delivery\"\n          ]\n        }\n      },\n      \"references\": {\n        \"vendorNumber\": {\n          \"value\": \"VND-456\"\n        }\n      },\n      \"dates\": {\n        \"requestedDeliveryDate\": \"2024-02-15\",\n        \"requestedShipDate\": \"2024-02-10\"\n      },\n      \"carrierDetails\": {\n        \"routing\": [\n          {\n            \"description\": \"FedEx Ground service\"\n          }\n        ],\n        \"freeOnBoard\": [\n          {\n            \"methodOfPayment\": \"prepaidBySeller\",\n            \"locationType\": \"destination\",\n            \"locationDescription\": \"Dallas, TX\"\n          }\n        ]\n      },\n      \"monetaryAmounts\": {\n        \"net\": \"10000\"\n      },\n      \"lineItems\": [\n        {\n          \"purchaseOrderLineId\": \"1\",\n          \"quantity\": {\n            \"value\": \"100\",\n            \"unitOfMeasure\": \"each\"\n          },\n          \"unitCostPrice\": \"45.00\",\n          \"productIds\": {\n            \"vendorItemNumber\": \"GSI-78901\",\n            \"buyerItemNumber\": \"ACME-12345\",\n            \"gtin13\": \"1234567890123\"\n          },\n          \"dates\": {\n            \"requestedShipDate\": \"2024-02-10\"\n          }\n        },\n        {\n          \"purchaseOrderLineId\": \"2\",\n          \"quantity\": {\n            \"value\": \"250\",\n            \"unitOfMeasure\": \"case\"\n          },\n          \"unitCostPrice\": \"18.50\",\n          \"productIds\": {\n            \"vendorItemNumber\": \"GSI-23456\",\n            \"buyerItemNumber\": \"ACME-67890\",\n            \"gtin14\": \"12345678901234\"\n          },\n          \"outerPack\": {\n            \"numberOfUnits\": \"25\"\n          },\n          \"dates\": {\n            \"requestedShipDate\": \"2024-02-10\"\n          }\n        },\n        {\n          \"purchaseOrderLineId\": \"3\",\n          \"quantity\": {\n            \"value\": \"50\",\n            \"unitOfMeasure\": \"each\"\n          },\n          \"unitCostPrice\": \"17.50\",\n          \"productIds\": {\n            \"vendorItemNumber\": \"GSI-33333\",\n            \"buyerItemNumber\": \"ACME-11111\",\n            \"gtin12\": \"123456789012\"\n          },\n          \"dates\": {\n            \"requestedShipDate\": \"2024-02-10\"\n          }\n        }\n      ]\n    },\n    \"delivery\": {\n      \"deliveryId\": \"b646771e-a068-4e32-832f-e96f895c5ec9\",\n      \"transactionId\": 802210971,\n      \"href\": \"https://api.orderful.com/transactions/802210971/deliveries/b646771e-a068-4e32-832f-e96f895c5ec9\",\n      \"approve\": {\n        \"href\": \"https://api.orderful.com/transactions/802210971/deliveries/b646771e-a068-4e32-832f-e96f895c5ec9/accept\"\n      },\n      \"fail\": {\n        \"href\": \"https://api.orderful.com/transactions/802210971/deliveries/b646771e-a068-4e32-832f-e96f895c5ec9/fail\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8a66d14a-eba8-41d1-851e-6db48a6c0dd4",
+    "name": "Orderful Conversion Inbox API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

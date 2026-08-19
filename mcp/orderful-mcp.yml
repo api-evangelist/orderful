@@ -2,8 +2,8 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/orderful-openapi-original.yml
-note: No official hosted Orderful MCP server found. Candidate tool list derived one-per-operation from the published OpenAPI
-  (v2.15.0).
+note: No official hosted Orderful MCP server found. Candidate tool list derived one-per-operation from
+  the published OpenAPI (v2.15.0).
 server:
   name: orderful
   transport: stdio
@@ -71,3 +71,9 @@ tools:
 - name: transaction_controller_v3_get_message
   description: Get a Transaction Message
   source_operation: openapi/orderful-openapi-original.yml#TransactionControllerV3_getMessage
+deployment:
+  mode: none
+  verified: derived
+  tools: 21
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conversion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert Data Between Formats",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/convert",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint will convert JSON into X12, or X12 into JSON. Set the \"Content-Type\" header as the format you are sending, and the \"Accept\" header as the format you would like to receive back."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

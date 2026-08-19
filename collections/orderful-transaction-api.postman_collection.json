@@ -1,0 +1,518 @@
+{
+  "item": [
+    {
+      "id": "755facbb-0506-4a28-bc17-8da933834638",
+      "name": "Transaction",
+      "description": {
+        "content": "Create and manage EDI transactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "223605c8-9a20-453d-af94-0113bc0168ec",
+          "name": "Create a Transaction",
+          "request": {
+            "name": "Create a Transaction",
+            "description": {
+              "content": "Creates a Transaction. Only one Transaction can be posted at a time. For guidance on how to use this page, see the <a href=\"https://docs.orderful.com/docs/create-a-transaction#make-an-api-call-using-our-api-explorer\" target=\"_blank\">Create a Transaction guide</a>. Check the status field to determine if the transaction was successfully accepted for processing or failed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies the API version to use.",
+                "key": "orderful-api-version",
+                "value": "v4"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"stream\": \"test\",\n  \"message\": {\n    \"purpose\": \"<string>\",\n    \"purchaseOrderType\": \"<string>\",\n    \"purchaseOrderNumber\": \"<string>\",\n    \"purchaseOrderDate\": \"<date>\",\n    \"contractNumber\": \"<string>\",\n    \"releaseNumber\": \"<string>\",\n    \"acknowledgmentType\": \"<string>\",\n    \"parties\": {\n      \"buyer\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"shipTo\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"billTo\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"shipFrom\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"accountsPayable\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"soldTo\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"supplier\": {\n        \"name\": \"<string>\",\n        \"additionalName1\": \"<string>\",\n        \"additionalName2\": \"<string>\",\n        \"identificationCode\": \"<string>\",\n        \"identificationCodeType\": \"<string>\",\n        \"addressLine1\": \"<string>\",\n        \"addressLine2\": \"<string>\",\n        \"addressLine3\": \"<string>\",\n        \"addressLine4\": \"<string>\",\n        \"city\": \"<string>\",\n        \"stateOrProvinceCode\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"countryCode\": \"<string>\",\n        \"zoneType\": \"<string>\",\n        \"contacts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    \"dates\": {\n      \"cancelAfterDate\": \"<date>\",\n      \"customerOrderDate\": \"<date>\",\n      \"earliestDeliveryDate\": \"<date>\",\n      \"earliestShipDate\": \"<date>\",\n      \"latestShipDate\": \"<date>\",\n      \"latestDeliveryDate\": \"<date>\",\n      \"pickupDate\": \"<date>\",\n      \"promotionStartDate\": \"<date>\",\n      \"purchaseOrderDate\": \"<date>\",\n      \"requestedDeliveryDate\": \"<date>\",\n      \"requestedShipDate\": \"<date>\",\n      \"requestedDeliveryWeekOfDate\": \"<date>\"\n    },\n    \"references\": {\n      \"accountNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"arrivalCode\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"associatedPurchaseOrderNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"reservationNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"customerOrderNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"deliveryReference\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"divisionId\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"departmentNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"internalCustomerNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"vendorNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"merchandiseTypeCode\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"promotionNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"storeNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"thirdPartyReferenceNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"warehouseStorageLocation\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"shipmentNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      \"invoiceNumber\": {\n        \"value\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    },\n    \"termsOfSale\": {\n      \"type\": \"<string>\",\n      \"basisDate\": \"<string>\",\n      \"discountPercent\": \"<string>\",\n      \"discountDaysDue\": \"<integer>\",\n      \"discountDueDate\": \"<date>\",\n      \"dayOfMonth\": \"<integer>\",\n      \"netDaysDue\": \"<integer>\",\n      \"netDueDate\": \"<date>\",\n      \"discountAmount\": \"<string>\",\n      \"description\": \"<string>\",\n      \"paymentMethodType\": \"<string>\"\n    },\n    \"carrierDetails\": {\n      \"routing\": [\n        {\n          \"sequenceType\": \"<string>\",\n          \"standardCarrierAlphaCode\": \"<string>\",\n          \"customCarrierCode\": \"<string>\",\n          \"transportationMethod\": \"<string>\",\n          \"locationType\": \"<string>\",\n          \"location\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceLevel\": \"<string>\",\n          \"orderStatus\": \"<string>\",\n          \"transitDirectionType\": \"<string>\",\n          \"transitTimeType\": \"<string>\",\n          \"transitTime\": \"<string>\"\n        },\n        {\n          \"sequenceType\": \"<string>\",\n          \"standardCarrierAlphaCode\": \"<string>\",\n          \"customCarrierCode\": \"<string>\",\n          \"transportationMethod\": \"<string>\",\n          \"locationType\": \"<string>\",\n          \"location\": \"<string>\",\n          \"description\": \"<string>\",\n          \"serviceLevel\": \"<string>\",\n          \"orderStatus\": \"<string>\",\n          \"transitDirectionType\": \"<string>\",\n          \"transitTimeType\": \"<string>\",\n          \"transitTime\": \"<string>\"\n        }\n      ],\n      \"freeOnBoard\": [\n        {\n          \"methodOfPayment\": \"<string>\",\n          \"locationType\": \"<string>\",\n          \"locationDescription\": \"<string>\",\n          \"titlePassageType\": \"<string>\",\n          \"titlePassageDescription\": \"<string>\",\n          \"transportationTermsSource\": \"<string>\",\n          \"transportationTerms\": \"<string>\",\n          \"riskOfLoss\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"methodOfPayment\": \"<string>\",\n          \"locationType\": \"<string>\",\n          \"locationDescription\": \"<string>\",\n          \"titlePassageType\": \"<string>\",\n          \"titlePassageDescription\": \"<string>\",\n          \"transportationTermsSource\": \"<string>\",\n          \"transportationTerms\": \"<string>\",\n          \"riskOfLoss\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"specialHandling\": [\n        {\n          \"handlingType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"materialId\": \"<string>\",\n          \"materialClass\": \"<string>\",\n          \"conditionResponse\": \"<boolean>\"\n        },\n        {\n          \"handlingType\": \"<string>\",\n          \"description\": \"<string>\",\n          \"materialId\": \"<string>\",\n          \"materialClass\": \"<string>\",\n          \"conditionResponse\": \"<boolean>\"\n        }\n      ]\n    },\n    \"notes\": {\n      \"general\": {\n        \"description\": \"<string>\",\n        \"text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"orderInstructions\": {\n        \"description\": \"<string>\",\n        \"text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"shippingInstructions\": {\n        \"description\": \"<string>\",\n        \"text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"giftMessage\": {\n        \"description\": \"<string>\",\n        \"text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"packingSlipMessage\": {\n        \"description\": \"<string>\",\n        \"text\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    },\n    \"monetaryAmounts\": {\n      \"net\": \"<string>\",\n      \"gross\": \"<string>\",\n      \"discount\": \"<string>\",\n      \"freight\": \"<string>\"\n    },\n    \"conditionsAndRestrictions\": [\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"lineItems\": [\n      {\n        \"purchaseOrderLineId\": \"<string>\",\n        \"quantity\": {\n          \"value\": \"<string>\",\n          \"unitOfMeasure\": \"<string>\"\n        },\n        \"unitCostPrice\": \"<string>\",\n        \"unitPriceBasis\": \"<string>\",\n        \"additionalPricing\": [\n          {\n            \"priceType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"priceType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"price\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"productIds\": {\n          \"buyerItemNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendorItemNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gtin12\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gtin13\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gtin14\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"caseCode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"drugCode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"standardBookNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"buyerItemIds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendorItemIds\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"productAttributes\": {\n          \"description\": \"<string>\",\n          \"colorCode\": \"<string>\",\n          \"colorDescription\": \"<string>\",\n          \"sizeCode\": \"<string>\",\n          \"sizeDescription\": \"<string>\",\n          \"materialCode\": \"<string>\",\n          \"materialDescription\": \"<string>\",\n          \"processCode\": \"<string>\",\n          \"processDescription\": \"<string>\",\n          \"height\": \"<string>\",\n          \"width\": \"<string>\"\n        },\n        \"outerPack\": {\n          \"numberOfUnits\": \"<string>\",\n          \"packageForm\": \"<string>\",\n          \"weight\": \"<string>\",\n          \"weightUnit\": \"<string>\",\n          \"volume\": \"<string>\",\n          \"volumeUnit\": \"<string>\"\n        },\n        \"innerPack\": {\n          \"numberOfUnits\": \"<string>\",\n          \"packageForm\": \"<string>\",\n          \"weight\": \"<string>\",\n          \"weightUnit\": \"<string>\",\n          \"volume\": \"<string>\",\n          \"volumeUnit\": \"<string>\"\n        },\n        \"packaging\": [\n          {\n            \"packagingCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"packagingDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"packagingCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"packagingDescription\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"dates\": {\n          \"cancelAfterDate\": \"<date>\",\n          \"customerOrderDate\": \"<date>\",\n          \"earliestDeliveryDate\": \"<date>\",\n          \"earliestShipDate\": \"<date>\",\n          \"latestShipDate\": \"<date>\",\n          \"latestDeliveryDate\": \"<date>\",\n          \"pickupDate\": \"<date>\",\n          \"promotionStartDate\": \"<date>\",\n          \"purchaseOrderDate\": \"<date>\",\n          \"requestedDeliveryDate\": \"<date>\",\n          \"requestedShipDate\": \"<date>\",\n          \"requestedDeliveryWeekOfDate\": \"<date>\"\n        },\n        \"references\": {\n          \"accountNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"arrivalCode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"associatedPurchaseOrderNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"reservationNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"customerOrderNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deliveryReference\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"divisionId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"departmentNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"internalCustomerNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendorNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"merchandiseTypeCode\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"promotionNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"storeNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"thirdPartyReferenceNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"warehouseStorageLocation\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"shipmentNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"invoiceNumber\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"destinationQuantities\": [\n          {\n            \"identificationCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identificationCodeType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"identificationCode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identificationCodeType\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"allowances\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"charges\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"monetaryAmounts\": {\n          \"lineTotal\": \"<string>\",\n          \"unitPrice\": \"<string>\",\n          \"extendedPrice\": \"<string>\"\n        },\n        \"sublineItems\": [\n          {\n            \"sublineId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"productIds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"productAttributes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"sublineId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"quantity\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"productIds\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"productAttributes\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"notes\": {\n          \"general\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"orderInstructions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"shippingInstructions\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"giftMessage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"packingSlipMessage\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"paperwork\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"required\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"conditionsAndRestrictions\": [\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"carrierDetails\": {\n          \"routing\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"freeOnBoard\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"specialHandling\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      }\n    ]\n  },\n  \"senderId\": \"<string>\",\n  \"receiverId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e1140e0-80a0-417a-8108-f8e8474d1edd",
+              "name": "Transaction processing. Check the status field to determine if the transaction was successfully accepted for processing or failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies the API version to use.",
+                    "key": "orderful-api-version",
+                    "value": "v4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"850_PURCHASE_ORDER\",\n  \"stream\": \"test\",\n  \"senderId\": \"BUYERISA\",\n  \"receiverId\": \"SELLERISA\",\n  \"message\": {\n    \"purpose\": \"original\",\n    \"purchaseOrderType\": \"standalone\",\n    \"purchaseOrderNumber\": \"PO5786344061670677\",\n    \"purchaseOrderDate\": \"2026-02-12\",\n    \"releaseNumber\": \"004010\",\n    \"conditionsAndRestrictions\": [\n      {\n        \"conditionType\": \"doNotBackorder\"\n      }\n    ],\n    \"parties\": {\n      \"buyer\": {\n        \"name\": \"Retail Integration Testing\",\n        \"identificationCode\": \"5438\",\n        \"identificationCodeType\": \"sendersId\"\n      },\n      \"shipTo\": {\n        \"name\": \"Retail Integration Testing\",\n        \"identificationCode\": \"5438\",\n        \"identificationCodeType\": \"sendersId\",\n        \"addressLine1\": \"4055 MAIN ST\",\n        \"city\": \"NEW YORK\",\n        \"stateOrProvinceCode\": \"NY\",\n        \"postalCode\": \"10001\",\n        \"countryCode\": \"US\"\n      },\n      \"billTo\": {\n        \"name\": \"Retail Integration Testing\",\n        \"identificationCode\": \"5438\",\n        \"identificationCodeType\": \"sendersId\",\n        \"addressLine1\": \"4055 MAIN ST\",\n        \"city\": \"NEW YORK\",\n        \"stateOrProvinceCode\": \"NY\",\n        \"postalCode\": \"10001\",\n        \"countryCode\": \"US\"\n      }\n    },\n    \"termsOfSale\": {\n      \"type\": \"basic\",\n      \"basisDate\": \"deliveryDate\",\n      \"discountPercent\": \"1\",\n      \"discountDaysDue\": 45,\n      \"description\": \"Net 45 Days\"\n    },\n    \"references\": {\n      \"vendorNumber\": {\n        \"value\": \"4875905\"\n      },\n      \"departmentNumber\": {\n        \"value\": \"011\"\n      }\n    },\n    \"dates\": {\n      \"earliestShipDate\": \"2026-02-17\",\n      \"latestShipDate\": \"2026-02-22\"\n    },\n    \"carrierDetails\": {\n      \"routing\": [\n        {\n          \"description\": \"2\"\n        }\n      ],\n      \"freeOnBoard\": [\n        {\n          \"methodOfPayment\": \"mutuallyAgreed\"\n        }\n      ]\n    },\n    \"allowances\": [\n      {\n        \"type\": \"discount\",\n        \"amount\": \"196.2475\",\n        \"description\": \"Discount\"\n      }\n    ],\n    \"charges\": [\n      {\n        \"type\": \"freight\",\n        \"amount\": \"784.99\",\n        \"description\": \"Freight Charge\"\n      }\n    ],\n    \"lineItems\": [\n      {\n        \"purchaseOrderLineId\": \"1\",\n        \"quantity\": {\n          \"value\": \"5\",\n          \"unitOfMeasure\": \"each\"\n        },\n        \"unitCostPrice\": \"101.00\",\n        \"productIds\": {\n          \"buyerItemNumber\": \"10000002\",\n          \"gtin12\": 2837465832,\n          \"caseCode\": 2837465832\n        },\n        \"productAttributes\": {\n          \"description\": \"Green toothpaste\"\n        },\n        \"outerPack\": {\n          \"numberOfUnits\": \"10\"\n        },\n        \"innerPack\": {\n          \"numberOfUnits\": \"10\"\n        }\n      },\n      {\n        \"purchaseOrderLineId\": \"2\",\n        \"quantity\": {\n          \"value\": \"20\",\n          \"unitOfMeasure\": \"each\"\n        },\n        \"unitCostPrice\": \"88.00\",\n        \"productIds\": {\n          \"buyerItemNumber\": \"10000004\",\n          \"gtin12\": 2837465837,\n          \"caseCode\": 2837465837\n        },\n        \"productAttributes\": {\n          \"description\": \"Orange toothpaste\"\n        },\n        \"outerPack\": {\n          \"numberOfUnits\": \"8\"\n        },\n        \"innerPack\": {\n          \"numberOfUnits\": \"8\"\n        }\n      },\n      {\n        \"purchaseOrderLineId\": \"3\",\n        \"quantity\": {\n          \"value\": \"5\",\n          \"unitOfMeasure\": \"each\"\n        },\n        \"unitCostPrice\": \"112.00\",\n        \"productIds\": {\n          \"buyerItemNumber\": \"10000003\",\n          \"gtin12\": 2837465836,\n          \"caseCode\": 2837465836\n        },\n        \"productAttributes\": {\n          \"description\": \"Purple toothpaste\"\n        },\n        \"outerPack\": {\n          \"numberOfUnits\": \"12\"\n        },\n        \"innerPack\": {\n          \"numberOfUnits\": \"12\"\n        }\n      },\n      {\n        \"purchaseOrderLineId\": \"4\",\n        \"quantity\": {\n          \"value\": \"10\",\n          \"unitOfMeasure\": \"each\"\n        },\n        \"unitCostPrice\": \"100.00\",\n        \"productIds\": {\n          \"buyerItemNumber\": \"10000001\",\n          \"gtin12\": 2837465831,\n          \"caseCode\": 2837465831\n        },\n        \"productAttributes\": {\n          \"description\": \"Yellow toothpaste\"\n        },\n        \"outerPack\": {\n          \"numberOfUnits\": \"10\"\n        },\n        \"innerPack\": {\n          \"numberOfUnits\": \"10\"\n        }\n      },\n      {\n        \"purchaseOrderLineId\": \"5\",\n        \"quantity\": {\n          \"value\": \"5\",\n          \"unitOfMeasure\": \"each\"\n        },\n        \"unitCostPrice\": \"19.99\",\n        \"productIds\": {\n          \"buyerItemNumber\": \"ORDERFUL-TEST-SKU-005\",\n          \"gtin12\": 12345678005,\n          \"caseCode\": 12345678005\n        },\n        \"productAttributes\": {\n          \"description\": \"Placeholder product for scenario testing\"\n        },\n        \"outerPack\": {\n          \"numberOfUnits\": \"1\"\n        },\n        \"innerPack\": {\n          \"numberOfUnits\": \"1\"\n        }\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"802210971\",\n  \"status\": \"ACCEPTED\",\n  \"detail\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01f302f8-fed7-4049-977b-0c436b02379b",
+          "name": "Get a Delivery.",
+          "request": {
+            "name": "Get a Delivery.",
+            "description": {
+              "content": "Returns the specified transaction delivery. Links to Delivery objects are available in Transactions retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Inbox</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "deliveries",
+                ":deliveryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deliveryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies the API version to use.",
+                "key": "orderful-api-version",
+                "value": "v4"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4cccb46-0862-4087-b7cc-13418c190f4f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "deliveries",
+                    ":deliveryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deliveryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies the API version to use.",
+                    "key": "orderful-api-version",
+                    "value": "v4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deliveryId\": \"1aadf1a68-abcd-4981-abcd-012345678901\",\n  \"transactionId\": 0,\n  \"href\": \"https://api.orderful.com/transactions/00000/deliveries/1aadf1a68-abcd-4981-abcd-012345678901\",\n  \"status\": \"CREATED\",\n  \"createdAt\": \"2025-10-02T16:46:11.943Z\",\n  \"lastUpdatedAt\": \"2025-10-02T16:46:11.943Z\",\n  \"note\": \"Transaction received by the ERP\",\n  \"approve\": {\n    \"href\": \"https://api.orderful.com/transactions/00000/deliveries/1aadf1a68-abcd-4981-abcd-012345678901/approve\"\n  },\n  \"fail\": {\n    \"href\": \"https://api.orderful.com/transactions/00000/deliveries/1aadf1a68-abcd-4981-abcd-012345678901/fail\"\n  },\n  \"sendSucceededAt\": \"2025-10-02T16:46:11.943Z\",\n  \"sendFailedAt\": \"2025-10-02T16:46:11.943Z\",\n  \"lastConfirmedAt\": \"2025-10-02T16:46:11.943Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45ddbeb8-67ec-4929-bd1b-ae2c35a66e7d",
+          "name": "Accept a transaction delivery.",
+          "request": {
+            "name": "Accept a transaction delivery.",
+            "description": {
+              "content": "Accepts the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/inboxcontroller_list\" target=\"_blank\">Inbox</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>.If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.If this Delivery is associated with one or more Transactions in a inbox, this will also remove the Transactions from that inbox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "deliveries",
+                ":deliveryId",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deliveryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies the API version to use.",
+                "key": "orderful-api-version",
+                "value": "v4"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd7e22ce-e4f4-4e39-a737-4237353bbb5c",
+              "name": "Transaction delivery marked as accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "deliveries",
+                    ":deliveryId",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deliveryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies the API version to use.",
+                    "key": "orderful-api-version",
+                    "value": "v4"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c8effba-4c4b-4c2d-8a3a-78214c3d0db8",
+          "name": "Fail a transaction delivery.",
+          "request": {
+            "name": "Fail a transaction delivery.",
+            "description": {
+              "content": "Fails the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Inbox</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>.\n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or more Transactions in a inbox, this will also remove the Transactions from that inbox.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "deliveries",
+                ":deliveryId",
+                "fail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deliveryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Specifies the API version to use.",
+                "key": "orderful-api-version",
+                "value": "v4"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "335d5fd0-770a-447e-bc9e-618acc13f412",
+              "name": "Transaction marked as failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "deliveries",
+                    ":deliveryId",
+                    "fail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deliveryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Specifies the API version to use.",
+                    "key": "orderful-api-version",
+                    "value": "v4"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ce9b3e9e-1844-4d6a-a5c6-ff5444728f85",
+    "name": "Orderful Conversion Transaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

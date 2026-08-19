@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "2a5fd7f5-d35c-4d01-bdbf-0dd7b2d91d9b",
+      "name": "Label",
+      "description": {
+        "content": "Generate UCC-128 shipping labels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79afbe3f-b166-4528-9785-ff4f448daa90",
+          "name": "Generate Label",
+          "request": {
+            "name": "Generate Label",
+            "description": {
+              "content": "Generates a PDF or ZPL file to be used for label printing. For more information, see the <a href=\"https://docs.orderful.com/docs/generate-shipping-label\" target=\"_blank\">Create a Label guide</a>. Supports single label or batch generation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "labels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skipValidation",
+                  "value": "<boolean>",
+                  "description": "Skip validation."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "<string>",
+                  "description": "Output format for the label."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"shipFrom\": {\n    \"name\": \"<string>\",\n    \"careOf\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"careOf\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"vendor\": {\n    \"number\": \"<string>\",\n    \"partNumber\": \"<string>\"\n  },\n  \"store\": {\n    \"name\": \"<string>\",\n    \"careOf\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"number\": \"<string>\"\n  },\n  \"distributionCenter\": {\n    \"name\": \"<string>\",\n    \"number\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"shipment\": {\n    \"shipmentIdentification\": \"<string>\",\n    \"billOfLadingNumber\": \"<string>\",\n    \"proNumber\": \"<string>\",\n    \"sscc-18\": \"<string>\",\n    \"finalDestination\": \"<string>\",\n    \"locationNumber\": \"<string>\",\n    \"weight\": \"<string>\",\n    \"date\": \"<string>\",\n    \"sscc18LastFour\": \"<string>\"\n  },\n  \"department\": {\n    \"number\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"purchaseOrder\": {\n    \"number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"processHandlingCode\": \"<string>\",\n    \"customerOrderNumber\": \"<string>\",\n    \"eventCode\": \"<string>\",\n    \"markForLocationNumber\": \"<string>\",\n    \"suggestedRetailPrice\": \"<string>\"\n  },\n  \"pallet\": {\n    \"number\": \"<string>\",\n    \"max\": \"<string>\",\n    \"cubicDimensions\": \"<string>\",\n    \"weight\": \"<string>\",\n    \"units\": \"<string>\"\n  },\n  \"case\": {\n    \"pack\": \"<string>\",\n    \"innerPack\": \"<string>\",\n    \"unitsPerInnerPack\": \"<string>\"\n  },\n  \"carton\": {\n    \"number\": \"<string>\",\n    \"max\": \"<string>\"\n  },\n  \"item\": {\n    \"number\": \"<string>\",\n    \"description\": \"<string>\",\n    \"gtin\": \"<string>\",\n    \"productDate\": \"<string>\",\n    \"lotNumber\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"upcNumber\": \"<string>\",\n    \"temperatureControl\": \"<string>\",\n    \"skuNumber\": \"<string>\",\n    \"color\": \"<string>\",\n    \"size\": \"<string>\",\n    \"style\": \"<string>\",\n    \"buyerPartNumber\": \"<string>\",\n    \"countryOfOrigin\": \"<string>\"\n  },\n  \"merchandise\": {\n    \"type\": \"<string>\"\n  },\n  \"optionalInformation\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d995420c-53c7-470f-9161-62afc260c816",
+              "name": "Label generated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "labels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skipValidation",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"shipFrom\": {\n    \"name\": \"<string>\",\n    \"careOf\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"careOf\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"vendor\": {\n    \"number\": \"<string>\",\n    \"partNumber\": \"<string>\"\n  },\n  \"store\": {\n    \"name\": \"<string>\",\n    \"careOf\": \"<string>\",\n    \"address1\": \"<string>\",\n    \"address2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"number\": \"<string>\"\n  },\n  \"distributionCenter\": {\n    \"name\": \"<string>\",\n    \"number\": \"<string>\"\n  },\n  \"carrier\": {\n    \"name\": \"<string>\",\n    \"code\": \"<string>\"\n  },\n  \"shipment\": {\n    \"shipmentIdentification\": \"<string>\",\n    \"billOfLadingNumber\": \"<string>\",\n    \"proNumber\": \"<string>\",\n    \"sscc-18\": \"<string>\",\n    \"finalDestination\": \"<string>\",\n    \"locationNumber\": \"<string>\",\n    \"weight\": \"<string>\",\n    \"date\": \"<string>\",\n    \"sscc18LastFour\": \"<string>\"\n  },\n  \"department\": {\n    \"number\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"purchaseOrder\": {\n    \"number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"processHandlingCode\": \"<string>\",\n    \"customerOrderNumber\": \"<string>\",\n    \"eventCode\": \"<string>\",\n    \"markForLocationNumber\": \"<string>\",\n    \"suggestedRetailPrice\": \"<string>\"\n  },\n  \"pallet\": {\n    \"number\": \"<string>\",\n    \"max\": \"<string>\",\n    \"cubicDimensions\": \"<string>\",\n    \"weight\": \"<string>\",\n    \"units\": \"<string>\"\n  },\n  \"case\": {\n    \"pack\": \"<string>\",\n    \"innerPack\": \"<string>\",\n    \"unitsPerInnerPack\": \"<string>\"\n  },\n  \"carton\": {\n    \"number\": \"<string>\",\n    \"max\": \"<string>\"\n  },\n  \"item\": {\n    \"number\": \"<string>\",\n    \"description\": \"<string>\",\n    \"gtin\": \"<string>\",\n    \"productDate\": \"<string>\",\n    \"lotNumber\": \"<string>\",\n    \"expirationDate\": \"<string>\",\n    \"upcNumber\": \"<string>\",\n    \"temperatureControl\": \"<string>\",\n    \"skuNumber\": \"<string>\",\n    \"color\": \"<string>\",\n    \"size\": \"<string>\",\n    \"style\": \"<string>\",\n    \"buyerPartNumber\": \"<string>\",\n    \"countryOfOrigin\": \"<string>\"\n  },\n  \"merchandise\": {\n    \"type\": \"<string>\"\n  },\n  \"optionalInformation\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a0a9c74b-418a-4f21-a715-6ed97c2104e9",
+    "name": "Orderful Conversion Label API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

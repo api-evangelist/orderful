@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "9defe7d9-fb5b-4028-8972-ceb416a90a7a",
+      "name": "Delivery",
+      "description": {
+        "content": "Approve or fail transaction deliveries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79b7e8a9-121b-454b-8fc0-38efc29cafb4",
+          "name": "Approve a Delivery",
+          "request": {
+            "name": "Approve a Delivery",
+            "description": {
+              "content": "Approves the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "deliveries",
+                ":deliveryId",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deliveryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "orderful-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3e52b2e-f83f-4d3f-a5a4-42613098cd88",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "deliveries",
+                    ":deliveryId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deliveryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "orderful-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbf40336-6e81-495f-8128-a67fc2c59a1a",
+          "name": "Fail a Delivery",
+          "request": {
+            "name": "Fail a Delivery",
+            "description": {
+              "content": "Fails the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "deliveries",
+                ":deliveryId",
+                "fail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deliveryId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "orderful-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0614a42c-ce3f-4281-a391-87f10e04397a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "deliveries",
+                    ":deliveryId",
+                    "fail"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deliveryId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "orderful-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4b3a1755-1d2b-4714-a381-f16180ef4e62",
+    "name": "Orderful Conversion Delivery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Transaction API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/transactions",
+            "headers": [
+              {
+                "name": "orderful-api-version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Transaction. Only one Transaction can be posted at a time. For guidance on how to use this page, see the <a href=\"https://docs.orderful.com/docs/create-a-transaction#make-an-api-call-using-our-api-explorer\" target=\"_blank\">Create a Transaction guide</a>. Check the status field to determine if the transaction was successfully accepted for processing or failed.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Delivery.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/transactions/:transactionId/deliveries/:deliveryId",
+            "headers": [
+              {
+                "name": "orderful-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the specified transaction delivery. Links to Delivery objects are available in Transactions retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Inbox</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>."
+        },
+        {
+          "info": {
+            "name": "Accept a transaction delivery.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/transactions/:transactionId/deliveries/:deliveryId/accept",
+            "headers": [
+              {
+                "name": "orderful-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accepts the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/inboxcontroller_list\" target=\"_blank\">Inbox</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>.If this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.If this Delivery is associated with one or mo"
+        },
+        {
+          "info": {
+            "name": "Fail a transaction delivery.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/transactions/:transactionId/deliveries/:deliveryId/fail",
+            "headers": [
+              {
+                "name": "orderful-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fails the specified transaction delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Inbox</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>.\n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or m"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Label API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Label",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/labels",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "skipValidation",
+                "value": "",
+                "type": "query",
+                "description": "Skip validation."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Output format for the label."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a PDF or ZPL file to be used for label printing. For more information, see the <a href=\"https://docs.orderful.com/docs/generate-shipping-label\" target=\"_blank\">Create a Label guide</a>. Supports single label or batch generation.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

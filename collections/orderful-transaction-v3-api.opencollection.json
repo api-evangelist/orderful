@@ -1,0 +1,344 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Transaction (v3) API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction (v3)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an Acknowledgment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/transactions/:transactionId/acknowledgment",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric transaction ID."
+              }
+            ]
+          },
+          "docs": "Returns the acknowledgment for the specified Transaction."
+        },
+        {
+          "info": {
+            "name": "Create an Acknowledgment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/transactions/:transactionId/acknowledgment",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric transaction ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an acknowledgment with the specified status for the specified Transaction."
+        },
+        {
+          "info": {
+            "name": "Confirm the delivery of a set of Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/transactions/confirm-delivery",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "orderful-api-key",
+              "value": "{{orderful-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href=\"https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved\" target=\"_blank\">Approved</a> or <a href=\"https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest\" target=\"_blank\">Failed</a>. This will automatically remove the Transaction from the Bucket."
+        },
+        {
+          "info": {
+            "name": "List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/transactions",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "prevCursor",
+                "value": "",
+                "type": "query",
+                "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the previous set of results.\n"
+              },
+              {
+                "name": "nextCursor",
+                "value": "",
+                "type": "query",
+                "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the next set of results.\n"
+              },
+              {
+                "name": "createdAt",
+                "value": "",
+                "type": "query",
+                "description": "The date and time that the Transactions were created on or before, in ISO-8601 format. This is used to <a href=\"https://docs.orderful.com/reference/filtering\" target=\"_blank\">filter results</a>.\n"
+              },
+              {
+                "name": "stream",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether you want results from the Test and/or Live stream."
+              },
+              {
+                "name": "businessNumber",
+                "value": "",
+                "type": "query",
+                "description": "Indicates which business number(s) you would like to list Transactions from. You may indicate up to 5 business numbers.\n"
+              },
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query",
+                "description": "Indicates the Transaction Type(s) you would like to filter by. You may indicate up to 5 <a href=\"https://docs.orderful.com/reference/available-transaction-types\" target=\"_blank\">Transaction Types</a>.\n"
+              },
+              {
+                "name": "validationStatus",
+                "value": "",
+                "type": "query",
+                "description": "The one or more validation status(es) you would like to filter by."
+              },
+              {
+                "name": "deliveryStatus",
+                "value": "",
+                "type": "query",
+                "description": "The one or more delivery status(es) you would like to filter by."
+              },
+              {
+                "name": "acknowledgmentStatus",
+                "value": "",
+                "type": "query",
+                "description": "The one or more acknowledgment status(es) you would like to filter by."
+              },
+              {
+                "name": "senderIsaId",
+                "value": "",
+                "type": "query",
+                "description": "The Sender ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Sender ISA IDs.\n"
+              },
+              {
+                "name": "receiverIsaId",
+                "value": "",
+                "type": "query",
+                "description": "The Receiver ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Receiver ISA IDs.\n"
+              },
+              {
+                "name": "referenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Reference Identifier Value you would like to filter by."
+              },
+              {
+                "name": "senderInterchangeReferenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Sender's Interchange Reference Identifier Value you would like to filter by."
+              },
+              {
+                "name": "senderGroupReferenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Sender's (Functional) Group Reference Identifier Value you would like to filter by."
+              },
+              {
+                "name": "senderTransactionReferenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Sender's Transaction Reference Identifier Value you would like to filter by."
+              },
+              {
+                "name": "receiverInterchangeReferenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Receiver's Interchange Reference Identifier Value you would like to filter by."
+              },
+              {
+                "name": "receiverGroupReferenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Receiver's (Functional) Group Reference Identifier Value you would like to filter by."
+              },
+              {
+                "name": "receiverTransactionReferenceIdentifier",
+                "value": "",
+                "type": "query",
+                "description": "Receiver's Transaction Reference Identifier Value you would like to filter by."
+              }
+            ]
+          },
+          "docs": "Returns an array of Transactions sorted in descending order by their creation date. A maximum of 100 Transactions will be returned at a time.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/transactions",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a Transaction using the v3 API format. Either a `message` or `summary` must be provided, but not both. For guidance on how to use this endpoint, see the <a href=\"https://docs.orderful.com/docs/create-a-transaction\" target=\"_blank\">Create a Transaction guide</a>.\n"
+        },
+        {
+          "info": {
+            "name": "Create a raw Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.orderful.com/v3/transactions/raw",
+            "headers": [
+              {
+                "name": "orderful-business-number",
+                "value": ""
+              },
+              {
+                "name": "orderful-stream",
+                "value": ""
+              },
+              {
+                "name": "orderful-transaction-type",
+                "value": ""
+              },
+              {
+                "name": "orderful-receiver-id",
+                "value": ""
+              },
+              {
+                "name": "orderful-sender-id",
+                "value": ""
+              },
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "orderful-api-key",
+              "value": "{{orderful-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a Transaction from a raw document. The request body should contain the raw document content (e.g. X12, XML, CSV). Routing metadata is provided via request headers rather than in the body.\n\n> 🚧 Try It! playground limitation\n>\n> The in-page **Try It!** playground on this reference can only exercise `application/json` request bodies. If you are testing or experimenting with `application/xml`, `text/xml`, `text/csv`, `application/pdf`, `image/jpeg`, or `text/plain` payloads, use cURL or an "
+        },
+        {
+          "info": {
+            "name": "Get a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/transactions/:transactionId",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric transaction ID."
+              },
+              {
+                "name": "expand",
+                "value": "",
+                "type": "query",
+                "description": "This optional parameter will embed the specified object into the return payload.\n"
+              }
+            ]
+          },
+          "docs": "Returns the specified Transaction."
+        },
+        {
+          "info": {
+            "name": "Get a Transaction Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/transactions/:transactionId/message",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric transaction ID."
+              }
+            ]
+          },
+          "docs": "Returns the specified Transaction's message content."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

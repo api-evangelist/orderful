@@ -1,0 +1,1465 @@
+{
+  "item": [
+    {
+      "id": "b061749d-717f-4d8a-a990-db741c1e35eb",
+      "name": "Transaction (v3)",
+      "description": {
+        "content": "Create and manage EDI transactions using the v3 API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5911aa9b-58d2-4a2a-b69a-f3f0d5150184",
+          "name": "Create an Acknowledgment",
+          "request": {
+            "name": "Create an Acknowledgment",
+            "description": {
+              "content": "Creates an acknowledgment with the specified status for the specified Transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                ":transactionId",
+                "acknowledgment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) The numeric transaction ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"errors\": [\n    {\n      \"path\": \"<string>\",\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "64c83545-9805-42b4-991c-d4500af6a836",
+              "name": "Acknowledgment created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId",
+                    "acknowledgment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"errors\": [\n    {\n      \"path\": \"/message\",\n      \"code\": \"00\",\n      \"message\": \"This is a top-level error message for JSON transaction\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b1ccccd-b7e6-4c4d-a942-e990aa1bbef5",
+          "name": "Get an Acknowledgment",
+          "request": {
+            "name": "Get an Acknowledgment",
+            "description": {
+              "content": "Returns the acknowledgment for the specified Transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                ":transactionId",
+                "acknowledgment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) The numeric transaction ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d42d38e-1467-475c-8eb4-970a238ec576",
+              "name": "Acknowledgment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId",
+                    "acknowledgment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"href\": \"https://api.orderful.com/v3/transactions/000000/acknowledgment\",\n  \"createdAt\": \"2026-03-03T00:36:28.099Z\",\n  \"status\": \"string\",\n  \"transaction\": {\n    \"href\": \"https://api.orderful.com/v3/transactions/000000\"\n  },\n  \"transactionId\": \"123\",\n  \"errors\": [\n    {\n      \"path\": \"/message\",\n      \"code\": \"00\",\n      \"message\": \"Message to show additional information on the error that occurred\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34db07d3-74f0-4fac-afa5-395efccf39c0",
+              "name": "Transaction or acknowledgment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId",
+                    "acknowledgment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22a3e554-3563-4571-bb68-7cb3d770364e",
+          "name": "Confirm the delivery of a set of Transactions",
+          "request": {
+            "name": "Confirm the delivery of a set of Transactions",
+            "description": {
+              "content": "Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href=\"https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved\" target=\"_blank\">Approved</a> or <a href=\"https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest\" target=\"_blank\">Failed</a>. This will automatically remove the Transaction from the Bucket.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                "confirm-delivery"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "orderful-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"transactionId\": \"<string>\",\n    \"deliveryStatus\": \"<string>\",\n    \"note\": \"<string>\"\n  },\n  {\n    \"transactionId\": \"<string>\",\n    \"deliveryStatus\": \"<string>\",\n    \"note\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc93dc88-aa5e-43cd-bfb3-1ca87dc5e10d",
+              "name": "The confirmation batch was successfully processed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    "confirm-delivery"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "orderful-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"transactionId\": \"<string>\",\n    \"deliveryStatus\": \"<string>\",\n    \"note\": \"<string>\"\n  },\n  {\n    \"transactionId\": \"<string>\",\n    \"deliveryStatus\": \"<string>\",\n    \"note\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"12345\": \"Successfully confirmed failed delivery for transaction 12345\",\n  \"99999\": \"Transaction ID 99999 not found\",\n  \"988765\": \"Successfully confirmed delivery for transaction 988765\",\n  \"NO_OP\": \"Transaction ID NO_OP not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11ad72a6-bb21-4b55-ba71-e1d41eebca85",
+          "name": "Create a Transaction",
+          "request": {
+            "name": "Create a Transaction",
+            "description": {
+              "content": "Creates a Transaction using the v3 API format. Either a `message` or `summary` must be provided, but not both. For guidance on how to use this endpoint, see the <a href=\"https://docs.orderful.com/docs/create-a-transaction\" target=\"_blank\">Create a Transaction guide</a>.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": {\n    \"name\": \"<string>\"\n  },\n  \"stream\": \"TEST\",\n  \"sender\": {\n    \"isaId\": \"<string>\"\n  },\n  \"receiver\": {\n    \"isaId\": \"<string>\"\n  },\n  \"message\": \"<json>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2a7c5ef-ba15-4b37-80c2-30b9f723f6dd",
+              "name": "Transaction created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": {\n    \"name\": \"<string>\"\n  },\n  \"stream\": \"TEST\",\n  \"sender\": {\n    \"isaId\": \"<string>\"\n  },\n  \"receiver\": {\n    \"isaId\": \"<string>\"\n  },\n  \"message\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f978446d-c135-48db-8dc8-d79bab2aebf6",
+              "name": "Invalid request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": {\n    \"name\": \"<string>\"\n  },\n  \"stream\": \"TEST\",\n  \"sender\": {\n    \"isaId\": \"<string>\"\n  },\n  \"receiver\": {\n    \"isaId\": \"<string>\"\n  },\n  \"message\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b18ebb31-b1e2-4bd7-a37b-19500b3eaaa6",
+              "name": "Insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": {\n    \"name\": \"<string>\"\n  },\n  \"stream\": \"TEST\",\n  \"sender\": {\n    \"isaId\": \"<string>\"\n  },\n  \"receiver\": {\n    \"isaId\": \"<string>\"\n  },\n  \"message\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1340768-96d0-43fa-801b-e4c970781976",
+          "name": "List Transactions",
+          "request": {
+            "name": "List Transactions",
+            "description": {
+              "content": "Returns an array of Transactions sorted in descending order by their creation date. A maximum of 100 Transactions will be returned at a time.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "prevCursor",
+                  "value": "<string>",
+                  "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the previous set of results.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextCursor",
+                  "value": "<string>",
+                  "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the next set of results.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "createdAt",
+                  "value": "<string>",
+                  "description": "The date and time that the Transactions were created on or before, in ISO-8601 format. This is used to <a href=\"https://docs.orderful.com/reference/filtering\" target=\"_blank\">filter results</a>.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "stream",
+                  "value": "<string>",
+                  "description": "Indicates whether you want results from the Test and/or Live stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "stream",
+                  "value": "<string>",
+                  "description": "Indicates whether you want results from the Test and/or Live stream."
+                },
+                {
+                  "disabled": false,
+                  "key": "businessNumber",
+                  "value": "<string>",
+                  "description": "Indicates which business number(s) you would like to list Transactions from. You may indicate up to 5 business numbers.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "businessNumber",
+                  "value": "<string>",
+                  "description": "Indicates which business number(s) you would like to list Transactions from. You may indicate up to 5 business numbers.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "transactionType",
+                  "value": "<string>",
+                  "description": "Indicates the Transaction Type(s) you would like to filter by. You may indicate up to 5 <a href=\"https://docs.orderful.com/reference/available-transaction-types\" target=\"_blank\">Transaction Types</a>.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "transactionType",
+                  "value": "<string>",
+                  "description": "Indicates the Transaction Type(s) you would like to filter by. You may indicate up to 5 <a href=\"https://docs.orderful.com/reference/available-transaction-types\" target=\"_blank\">Transaction Types</a>.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "validationStatus",
+                  "value": "<string>",
+                  "description": "The one or more validation status(es) you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "validationStatus",
+                  "value": "<string>",
+                  "description": "The one or more validation status(es) you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "deliveryStatus",
+                  "value": "<string>",
+                  "description": "The one or more delivery status(es) you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "deliveryStatus",
+                  "value": "<string>",
+                  "description": "The one or more delivery status(es) you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "acknowledgmentStatus",
+                  "value": "<string>",
+                  "description": "The one or more acknowledgment status(es) you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "acknowledgmentStatus",
+                  "value": "<string>",
+                  "description": "The one or more acknowledgment status(es) you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "senderIsaId",
+                  "value": "<string>",
+                  "description": "The Sender ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Sender ISA IDs.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "senderIsaId",
+                  "value": "<string>",
+                  "description": "The Sender ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Sender ISA IDs.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "receiverIsaId",
+                  "value": "<string>",
+                  "description": "The Receiver ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Receiver ISA IDs.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "receiverIsaId",
+                  "value": "<string>",
+                  "description": "The Receiver ISA ID(s) that you would like to list Transactions from. You may indicate up to 5 Receiver ISA IDs.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "referenceIdentifier",
+                  "value": "<string>",
+                  "description": "Reference Identifier Value you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "senderInterchangeReferenceIdentifier",
+                  "value": "<string>",
+                  "description": "Sender's Interchange Reference Identifier Value you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "senderGroupReferenceIdentifier",
+                  "value": "<string>",
+                  "description": "Sender's (Functional) Group Reference Identifier Value you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "senderTransactionReferenceIdentifier",
+                  "value": "<string>",
+                  "description": "Sender's Transaction Reference Identifier Value you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "receiverInterchangeReferenceIdentifier",
+                  "value": "<string>",
+                  "description": "Receiver's Interchange Reference Identifier Value you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "receiverGroupReferenceIdentifier",
+                  "value": "<string>",
+                  "description": "Receiver's (Functional) Group Reference Identifier Value you would like to filter by."
+                },
+                {
+                  "disabled": false,
+                  "key": "receiverTransactionReferenceIdentifier",
+                  "value": "<string>",
+                  "description": "Receiver's Transaction Reference Identifier Value you would like to filter by."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e21a75db-3e6b-467c-b5a1-18146bc46190",
+              "name": "List of transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "prevCursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextCursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createdAt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stream",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "businessNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "businessNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transactionType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "validationStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deliveryStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "deliveryStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acknowledgmentStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acknowledgmentStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "senderIsaId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "senderIsaId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "receiverIsaId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "receiverIsaId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "referenceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "senderInterchangeReferenceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "senderGroupReferenceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "senderTransactionReferenceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "receiverInterchangeReferenceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "receiverGroupReferenceIdentifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "receiverTransactionReferenceIdentifier",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"pagination\": {\n      \"links\": {\n        \"next\": \"string\",\n        \"prev\": \"string\"\n      }\n    }\n  },\n  \"data\": [\n    {\n      \"id\": \"000000\",\n      \"href\": \"https://api.orderful.com/v3/transactions/000000\",\n      \"version\": \"v3\",\n      \"sender\": {\n        \"isaId\": \"ISA_ID_SENDER\",\n        \"isaIdQualifier\": \"ZZ\",\n        \"testIsaId\": \"ISA_ID_SENDER_TEST\",\n        \"testIsaIdQualifier\": \"ZZ\",\n        \"name\": \"\"\n      },\n      \"receiver\": {\n        \"isaId\": \"ISA_ID_RECEIVER\",\n        \"isaIdQualifier\": \"ZZ\",\n        \"testIsaId\": \"ISA_ID_RECEIVER_TEST\",\n        \"testIsaIdQualifier\": \"ZZ\",\n        \"name\": \"\"\n      },\n      \"type\": {\n        \"name\": \"850_PURCHASE_ORDER\"\n      },\n      \"stream\": \"TEST\",\n      \"businessNumber\": \"BUSINESS_NUMBER\",\n      \"referenceIdentifiers\": [\n        {\n          \"value\": \"000000001\",\n          \"type\": \"INTERCHANGE\",\n          \"owner\": \"SENDER\"\n        },\n        {\n          \"value\": \"1\",\n          \"type\": \"GROUP\",\n          \"owner\": \"SENDER\"\n        },\n        {\n          \"value\": \"0001\",\n          \"type\": \"TRANSACTION\",\n          \"owner\": \"SENDER\"\n        }\n      ],\n      \"message\": {\n        \"href\": \"https://api.orderful.com/v3/transactions/000000/message\"\n      },\n      \"validationStatus\": \"VALID\",\n      \"deliveryStatus\": \"DELIVERED\",\n      \"acknowledgmentStatus\": \"ACCEPTED\",\n      \"createdAt\": \"2025-12-24T14:01:23.613Z\",\n      \"lastUpdatedAt\": \"2025-12-24T14:01:23.613Z\",\n      \"acknowledgment\": {\n        \"href\": \"https://api.orderful.com/v3/transactions/000000/acknowledgment\"\n      }\n    },\n    {\n      \"id\": \"000000\",\n      \"href\": \"https://api.orderful.com/v3/transactions/000000\",\n      \"version\": \"v3\",\n      \"sender\": {\n        \"isaId\": \"ISA_ID_SENDER\",\n        \"isaIdQualifier\": \"ZZ\",\n        \"testIsaId\": \"ISA_ID_SENDER_TEST\",\n        \"testIsaIdQualifier\": \"ZZ\",\n        \"name\": \"\"\n      },\n      \"receiver\": {\n        \"isaId\": \"ISA_ID_RECEIVER\",\n        \"isaIdQualifier\": \"ZZ\",\n        \"testIsaId\": \"ISA_ID_RECEIVER_TEST\",\n        \"testIsaIdQualifier\": \"ZZ\",\n        \"name\": \"\"\n      },\n      \"type\": {\n        \"name\": \"850_PURCHASE_ORDER\"\n      },\n      \"stream\": \"TEST\",\n      \"businessNumber\": \"BUSINESS_NUMBER\",\n      \"referenceIdentifiers\": [\n        {\n          \"value\": \"000000001\",\n          \"type\": \"INTERCHANGE\",\n          \"owner\": \"SENDER\"\n        },\n        {\n          \"value\": \"1\",\n          \"type\": \"GROUP\",\n          \"owner\": \"SENDER\"\n        },\n        {\n          \"value\": \"0001\",\n          \"type\": \"TRANSACTION\",\n          \"owner\": \"SENDER\"\n        }\n      ],\n      \"message\": {\n        \"href\": \"https://api.orderful.com/v3/transactions/000000/message\"\n      },\n      \"validationStatus\": \"VALID\",\n      \"deliveryStatus\": \"DELIVERED\",\n      \"acknowledgmentStatus\": \"ACCEPTED\",\n      \"createdAt\": \"2025-12-24T14:01:23.613Z\",\n      \"lastUpdatedAt\": \"2025-12-24T14:01:23.613Z\",\n      \"acknowledgment\": {\n        \"href\": \"https://api.orderful.com/v3/transactions/000000/acknowledgment\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c0584f6-7fc4-422c-856b-2ff721e60d1f",
+          "name": "Create a raw Transaction",
+          "request": {
+            "name": "Create a raw Transaction",
+            "description": {
+              "content": "Creates a Transaction from a raw document. The request body should contain the raw document content (e.g. X12, XML, CSV). Routing metadata is provided via request headers rather than in the body.\n\n> 🚧 Try It! playground limitation\n>\n> The in-page **Try It!** playground on this reference can only exercise `application/json` request bodies. If you are testing or experimenting with `application/xml`, `text/xml`, `text/csv`, `application/pdf`, `image/jpeg`, or `text/plain` payloads, use cURL or an HTTP client such as Postman for your ad-hoc requests. Your production integration is unaffected — this applies only to the in-browser Try It! tool. The endpoint itself accepts every supported content type from any HTTP client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) A business reference number for the Transaction.",
+                "key": "orderful-business-number",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The stream for the Transaction.",
+                "key": "orderful-stream",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The Transaction Type name.",
+                "key": "orderful-transaction-type",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ISA ID of the receiver.",
+                "key": "orderful-receiver-id",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "(Required) The ISA ID of the sender.",
+                "key": "orderful-sender-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "orderful-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<json>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc9b17ed-b55b-4d21-8905-2f2c1cb86f3f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "orderful-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) A business reference number for the Transaction.",
+                    "key": "orderful-business-number",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The stream for the Transaction.",
+                    "key": "orderful-stream",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The Transaction Type name.",
+                    "key": "orderful-transaction-type",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ISA ID of the receiver.",
+                    "key": "orderful-receiver-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The ISA ID of the sender.",
+                    "key": "orderful-sender-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The content type of the raw document. Supported types: `application/json`, `application/xml`, `text/xml`, `text/csv`, `application/pdf`, `image/jpeg`, `text/plain`.",
+                    "key": "Content-Type",
+                    "value": "application/xml"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<json>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c1af878-8ac6-4be1-b780-4a77234242f8",
+          "name": "Get a Transaction",
+          "request": {
+            "name": "Get a Transaction",
+            "description": {
+              "content": "Returns the specified Transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expand",
+                  "value": "<string>",
+                  "description": "This optional parameter will embed the specified object into the return payload.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) The numeric transaction ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d3349f1-eb13-43df-9f37-39b633b0364c",
+              "name": "Transaction details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"000000\",\n  \"href\": \"https://api.orderful.com/v3/transactions/000000\",\n  \"version\": \"v3\",\n  \"sender\": {\n    \"isaId\": \"ISA_ID_SENDER\",\n    \"isaIdQualifier\": \"ZZ\",\n    \"testIsaId\": \"ISA_ID_SENDER_TEST\",\n    \"testIsaIdQualifier\": \"ZZ\",\n    \"name\": \"\"\n  },\n  \"receiver\": {\n    \"isaId\": \"ISA_ID_RECEIVER\",\n    \"isaIdQualifier\": \"ZZ\",\n    \"testIsaId\": \"ISA_ID_RECEIVER_TEST\",\n    \"testIsaIdQualifier\": \"ZZ\",\n    \"name\": \"\"\n  },\n  \"type\": {\n    \"name\": \"850_PURCHASE_ORDER\"\n  },\n  \"stream\": \"TEST\",\n  \"businessNumber\": \"BUSINESS_NUMBER\",\n  \"referenceIdentifiers\": [\n    {\n      \"value\": \"000000001\",\n      \"type\": \"INTERCHANGE\",\n      \"owner\": \"SENDER\"\n    },\n    {\n      \"value\": \"1\",\n      \"type\": \"GROUP\",\n      \"owner\": \"SENDER\"\n    },\n    {\n      \"value\": \"0001\",\n      \"type\": \"TRANSACTION\",\n      \"owner\": \"SENDER\"\n    }\n  ],\n  \"message\": {\n    \"href\": \"https://api.orderful.com/v3/transactions/000000/message\"\n  },\n  \"validationStatus\": \"VALID\",\n  \"deliveryStatus\": \"DELIVERED\",\n  \"acknowledgmentStatus\": \"ACCEPTED\",\n  \"createdAt\": \"2025-12-24T14:01:23.613Z\",\n  \"lastUpdatedAt\": \"2025-12-24T14:01:23.613Z\",\n  \"acknowledgment\": {\n    \"href\": \"https://api.orderful.com/v3/transactions/000000/acknowledgment\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f374020e-ad49-4763-92e1-a0b393ad4fd1",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expand",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de32e8b7-2108-40ec-aa81-8eb5a3a9e0ed",
+          "name": "Get a Transaction Message",
+          "request": {
+            "name": "Get a Transaction Message",
+            "description": {
+              "content": "Returns the specified Transaction's message content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "transactions",
+                ":transactionId",
+                "message"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "transactionId",
+                  "description": "(Required) The numeric transaction ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34917172-8c61-4800-9515-54bd0d342090",
+              "name": "Transaction message content.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId",
+                    "message"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"href\": \"https://api.orderful.com/v3/transactions/000000/message\",\n  \"transactionSets\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88f3efd4-e6e8-4a18-b590-4973a0323596",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "transactions",
+                    ":transactionId",
+                    "message"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<number>",
+                      "key": "transactionId",
+                      "description": "(Required) The numeric transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0ac5d12b-c76b-4a0e-887b-b90039acc584",
+    "name": "Orderful Conversion Transaction (v3) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

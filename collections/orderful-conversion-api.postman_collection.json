@@ -1,0 +1,149 @@
+{
+  "item": [
+    {
+      "id": "d5e4bf0a-4330-4c09-83ec-83a7ff3d528c",
+      "name": "Conversion",
+      "description": {
+        "content": "Convert data between EDI X12 and JSON formats.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92be3988-6a9c-4256-8597-65f45a66dc9a",
+          "name": "Convert Data Between Formats",
+          "request": {
+            "name": "Convert Data Between Formats",
+            "description": {
+              "content": "This endpoint will convert JSON into X12, or X12 into JSON. Set the \"Content-Type\" header as the format you are sending, and the \"Accept\" header as the format you would like to receive back.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "560f6bcb-44f5-4dee-b945-94410ad7a472",
+              "name": "Data converted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Content-Type",
+                    "value": "application/edi-x12"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "Accept",
+                    "value": "application/edi-x12"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0baa43e9-31aa-4a26-86ec-a0cb2bb6be06",
+    "name": "Orderful Conversion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

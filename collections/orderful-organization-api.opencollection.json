@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Organization API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get your Organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/organizations/me",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Retrieves the Organization information for the current user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

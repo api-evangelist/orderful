@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Inbox API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Inbox",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Inbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/inboxes/:inboxId/transactions",
+            "headers": [
+              {
+                "name": "orderful-api-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "inboxId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size."
+              }
+            ]
+          },
+          "docs": "Retrieves the Transactions from the specified Inbox.\n\n**Note:** The `inboxId` can be found by logging in to [ui.orderful.com](https://ui.orderful.com) and navigating to \"Communication Channels\".\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

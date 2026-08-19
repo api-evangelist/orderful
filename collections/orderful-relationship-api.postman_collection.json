@@ -1,0 +1,158 @@
+{
+  "item": [
+    {
+      "id": "a74a45b6-3965-4218-9fc9-83cb300c174c",
+      "name": "Relationship",
+      "description": {
+        "content": "Manage trading partner relationships.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c3f31a9-792e-4fc1-9c8d-19120fe4388c",
+          "name": "List Relationships",
+          "request": {
+            "name": "List Relationships",
+            "description": {
+              "content": "Retrieves a paginated list of the Relationships for the current Organization.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "relationships"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "autoSend",
+                  "value": "<string>",
+                  "description": "Filter by the relationship auto-send configuration."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The number of items to return in the result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "prevCursor",
+                  "value": "<string>",
+                  "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the previous set of results.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextCursor",
+                  "value": "<string>",
+                  "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the next set of results.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Your Orderful API key.",
+                "key": "orderful-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7be311a3-6c3e-4379-930f-1dfccc230db6",
+              "name": "List of relationships.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "relationships"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "autoSend",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "prevCursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextCursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Your Orderful API key.",
+                    "key": "orderful-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"pagination\": {\n      \"links\": {\n        \"next\": \"string\",\n        \"prev\": \"string\"\n      }\n    }\n  },\n  \"data\": [\n    {\n      \"id\": 123,\n      \"createdAt\": \"2025-12-24T14:01:25.246Z\",\n      \"updatedAt\": \"2025-12-24T14:01:25.246Z\",\n      \"sender\": {\n        \"ediAccountId\": 123,\n        \"liveIsaId\": \"ISA_ID\",\n        \"testIsaId\": \"TEST_ISA_ID\",\n        \"organizationId\": 123,\n        \"organizationName\": \"Organization_Name\",\n        \"ediAccountName\": \"EDI_Account_Name\"\n      },\n      \"receiver\": {\n        \"ediAccountId\": 123,\n        \"liveIsaId\": \"ISA_ID\",\n        \"testIsaId\": \"TEST_ISA_ID\",\n        \"organizationId\": 123,\n        \"organizationName\": \"Organization_Name\",\n        \"ediAccountName\": \"EDI_Account_Name\"\n      },\n      \"transactionType\": {\n        \"name\": \"810_INVOICE\"\n      },\n      \"status\": \"READY\",\n      \"autoSend\": \"DISABLED\"\n    },\n    {\n      \"id\": 123,\n      \"createdAt\": \"2025-12-24T14:01:25.246Z\",\n      \"updatedAt\": \"2025-12-24T14:01:25.246Z\",\n      \"sender\": {\n        \"ediAccountId\": 123,\n        \"liveIsaId\": \"ISA_ID\",\n        \"testIsaId\": \"TEST_ISA_ID\",\n        \"organizationId\": 123,\n        \"organizationName\": \"Organization_Name\",\n        \"ediAccountName\": \"EDI_Account_Name\"\n      },\n      \"receiver\": {\n        \"ediAccountId\": 123,\n        \"liveIsaId\": \"ISA_ID\",\n        \"testIsaId\": \"TEST_ISA_ID\",\n        \"organizationId\": 123,\n        \"organizationName\": \"Organization_Name\",\n        \"ediAccountName\": \"EDI_Account_Name\"\n      },\n      \"transactionType\": {\n        \"name\": \"810_INVOICE\"\n      },\n      \"status\": \"READY\",\n      \"autoSend\": \"ENABLED\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.orderful.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "269a4189-0a17-4a16-bad3-a4ff01630348",
+    "name": "Orderful Conversion Relationship API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Orderful Conversion Relationship API",
+    "version": "2.15.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Relationship",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Relationships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.orderful.com/v3/relationships",
+            "headers": [
+              {
+                "name": "orderful-api-key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autoSend",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the relationship auto-send configuration."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return in the result set."
+              },
+              {
+                "name": "prevCursor",
+                "value": "",
+                "type": "query",
+                "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the previous set of results.\n"
+              },
+              {
+                "name": "nextCursor",
+                "value": "",
+                "type": "query",
+                "description": "If results are <a href=\"https://docs.orderful.com/reference/pagination\" target=\"_blank\">paginated</a>, this will point to the next set of results.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of the Relationships for the current Organization.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
