@@ -4,8 +4,14 @@ info:
   version: 1.0.0
   summary: Receive a Purchase Order from an inbox, approve delivery, acknowledge it, and send back the acknowledgment.
 sourceDescriptions:
-- name: orderful
-  url: ../openapi/orderful-openapi-original.yml
+- name: deliveryApi
+  url: ../openapi/orderful-delivery-api-openapi.yml
+  type: openapi
+- name: pollerApi
+  url: ../openapi/orderful-poller-api-openapi.yml
+  type: openapi
+- name: transactionV3Api
+  url: ../openapi/orderful-transaction-v3-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: order-to-cash
