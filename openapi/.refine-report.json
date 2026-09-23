@@ -1,15 +1,7 @@
 {
   "provider": "orderful",
   "sources": [
-    "orderful-conversion-api-openapi.yml",
-    "orderful-delivery-api-openapi.yml",
-    "orderful-inbox-api-openapi.yml",
-    "orderful-label-api-openapi.yml",
-    "orderful-organization-api-openapi.yml",
-    "orderful-poller-api-openapi.yml",
-    "orderful-relationship-api-openapi.yml",
-    "orderful-transaction-api-openapi.yml",
-    "orderful-transaction-v3-api-openapi.yml"
+    "_original/orderful-openapi-original.yml"
   ],
   "outputs": [
     "orderful-conversion-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "orderful-openapi-original.yml: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "orderful-conversion-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-delivery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-inbox-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-label-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-poller-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-relationship-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-transaction-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "orderful-transaction-v3-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

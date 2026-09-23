@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Orderful Conversion Poller API
+  title: Orderful Poller API
   description: The official Orderful API documentation.
   version: 2.15.0
   contact:
@@ -18,7 +18,7 @@ paths:
     post:
       operationId: PollingController_confirmDelivery
       summary: Remove a set of Transactions from a Bucket
-      description: Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href="https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved" target="_blank">Approved</a> or <a href="https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest" target="_blank">Failed</a>. This will automatically remove the Transaction from the Bucket.
+      description: Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as Approved or Failed. This will automatically remove the Transaction from the Bucket.
       deprecated: true
       parameters:
       - name: id
@@ -81,6 +81,13 @@ components:
       properties:
         delivery:
           type: object
+    ConfirmDeliveryResponse:
+      type: object
+      properties:
+        confirmedTransactions:
+          type: number
+      required:
+      - confirmedTransactions
     ConfirmDeliveryItems:
       type: object
       properties:
@@ -91,13 +98,6 @@ components:
             minLength: 1
       required:
       - resourceIds
-    ConfirmDeliveryResponse:
-      type: object
-      properties:
-        confirmedTransactions:
-          type: number
-      required:
-      - confirmedTransactions
   securitySchemes:
     API_KEY:
       type: apiKey

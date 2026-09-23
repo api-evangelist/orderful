@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Orderful Conversion Organization API
+  title: Orderful Organization API
   description: The official Orderful API documentation.
   version: 2.15.0
   contact:
@@ -37,6 +37,26 @@ paths:
                 $ref: '#/components/schemas/GetOrganizationMeResponseV3'
 components:
   schemas:
+    GetOrganizationMeEdiAccount:
+      type: object
+      required:
+      - id
+      - name
+      - liveIsaId
+      - testIsaId
+      properties:
+        id:
+          type: string
+          description: EDI account ID.
+        name:
+          type: string
+          description: EDI account name.
+        liveIsaId:
+          type: string
+          description: Live ISA ID.
+        testIsaId:
+          type: string
+          description: Test ISA ID.
     GetOrganizationMeResponseV3:
       type: object
       description: Organization details for the current user.
@@ -58,26 +78,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/GetOrganizationMeEdiAccount'
-    GetOrganizationMeEdiAccount:
-      type: object
-      required:
-      - id
-      - name
-      - liveIsaId
-      - testIsaId
-      properties:
-        id:
-          type: string
-          description: EDI account ID.
-        name:
-          type: string
-          description: EDI account name.
-        liveIsaId:
-          type: string
-          description: Live ISA ID.
-        testIsaId:
-          type: string
-          description: Test ISA ID.
   securitySchemes:
     API_KEY:
       type: apiKey

@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Orderful Conversion Relationship API
+  title: Orderful Relationship API
   description: The official Orderful API documentation.
   version: 2.15.0
   contact:
@@ -18,9 +18,7 @@ paths:
     get:
       operationId: RelationshipController_listV3
       summary: List Relationships
-      description: 'Retrieves a paginated list of the Relationships for the current Organization.
-
-        '
+      description: Retrieves a paginated list of the Relationships for the current Organization.
       tags:
       - Relationship
       parameters:
@@ -71,27 +69,15 @@ paths:
                 $ref: '#/components/schemas/ListRelationshipsResponseV3Dto'
 components:
   schemas:
-    PaginationV3:
+    ListRelationshipsResponseV3MetadataDto:
       type: object
       required:
-      - links
+      - pagination
       properties:
-        links:
-          $ref: '#/components/schemas/PaginationLinkV3'
-    PaginationLinkV3:
-      type: object
-      required:
-      - next
-      - prev
-      properties:
-        next:
-          type: string
-          nullable: true
-          description: Next URL which you can use to fetch the next page.
-        prev:
-          type: string
-          nullable: true
-          description: Previous URL which you can use to fetch the previous page.
+        pagination:
+          description: Pagination information.
+          allOf:
+          - $ref: '#/components/schemas/PaginationV3'
     ListRelationshipsResponseV3Dto:
       type: object
       required:
@@ -107,24 +93,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RelationshipResponseV3Dto'
-    ListRelationshipsResponseV3MetadataDto:
+    PaginationLinkV3:
       type: object
       required:
-      - pagination
+      - next
+      - prev
       properties:
-        pagination:
-          description: Pagination information.
-          allOf:
-          - $ref: '#/components/schemas/PaginationV3'
-    RelationshipTransactionTypeV3Dto:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Transaction type name.
-          example: 810_INVOICE
+        next:
+          type:
+          - string
+          - 'null'
+          description: Next URL which you can use to fetch the next page.
+        prev:
+          type:
+          - string
+          - 'null'
+          description: Previous URL which you can use to fetch the previous page.
     RelationshipIdentityV3Dto:
       type: object
       required:
@@ -144,8 +128,9 @@ components:
           description: Live ISA ID.
           example: ISA_ID
         testIsaId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Test ISA ID.
           example: TEST_ISA_ID
         organizationId:
@@ -160,6 +145,22 @@ components:
           type: string
           description: EDI account name.
           example: EDI_Account_Name
+    PaginationV3:
+      type: object
+      required:
+      - links
+      properties:
+        links:
+          $ref: '#/components/schemas/PaginationLinkV3'
+    RelationshipTransactionTypeV3Dto:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Transaction type name.
+          example: 810_INVOICE
     RelationshipResponseV3Dto:
       type: object
       required:
