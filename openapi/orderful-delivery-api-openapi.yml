@@ -76,12 +76,12 @@ paths:
       - API_KEY: []
 components:
   schemas:
-    FailDeliveryRequestDto:
+    ApproveDeliveryRequestDto:
       type: object
       properties:
         note:
           type: string
-    ApproveDeliveryRequestDto:
+    FailDeliveryRequestDto:
       type: object
       properties:
         note:

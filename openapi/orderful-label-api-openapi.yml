@@ -116,78 +116,24 @@ components:
         countryOfOrigin:
           type: string
           description: Country of origin.
-    LabelVendorDto:
+    LabelDepartmentDto:
       type: object
       properties:
         number:
           type: string
-          description: Vendor number.
-        partNumber:
+          description: Department number.
+        name:
           type: string
-          description: Vendor part number.
-    LabelMerchandiseDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Merchandise type.
-    LabelDistributionCenterDto:
+          description: Department name.
+    LabelCarrierDto:
       type: object
       properties:
         name:
           type: string
-          description: Distribution center name.
-        number:
+          description: Carrier name.
+        code:
           type: string
-          description: Distribution center number.
-    LabelAddressDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Recipient name.
-        careOf:
-          type: string
-          description: Recipient care-of.
-        address1:
-          type: string
-          description: Address line 1.
-        address2:
-          type: string
-          description: Address line 2.
-        city:
-          type: string
-          description: City name.
-        state:
-          type: string
-          description: State code.
-        country:
-          type: string
-          description: Country.
-        zip:
-          type: string
-          description: Zip code.
-    LabelCartonDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Carton number.
-        max:
-          type: string
-          description: Maximum cartons.
-    LabelCaseDto:
-      type: object
-      properties:
-        pack:
-          type: string
-          description: Case pack quantity.
-        innerPack:
-          type: string
-          description: Inner pack quantity.
-        unitsPerInnerPack:
-          type: string
-          description: Units per inner pack.
+          description: Carrier code (SCAC).
     LabelShipmentDto:
       type: object
       properties:
@@ -218,6 +164,69 @@ components:
         sscc18LastFour:
           type: string
           description: Last four digits of SSCC-18.
+    LabelCartonDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Carton number.
+        max:
+          type: string
+          description: Maximum cartons.
+    LabelCaseDto:
+      type: object
+      properties:
+        pack:
+          type: string
+          description: Case pack quantity.
+        innerPack:
+          type: string
+          description: Inner pack quantity.
+        unitsPerInnerPack:
+          type: string
+          description: Units per inner pack.
+    LabelAddressDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Recipient name.
+        careOf:
+          type: string
+          description: Recipient care-of.
+        address1:
+          type: string
+          description: Address line 1.
+        address2:
+          type: string
+          description: Address line 2.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: State code.
+        country:
+          type: string
+          description: Country.
+        zip:
+          type: string
+          description: Zip code.
+    LabelMerchandiseDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Merchandise type.
+    LabelDistributionCenterDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Distribution center name.
+        number:
+          type: string
+          description: Distribution center number.
     LabelPalletDto:
       type: object
       properties:
@@ -236,15 +245,15 @@ components:
         units:
           type: string
           description: Number of units.
-    LabelCarrierDto:
+    LabelVendorDto:
       type: object
       properties:
-        name:
+        number:
           type: string
-          description: Carrier name.
-        code:
+          description: Vendor number.
+        partNumber:
           type: string
-          description: Carrier code (SCAC).
+          description: Vendor part number.
     LabelPurchaseOrderDto:
       type: object
       properties:
@@ -269,37 +278,6 @@ components:
         suggestedRetailPrice:
           type: string
           description: Suggested retail price.
-    LabelDepartmentDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Department number.
-        name:
-          type: string
-          description: Department name.
-    LabelStoreDto:
-      type: object
-      properties:
-        name:
-          type: string
-        careOf:
-          type: string
-        address1:
-          type: string
-        address2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        zip:
-          type: string
-        number:
-          type: string
-          description: Store number.
     GenerateLabelRequestBodyDto:
       type: object
       description: Request body for generating a UCC-128 shipping label.
@@ -739,6 +717,28 @@ components:
         optionalInformation:
           type: string
           description: Optional information.
+    LabelStoreDto:
+      type: object
+      properties:
+        name:
+          type: string
+        careOf:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        zip:
+          type: string
+        number:
+          type: string
+          description: Store number.
   securitySchemes:
     API_KEY:
       type: apiKey

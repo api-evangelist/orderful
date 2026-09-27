@@ -463,64 +463,121 @@ paths:
           description: Transaction not found.
 components:
   schemas:
-    CreateTransactionResponseV3:
+    TransactionIdentityV3Dto:
       type: object
       required:
-      - id
-      properties:
-        id:
-          type: string
-          description: The transaction ID.
-    CreateTransactionBodyV3:
-      type: object
-      description: Request body for creating a v3 transaction.
-      required:
-      - type
-      - stream
-      - sender
-      - receiver
-      properties:
-        type:
-          description: Information about the type of Transaction to be created.
-          allOf:
-          - $ref: '#/components/schemas/CreateTransactionBodyTypeV3Dto'
-        stream:
-          type: string
-          description: Name of stream to create the transaction on.
-          enum:
-          - TEST
-          - LIVE
-          default: TEST
-        message:
-          type: string
-          format: json
-          description: 'Transaction document in the structure defined by the specified type. Either message or summary must be provided, but not both.
-
-            '
-        sender:
-          $ref: '#/components/schemas/CreateTransactionBodyIdentityV3Dto'
-        receiver:
-          $ref: '#/components/schemas/CreateTransactionBodyIdentityV3Dto'
-    TransactionTypeV3Dto:
-      type: object
-      required:
+      - isaId
+      - isaIdQualifier
+      - testIsaId
+      - testIsaIdQualifier
       - name
       properties:
+        isaId:
+          type: string
+          description: ISA ID for production.
+        isaIdQualifier:
+          type: string
+          description: ISA ID qualifier.
+        testIsaId:
+          type: string
+          description: ISA ID for test stream.
+        testIsaIdQualifier:
+          type: string
+          description: Test ISA ID qualifier.
         name:
           type: string
-          description: Transaction type name (e.g., 850_PURCHASE_ORDER).
-    ListTransactionsResponseV3MetadataDto:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationV3'
-    PaginationV3:
+          description: EDI account name.
+    SetTransactionAcknowledgmentRequestDto:
       type: object
       required:
-      - links
+      - status
       properties:
-        links:
-          $ref: '#/components/schemas/PaginationLinkV3'
+        status:
+          type: string
+          description: Status of the acknowledgment.
+          enum:
+          - ACCEPTED
+          - REJECTED
+        errors:
+          type: array
+          description: Error messages.
+          example:
+          - path: /message
+            code: '00'
+            message: This is a top-level error message for JSON transaction
+          items:
+            $ref: '#/components/schemas/TransactionErrorMessageV3Dto'
+    TransactionMessageWithContentV3Dto:
+      type: object
+      required:
+      - href
+      - transactionSets
+      properties:
+        href:
+          type: string
+          description: Message endpoint URL.
+          example: https://api.orderful.com/v3/transactions/000000/message
+        transactionSets:
+          type: array
+          description: 'Array of transaction set objects containing the EDI transaction data in Orderful JSON format.
+
+            '
+          items:
+            type: object
+    GetTransactionAcknowledgmentResponseV3Dto:
+      type: object
+      required:
+      - href
+      - createdAt
+      - status
+      - transaction
+      - transactionId
+      properties:
+        href:
+          type: string
+          description: Acknowledgment URL.
+          example: https://api.orderful.com/v3/transactions/000000/acknowledgment
+        createdAt:
+          type: string
+          format: date-time
+          description: Acknowledgment creation timestamp.
+          example: '2026-03-03T00:36:28.099Z'
+        status:
+          type: string
+          description: Acknowledgment status.
+        transaction:
+          description: Transaction reference.
+          allOf:
+          - $ref: '#/components/schemas/TransactionRefV3Dto'
+        transactionId:
+          type: string
+          description: Transaction ID.
+          example: '123'
+        errors:
+          type: array
+          description: Error messages.
+          example:
+          - path: /message
+            code: '00'
+            message: Message to show additional information on the error that occurred
+          items:
+            $ref: '#/components/schemas/TransactionErrorMessageV3Dto'
+    PaginationLinkV3:
+      type: object
+      required:
+      - next
+      - prev
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: Next URL which you can use to fetch the next page.
+        prev:
+          type:
+          - string
+          - 'null'
+          description: Previous URL which you can use to fetch the previous page.
     ListTransactionsResponseV3Dto:
       type: object
       required:
@@ -536,6 +593,78 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransactionV3Dto'
+    CreateTransactionBodyTypeV3Dto:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: 'The type of Transaction to be created. Please refer to our <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">list of available Transaction Types</a>.
+
+            '
+    CreateTransactionResponseV3:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: The transaction ID.
+    ListTransactionsResponseV3MetadataDto:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationV3'
+    BatchConfirmDeliveryBody:
+      type: object
+      properties:
+        transactionId:
+          type: string
+          minLength: 1
+        deliveryStatus:
+          type: string
+          enum:
+          - DELIVERED
+          - FAILED
+        note:
+          type: string
+          maxLength: 240
+          description: Note will be added to the audit trail.
+      required:
+      - transactionId
+      - deliveryStatus
+    TransactionReferenceIdentifierV3Dto:
+      type: object
+      required:
+      - value
+      - type
+      - owner
+      properties:
+        value:
+          type: string
+          description: Reference identifier value.
+        type:
+          type: string
+          description: Reference identifier type.
+          enum:
+          - INTERCHANGE
+          - GROUP
+          - TRANSACTION
+        owner:
+          type: string
+          description: Owner of the reference identifier.
+          enum:
+          - SENDER
+          - RECEIVER
+    TransactionTypeV3Dto:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Transaction type name (e.g., 850_PURCHASE_ORDER).
     TransactionV3Dto:
       type: object
       required:
@@ -670,141 +799,6 @@ components:
             href: https://api.orderful.com/v3/transactions/000000/acknowledgment
           allOf:
           - $ref: '#/components/schemas/TransactionAcknowledgmentRefV3Dto'
-    SetTransactionAcknowledgmentRequestDto:
-      type: object
-      required:
-      - status
-      properties:
-        status:
-          type: string
-          description: Status of the acknowledgment.
-          enum:
-          - ACCEPTED
-          - REJECTED
-        errors:
-          type: array
-          description: Error messages.
-          example:
-          - path: /message
-            code: '00'
-            message: This is a top-level error message for JSON transaction
-          items:
-            $ref: '#/components/schemas/TransactionErrorMessageV3Dto'
-    CreateTransactionBodyTypeV3Dto:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: 'The type of Transaction to be created. Please refer to our <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">list of available Transaction Types</a>.
-
-            '
-    GetTransactionAcknowledgmentResponseV3Dto:
-      type: object
-      required:
-      - href
-      - createdAt
-      - status
-      - transaction
-      - transactionId
-      properties:
-        href:
-          type: string
-          description: Acknowledgment URL.
-          example: https://api.orderful.com/v3/transactions/000000/acknowledgment
-        createdAt:
-          type: string
-          format: date-time
-          description: Acknowledgment creation timestamp.
-          example: '2026-03-03T00:36:28.099Z'
-        status:
-          type: string
-          description: Acknowledgment status.
-        transaction:
-          description: Transaction reference.
-          allOf:
-          - $ref: '#/components/schemas/TransactionRefV3Dto'
-        transactionId:
-          type: string
-          description: Transaction ID.
-          example: '123'
-        errors:
-          type: array
-          description: Error messages.
-          example:
-          - path: /message
-            code: '00'
-            message: Message to show additional information on the error that occurred
-          items:
-            $ref: '#/components/schemas/TransactionErrorMessageV3Dto'
-    TransactionMessageWithContentV3Dto:
-      type: object
-      required:
-      - href
-      - transactionSets
-      properties:
-        href:
-          type: string
-          description: Message endpoint URL.
-          example: https://api.orderful.com/v3/transactions/000000/message
-        transactionSets:
-          type: array
-          description: 'Array of transaction set objects containing the EDI transaction data in Orderful JSON format.
-
-            '
-          items:
-            type: object
-    PaginationLinkV3:
-      type: object
-      required:
-      - next
-      - prev
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          description: Next URL which you can use to fetch the next page.
-        prev:
-          type:
-          - string
-          - 'null'
-          description: Previous URL which you can use to fetch the previous page.
-    CreateTransactionBodyIdentityV3Dto:
-      type: object
-      required:
-      - isaId
-      properties:
-        isaId:
-          type: string
-          minLength: 1
-          maxLength: 35
-          description: The unique ISA identifier.
-    TransactionIdentityV3Dto:
-      type: object
-      required:
-      - isaId
-      - isaIdQualifier
-      - testIsaId
-      - testIsaIdQualifier
-      - name
-      properties:
-        isaId:
-          type: string
-          description: ISA ID for production.
-        isaIdQualifier:
-          type: string
-          description: ISA ID qualifier.
-        testIsaId:
-          type: string
-          description: ISA ID for test stream.
-        testIsaIdQualifier:
-          type: string
-          description: Test ISA ID qualifier.
-        name:
-          type: string
-          description: EDI account name.
     TransactionAcknowledgmentRefV3Dto:
       type: object
       required:
@@ -823,47 +817,13 @@ components:
           type: string
           description: Transaction URL.
           example: https://api.orderful.com/v3/transactions/000000
-    TransactionReferenceIdentifierV3Dto:
+    PaginationV3:
       type: object
       required:
-      - value
-      - type
-      - owner
+      - links
       properties:
-        value:
-          type: string
-          description: Reference identifier value.
-        type:
-          type: string
-          description: Reference identifier type.
-          enum:
-          - INTERCHANGE
-          - GROUP
-          - TRANSACTION
-        owner:
-          type: string
-          description: Owner of the reference identifier.
-          enum:
-          - SENDER
-          - RECEIVER
-    BatchConfirmDeliveryBody:
-      type: object
-      properties:
-        transactionId:
-          type: string
-          minLength: 1
-        deliveryStatus:
-          type: string
-          enum:
-          - DELIVERED
-          - FAILED
-        note:
-          type: string
-          maxLength: 240
-          description: Note will be added to the audit trail.
-      required:
-      - transactionId
-      - deliveryStatus
+        links:
+          $ref: '#/components/schemas/PaginationLinkV3'
     TransactionErrorMessageV3Dto:
       type: object
       required:
@@ -883,6 +843,46 @@ components:
           type: string
           description: Error message.
           example: Message to show additional information on the error that occurred
+    CreateTransactionBodyIdentityV3Dto:
+      type: object
+      required:
+      - isaId
+      properties:
+        isaId:
+          type: string
+          minLength: 1
+          maxLength: 35
+          description: The unique ISA identifier.
+    CreateTransactionBodyV3:
+      type: object
+      description: Request body for creating a v3 transaction.
+      required:
+      - type
+      - stream
+      - sender
+      - receiver
+      properties:
+        type:
+          description: Information about the type of Transaction to be created.
+          allOf:
+          - $ref: '#/components/schemas/CreateTransactionBodyTypeV3Dto'
+        stream:
+          type: string
+          description: Name of stream to create the transaction on.
+          enum:
+          - TEST
+          - LIVE
+          default: TEST
+        message:
+          type: string
+          format: json
+          description: 'Transaction document in the structure defined by the specified type. Either message or summary must be provided, but not both.
+
+            '
+        sender:
+          $ref: '#/components/schemas/CreateTransactionBodyIdentityV3Dto'
+        receiver:
+          $ref: '#/components/schemas/CreateTransactionBodyIdentityV3Dto'
   securitySchemes:
     API_KEY:
       type: apiKey

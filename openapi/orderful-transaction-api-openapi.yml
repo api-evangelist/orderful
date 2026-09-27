@@ -1040,99 +1040,211 @@ paths:
           description: Transaction marked as failed.
 components:
   schemas:
-    860_PURCHASE_ORDER_CHANGE:
+    EquipmentDetails:
       type: object
-      description: Purchase Order Change document - Buyer modifies an existing order.
       properties:
-        purpose:
+        equipmentType:
           type: string
-          description: REQUIRED. Change purpose.
           enum:
-          - change
-          - cancellation
-        purchaseOrderType:
+          - reefer
+          - trailer
+        equipmentId:
           type: string
-          description: PO type.
+        sealNumber:
+          type: string
+    Notes:
+      type: object
+      description: Notes and instructions.
+      properties:
+        general:
+          $ref: '#/components/schemas/NoteDetail'
+        orderInstructions:
+          $ref: '#/components/schemas/NoteDetail'
+        shippingInstructions:
+          $ref: '#/components/schemas/NoteDetail'
+        giftMessage:
+          $ref: '#/components/schemas/NoteDetail'
+        packingSlipMessage:
+          $ref: '#/components/schemas/NoteDetail'
+    ShipmentParties:
+      type: object
+      description: Parties involved in shipment.
+      properties:
+        shipFrom:
+          $ref: '#/components/schemas/Party'
+        shipTo:
+          $ref: '#/components/schemas/Party'
+        supplier:
+          $ref: '#/components/schemas/Party'
+    SublineItem:
+      type: object
+      properties:
+        sublineId:
+          type: string
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+    MonetaryAmounts:
+      type: object
+      properties:
+        lineTotal:
+          type: string
+        unitPrice:
+          type: string
+        extendedPrice:
+          type: string
+    CreateTransactionResponseV4Dto:
+      type: object
+      required:
+      - id
+      - status
+      - detail
+      properties:
+        id:
+          type: string
+          example: '000000'
+          description: Transaction id.
+        status:
+          type: string
+          description: Status of the request.
           enum:
-          - blanketEstimated
-          - blanketFirm
-          - dropship
-          - release
-          - rushOrder
-          - standalone
-        purchaseOrderChangeType:
+          - FAILED
+          - ACCEPTED
+        detail:
           type: string
-          description: Type of change.
-          enum:
-          - order
-          - standing
-        purchaseOrderNumber:
+          description: Error detail message.
+        validationErrors:
+          description: Validation errors.
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorDto'
+    ReferenceDetail:
+      type: object
+      properties:
+        value:
           type: string
-          description: REQUIRED. Original PO number being changed.
+          description: REQUIRED. Reference value.
+        description:
+          type: string
+    Dates:
+      type: object
+      description: Order dates.
+      properties:
+        cancelAfterDate:
+          type: string
+          format: date
+        customerOrderDate:
+          type: string
+          format: date
+        earliestDeliveryDate:
+          type: string
+          format: date
+        earliestShipDate:
+          type: string
+          format: date
+        latestShipDate:
+          type: string
+          format: date
+        latestDeliveryDate:
+          type: string
+          format: date
+        pickupDate:
+          type: string
+          format: date
+        promotionStartDate:
+          type: string
+          format: date
         purchaseOrderDate:
           type: string
           format: date
-          description: REQUIRED. Original PO date.
-        purchaseOrderChangeDate:
+        requestedDeliveryDate:
           type: string
           format: date
-          description: REQUIRED. Date of the change.
-        changeSequenceNumber:
+        requestedShipDate:
           type: string
-          description: Sequence number for tracking multiple changes.
-        acknowledgmentType:
+          format: date
+        requestedDeliveryWeekOfDate:
           type: string
-          description: Acknowledgment request type.
+          format: date
+    Party:
+      type: object
+      description: Party details.
+      properties:
+        name:
+          type: string
+          description: Party name (N102).
+        additionalName1:
+          type: string
+        additionalName2:
+          type: string
+        identificationCode:
+          type: string
+          description: ID code (N104).
+        identificationCodeType:
+          type: string
           enum:
-          - withDetail
-          - withoutDetail
-        parties:
-          $ref: '#/components/schemas/Parties'
-        references:
-          $ref: '#/components/schemas/References'
-        dates:
-          $ref: '#/components/schemas/Dates'
-        notes:
-          $ref: '#/components/schemas/Notes'
-        termsOfSale:
-          $ref: '#/components/schemas/TermsOfSale'
-        carrierDetails:
-          $ref: '#/components/schemas/CarrierDetails'
-        buyersCurrency:
-          type: object
-          properties:
-            currencyCode:
-              type: string
-        lineItems:
+          - sendersId
+          - receiversId
+          - duns
+          - pantCode
+          - dunsPlus4
+          - drugEnforcementAdmin
+          - telephone
+          - federalReserveRouting
+          - standardAddressSAN
+          - healthIndustryHIN
+          - warehouse
+          - schoolId
+          - memberId
+          - stateLicenseId
+          - globalLocationId
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        addressLine4:
+          type: string
+        city:
+          type: string
+        stateOrProvinceCode:
+          type: string
+        postalCode:
+          type: string
+        countryCode:
+          type: string
+        zoneType:
+          type: string
+          enum:
+          - residential
+          - commercial
+        contacts:
           type: array
-          description: REQUIRED. Changed line items.
-          minItems: 1
           items:
-            $ref: '#/components/schemas/POChangeLineItem'
-    ProductAttributes:
+            $ref: '#/components/schemas/Contact'
+    SpecialHandlingDetails:
       type: object
       properties:
+        handlingType:
+          type: string
         description:
           type: string
-        colorCode:
+        materialId:
           type: string
-        colorDescription:
+        materialClass:
           type: string
-        sizeCode:
-          type: string
-        sizeDescription:
-          type: string
-        materialCode:
-          type: string
-        materialDescription:
-          type: string
-        processCode:
-          type: string
-        processDescription:
-          type: string
-        height:
-          type: string
-        width:
+        conditionResponse:
+          type: boolean
+    HrefLink:
+      type: object
+      required:
+      - href
+      properties:
+        href:
           type: string
     FOBDetails:
       type: object
@@ -1223,22 +1335,285 @@ components:
           - mutuallyDefined
         description:
           type: string
-    850_PURCHASE_ORDER:
+    AllowanceCharge:
       type: object
-      description: Purchase Order document - Buyer sends order to supplier.
+      properties:
+        type:
+          type: string
+        amount:
+          type: string
+        percent:
+          type: string
+        description:
+          type: string
+    PhysicalDetails:
+      type: object
+      properties:
+        numberOfUnits:
+          type: string
+        packageForm:
+          type: string
+          enum:
+          - carton
+          - case
+          - pallet
+          - bag
+          - box
+          - bundle
+          - drum
+          - roll
+        weight:
+          type: string
+        weightUnit:
+          type: string
+          enum:
+          - pound
+          - kilogram
+          - ounce
+          - gram
+        volume:
+          type: string
+        volumeUnit:
+          type: string
+    ProductIdDetail:
+      type: object
+      properties:
+        type:
+          type: string
+          description: REQUIRED. Product ID type.
+        value:
+          type: string
+          description: REQUIRED. Product ID value.
+    Conditions:
+      type: object
+      properties:
+        type:
+          type: string
+        description:
+          type: string
+    NoteDetail:
+      type: object
+      properties:
+        description:
+          type: string
+        text:
+          type: array
+          items:
+            type: string
+          description: Note text lines.
+    Quantity:
+      type: object
+      properties:
+        value:
+          type: string
+          description: REQUIRED. Quantity value.
+        unitOfMeasure:
+          type: string
+          enum:
+          - ball
+          - assortment
+          - ocularInsertSystem
+          - bundle
+          - bag
+          - bottle
+          - belt
+          - box
+          - cell
+          - case
+          - card
+          - container
+          - can
+          - cartridge
+          - cassette
+          - carton
+          - coil
+          - combo
+          - drum
+          - display
+          - dozen
+          - each
+          - knots
+          - order
+          - flakeTon
+          - foot
+          - gallon
+          - gram
+          - person
+          - kit
+          - pound
+          - linearFoot
+          - monetaryValue
+          - milliliter
+          - meter
+          - ounce
+          - threePack
+          - sixPack
+          - pail
+          - pairInches
+          - piece
+          - pad
+          - palletLift
+          - packPAK
+          - package
+          - palletUnitLoad
+          - pair
+          - pint
+          - quart
+          - reel
+          - roll
+          - section
+          - squareFoot
+          - sheet
+          - set
+          - syringe
+          - tube
+          - tote
+          - thousand
+          - unit
+          - vial
+    InvoiceLineItem:
+      type: object
+      description: Invoice line item details.
+      properties:
+        purchaseOrderLineId:
+          type: string
+          description: Original PO line ID.
+        quantityInvoiced:
+          description: REQUIRED. Quantity invoiced.
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        unitPrice:
+          type: string
+          description: REQUIRED. Unit price (IT104).
+        extendedPrice:
+          type: string
+          description: Extended price (quantity × unit price).
+        productIds:
+          description: REQUIRED. Product identifiers.
+          allOf:
+          - $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        shipDate:
+          type: string
+          format: date
+        allowances:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllowanceCharge'
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxDetails'
+        notes:
+          $ref: '#/components/schemas/Notes'
+    POChangeLineItem:
+      type: object
+      description: Purchase order change line item.
+      properties:
+        purchaseOrderLineId:
+          type: string
+          description: Line item identifier.
+        changeReason:
+          type: string
+          description: REQUIRED. Reason for the change.
+          enum:
+          - changeToItem
+          - addItem
+          - deleteItem
+          - priceChange
+          - quantityChange
+        originalQuantity:
+          description: Original ordered quantity before change.
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        changeInQuantity:
+          description: Quantity delta (increase or decrease).
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        quantity:
+          description: New total quantity after change.
+          allOf:
+          - $ref: '#/components/schemas/Quantity'
+        unitCostPrice:
+          type: string
+          description: Unit cost price.
+        unitPriceBasis:
+          type: string
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        notes:
+          $ref: '#/components/schemas/Notes'
+    846_INVENTORY_ADVICE:
+      type: object
+      description: Inventory Advice document - Supplier reports inventory levels to buyer.
       properties:
         purpose:
           type: string
-          description: REQUIRED. Transaction purpose (BEG01).
+          description: REQUIRED. Report purpose.
           enum:
-          - original
-          - cancellation
+          - full
+          - incremental
+        reportType:
+          type: string
+          description: REQUIRED. Type of inventory report.
+          enum:
+          - sellerInventory
+        reportNumber:
+          type: string
+          description: REQUIRED. Unique report identifier.
+        reportDate:
+          type: string
+          format: date
+          description: REQUIRED. Report date.
+        parties:
+          $ref: '#/components/schemas/InventoryParties'
+        references:
+          $ref: '#/components/schemas/References'
+        dates:
+          $ref: '#/components/schemas/InventoryDates'
+        sellersCurrency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
+        notes:
+          $ref: '#/components/schemas/Notes'
+        lineItems:
+          type: array
+          description: REQUIRED. Inventory line items.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/InventoryLineItem'
+    FailTransactionDeliveryRequestV4Dto:
+      type: object
+      required:
+      - note
+      properties:
+        note:
+          type: string
+          description: Additional information about the failure.
+    860_PURCHASE_ORDER_CHANGE:
+      type: object
+      description: Purchase Order Change document - Buyer modifies an existing order.
+      properties:
+        purpose:
+          type: string
+          description: REQUIRED. Change purpose.
+          enum:
           - change
-          - replace
-          - confirmation
+          - cancellation
         purchaseOrderType:
           type: string
-          description: REQUIRED. PO type (BEG02).
+          description: PO type.
           enum:
           - blanketEstimated
           - blanketFirm
@@ -1246,62 +1621,88 @@ components:
           - release
           - rushOrder
           - standalone
+        purchaseOrderChangeType:
+          type: string
+          description: Type of change.
+          enum:
+          - order
+          - standing
         purchaseOrderNumber:
           type: string
-          description: REQUIRED. Unique PO number (BEG03).
+          description: REQUIRED. Original PO number being changed.
         purchaseOrderDate:
           type: string
           format: date
-          description: REQUIRED. PO issue date (BEG05).
-        contractNumber:
+          description: REQUIRED. Original PO date.
+        purchaseOrderChangeDate:
           type: string
-          description: Contract number (BEG06).
-        releaseNumber:
+          format: date
+          description: REQUIRED. Date of the change.
+        changeSequenceNumber:
           type: string
-          description: Release number for blanket orders (BEG04).
+          description: Sequence number for tracking multiple changes.
         acknowledgmentType:
           type: string
           description: Acknowledgment request type.
+          enum:
+          - withDetail
+          - withoutDetail
         parties:
           $ref: '#/components/schemas/Parties'
-        dates:
-          $ref: '#/components/schemas/Dates'
         references:
           $ref: '#/components/schemas/References'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        notes:
+          $ref: '#/components/schemas/Notes'
         termsOfSale:
           $ref: '#/components/schemas/TermsOfSale'
         carrierDetails:
           $ref: '#/components/schemas/CarrierDetails'
-        notes:
-          $ref: '#/components/schemas/Notes'
-        monetaryAmounts:
-          $ref: '#/components/schemas/HeaderMonetaryAmounts'
-        conditionsAndRestrictions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Conditions'
+        buyersCurrency:
+          type: object
+          properties:
+            currencyCode:
+              type: string
         lineItems:
           type: array
-          description: REQUIRED. Order line items (PO1 loop).
+          description: REQUIRED. Changed line items.
           minItems: 1
           items:
-            $ref: '#/components/schemas/POLineItem'
-    InvoiceDates:
+            $ref: '#/components/schemas/POChangeLineItem'
+    ApproveTransactionDeliveryRequestV4Dto:
       type: object
-      description: Invoice-related dates.
+      required:
+      - note
       properties:
-        shipDate:
+        note:
           type: string
-          format: date
-        deliveryDate:
+          description: Additional information about the approval.
+    ProductAttributes:
+      type: object
+      properties:
+        description:
           type: string
-          format: date
-        termsNetDueDate:
+        colorCode:
           type: string
-          format: date
-        termsDiscountDueDate:
+        colorDescription:
           type: string
-          format: date
+        sizeCode:
+          type: string
+        sizeDescription:
+          type: string
+        materialCode:
+          type: string
+        materialDescription:
+          type: string
+        processCode:
+          type: string
+        processDescription:
+          type: string
+        height:
+          type: string
+        width:
+          type: string
     AsnCarton:
       type: object
       description: Carton in shipment.
@@ -1321,43 +1722,89 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AsnItem'
-    PricingInfo:
+    AsnItem:
       type: object
+      description: Item in shipment.
       properties:
-        priceType:
+        purchaseOrderLineId:
+          type: string
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        references:
+          $ref: '#/components/schemas/AsnItemReferences'
+        lotNumber:
+          type: string
+        coilNumber:
+          type: string
+          description: Coil number for industrial materials.
+        quantityShipped:
+          $ref: '#/components/schemas/Quantity'
+        expirationDate:
+          type: string
+          format: date
+        manufactureDate:
+          type: string
+          format: date
+          description: Manufacture date.
+        countryOfOrigin:
+          type: string
+        outerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+        innerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+    TaxDetails:
+      type: object
+      description: Tax details (TXI or TAX segment).
+      properties:
+        amount:
+          type: string
+          description: Tax amount (TXI02).
+        percent:
+          type: string
+          description: Tax percentage (TXI03).
+        taxIdNumber:
+          type: string
+          description: Tax ID number (TXI09 or TAX01).
+        locationId:
+          type: string
+          description: Location identifier (TAX03).
+        exemptionCode:
           type: string
           enum:
-          - retail
-          - wholesale
-          - promotional
-          - contract
-        price:
+          - exempt
+          - notExempt
+          - notTaxable
+        jurisdictionType:
           type: string
-        quantity:
+          description: Tax jurisdiction type (TXI04).
+        jurisdictionCode:
           type: string
-    AsnReferences:
+          description: Tax jurisdiction code (TXI05).
+        assignedId:
+          type: string
+          description: Assigned identification (TXI10).
+    Contact:
       type: object
       properties:
-        appointmentNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        billOfLadingNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        loadPlanningNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        pickupReferenceNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        proNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        trackingNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        vendorNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-    PackagingDetails:
-      type: object
-      properties:
-        packagingCode:
+        type:
           type: string
-        packagingDescription:
+          enum:
+          - primary
+          - customerRelations
+          - orderInquiry
+          - department
+          - shipping
+          - receiving
+          - hazmat
+        name:
+          type: string
+        phoneNumber:
+          type: string
+        faxNumber:
+          type: string
+        email:
           type: string
     810_INVOICE:
       type: object
@@ -1428,745 +1875,6 @@ components:
         invoiceTermsDiscount:
           type: string
           description: Terms discount amount (TDS04).
-    References:
-      type: object
-      description: Reference numbers.
-      properties:
-        accountNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        arrivalCode:
-          $ref: '#/components/schemas/ReferenceDetail'
-        associatedPurchaseOrderNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        reservationNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        customerOrderNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        deliveryReference:
-          $ref: '#/components/schemas/ReferenceDetail'
-        divisionId:
-          $ref: '#/components/schemas/ReferenceDetail'
-        departmentNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        internalCustomerNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        vendorNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        merchandiseTypeCode:
-          $ref: '#/components/schemas/ReferenceDetail'
-        promotionNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        storeNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        thirdPartyReferenceNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        warehouseStorageLocation:
-          $ref: '#/components/schemas/ReferenceDetail'
-        shipmentNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-        invoiceNumber:
-          $ref: '#/components/schemas/ReferenceDetail'
-    TaxDetails:
-      type: object
-      description: Tax details (TXI or TAX segment).
-      properties:
-        amount:
-          type: string
-          description: Tax amount (TXI02).
-        percent:
-          type: string
-          description: Tax percentage (TXI03).
-        taxIdNumber:
-          type: string
-          description: Tax ID number (TXI09 or TAX01).
-        locationId:
-          type: string
-          description: Location identifier (TAX03).
-        exemptionCode:
-          type: string
-          enum:
-          - exempt
-          - notExempt
-          - notTaxable
-        jurisdictionType:
-          type: string
-          description: Tax jurisdiction type (TXI04).
-        jurisdictionCode:
-          type: string
-          description: Tax jurisdiction code (TXI05).
-        assignedId:
-          type: string
-          description: Assigned identification (TXI10).
-    Parties:
-      type: object
-      description: Trading partner information.
-      properties:
-        buyer:
-          $ref: '#/components/schemas/Party'
-        shipTo:
-          $ref: '#/components/schemas/Party'
-        billTo:
-          $ref: '#/components/schemas/Party'
-        shipFrom:
-          $ref: '#/components/schemas/Party'
-        accountsPayable:
-          $ref: '#/components/schemas/Party'
-        soldTo:
-          $ref: '#/components/schemas/Party'
-        supplier:
-          $ref: '#/components/schemas/Party'
-    855_PURCHASE_ORDER_ACKNOWLEDGMENT:
-      type: object
-      description: Purchase Order Acknowledgment document - Supplier confirms or rejects order.
-      properties:
-        purchaseOrderNumber:
-          type: string
-          description: REQUIRED. Original PO number being acknowledged (BAK03).
-        status:
-          type: string
-          description: REQUIRED. Overall acknowledgment status (BAK02).
-          enum:
-          - accepted
-          - rejected
-        statusReasonCode:
-          type: string
-          description: Reason code for status.
-          enum:
-          - discontinued
-          - invalidAddress
-          - invalidBillToCode
-          - invalidItemNumber
-          - invalidPrice
-          - invalidItemQuantity
-          - invalidShipFrom
-          - invalidShipMethod
-          - invalidShipToName
-          - invalidShipToAddress1
-          - invalidShipToAddress2
-          - invalidShipToCity
-          - invalidShipToStateOrProvince
-          - invalidShipToPostalCode
-          - invalidShipToCountry
-          - itemRecall
-          - itemSetupIssue
-          - mainlandOnly
-          - missingLineItemId
-          - missingOrderId
-          - missingShipId
-          - naturalDisaster
-          - outOfStock
-          - seasonalOrEndOfLife
-          - shippingInFull
-          - systemIssue
-          - taxNexusIssue
-          - transportationIssuePrepaid
-          - transportationIssueCollect
-          - undeliverableAddress
-          - weather
-        statusNote:
-          $ref: '#/components/schemas/NoteDetail'
-        dates:
-          $ref: '#/components/schemas/POAckDates'
-        parties:
-          type: object
-          properties:
-            shipFrom:
-              $ref: '#/components/schemas/Party'
-            supplier:
-              $ref: '#/components/schemas/Party'
-        termsOfSale:
-          $ref: '#/components/schemas/TermsOfSale'
-        lineItems:
-          type: array
-          description: Acknowledgment line items.
-          items:
-            $ref: '#/components/schemas/POAckLineItem'
-    InventoryQuantity:
-      type: object
-      description: Inventory quantity for a specific location and type.
-      properties:
-        locationId:
-          type: string
-          description: Location identifier.
-        type:
-          type: string
-          description: Quantity type.
-          enum:
-          - available
-          - allocated
-          - incoming
-          - unavailable
-          - onHand
-          - committed
-        quantity:
-          type: string
-          description: Quantity value.
-        availableDate:
-          type: string
-          format: date
-          description: Date when quantity becomes available.
-    POLineItem:
-      type: object
-      description: Purchase order line item.
-      properties:
-        purchaseOrderLineId:
-          type: string
-        quantity:
-          $ref: '#/components/schemas/Quantity'
-        unitCostPrice:
-          type: string
-        unitPriceBasis:
-          type: string
-        additionalPricing:
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingInfo'
-        productIds:
-          description: REQUIRED. Product identifiers.
-          allOf:
-          - $ref: '#/components/schemas/ProductIds'
-        productAttributes:
-          $ref: '#/components/schemas/ProductAttributes'
-        outerPack:
-          $ref: '#/components/schemas/PhysicalDetails'
-        innerPack:
-          $ref: '#/components/schemas/PhysicalDetails'
-        packaging:
-          type: array
-          items:
-            $ref: '#/components/schemas/PackagingDetails'
-        dates:
-          $ref: '#/components/schemas/Dates'
-        references:
-          $ref: '#/components/schemas/References'
-        destinationQuantities:
-          type: array
-          items:
-            $ref: '#/components/schemas/DestinationQuantity'
-        allowances:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllowanceCharge'
-        charges:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllowanceCharge'
-        monetaryAmounts:
-          $ref: '#/components/schemas/MonetaryAmounts'
-        sublineItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/SublineItem'
-        notes:
-          $ref: '#/components/schemas/Notes'
-        paperwork:
-          type: array
-          items:
-            $ref: '#/components/schemas/Paperwork'
-        conditionsAndRestrictions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Conditions'
-        carrierDetails:
-          $ref: '#/components/schemas/CarrierDetails'
-    DestinationQuantity:
-      type: object
-      properties:
-        identificationCode:
-          type: string
-        identificationCodeType:
-          type: string
-        quantity:
-          type: string
-    ApproveTransactionDeliveryRequestV4Dto:
-      type: object
-      required:
-      - note
-      properties:
-        note:
-          type: string
-          description: Additional information about the approval.
-    InvoiceLineItem:
-      type: object
-      description: Invoice line item details.
-      properties:
-        purchaseOrderLineId:
-          type: string
-          description: Original PO line ID.
-        quantityInvoiced:
-          description: REQUIRED. Quantity invoiced.
-          allOf:
-          - $ref: '#/components/schemas/Quantity'
-        unitPrice:
-          type: string
-          description: REQUIRED. Unit price (IT104).
-        extendedPrice:
-          type: string
-          description: Extended price (quantity × unit price).
-        productIds:
-          description: REQUIRED. Product identifiers.
-          allOf:
-          - $ref: '#/components/schemas/ProductIds'
-        productAttributes:
-          $ref: '#/components/schemas/ProductAttributes'
-        shipDate:
-          type: string
-          format: date
-        allowances:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllowanceCharge'
-        charges:
-          type: array
-          items:
-            $ref: '#/components/schemas/AllowanceCharge'
-        taxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxDetails'
-        notes:
-          $ref: '#/components/schemas/Notes'
-    AsnItemReferences:
-      type: object
-      description: Item-level references for ASN shipments.
-      properties:
-        heatCode:
-          $ref: '#/components/schemas/ReferenceDetail'
-        billOfMaterial:
-          $ref: '#/components/schemas/ReferenceDetail'
-        barCode:
-          $ref: '#/components/schemas/ReferenceDetail'
-    Party:
-      type: object
-      description: Party details.
-      properties:
-        name:
-          type: string
-          description: Party name (N102).
-        additionalName1:
-          type: string
-        additionalName2:
-          type: string
-        identificationCode:
-          type: string
-          description: ID code (N104).
-        identificationCodeType:
-          type: string
-          enum:
-          - sendersId
-          - receiversId
-          - duns
-          - pantCode
-          - dunsPlus4
-          - drugEnforcementAdmin
-          - telephone
-          - federalReserveRouting
-          - standardAddressSAN
-          - healthIndustryHIN
-          - warehouse
-          - schoolId
-          - memberId
-          - stateLicenseId
-          - globalLocationId
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        addressLine3:
-          type: string
-        addressLine4:
-          type: string
-        city:
-          type: string
-        stateOrProvinceCode:
-          type: string
-        postalCode:
-          type: string
-        countryCode:
-          type: string
-        zoneType:
-          type: string
-          enum:
-          - residential
-          - commercial
-        contacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contact'
-    ShipmentParties:
-      type: object
-      description: Parties involved in shipment.
-      properties:
-        shipFrom:
-          $ref: '#/components/schemas/Party'
-        shipTo:
-          $ref: '#/components/schemas/Party'
-        supplier:
-          $ref: '#/components/schemas/Party'
-    NoteDetail:
-      type: object
-      properties:
-        description:
-          type: string
-        text:
-          type: array
-          items:
-            type: string
-          description: Note text lines.
-    POAckLineItem:
-      type: object
-      description: Line item acknowledgment details.
-      properties:
-        purchaseOrderLineId:
-          type: string
-          description: Original PO line item ID.
-        productIds:
-          $ref: '#/components/schemas/ProductIds'
-        productAttributes:
-          $ref: '#/components/schemas/ProductAttributes'
-        actions:
-          type: array
-          description: REQUIRED. Actions for this line item.
-          items:
-            $ref: '#/components/schemas/POAckAction'
-    HrefLink:
-      type: object
-      required:
-      - href
-      properties:
-        href:
-          type: string
-    Paperwork:
-      type: object
-      properties:
-        type:
-          type: string
-        description:
-          type: string
-        required:
-          type: boolean
-    ValidationErrorDto:
-      type: object
-      required:
-      - payloadPaths
-      - errorMessage
-      - outputPath
-      properties:
-        payloadPaths:
-          description: Path in the original payload where the error occurred.
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        errorMessage:
-          type: string
-          description: Error message describing the validation failure.
-        outputPath:
-          type: string
-          description: Path in the output/transformed message where the error occurred.
-    FailTransactionDeliveryRequestV4Dto:
-      type: object
-      required:
-      - note
-      properties:
-        note:
-          type: string
-          description: Additional information about the failure.
-    ProductIdDetail:
-      type: object
-      properties:
-        type:
-          type: string
-          description: REQUIRED. Product ID type.
-        value:
-          type: string
-          description: REQUIRED. Product ID value.
-    InventoryParties:
-      type: object
-      description: Parties involved in inventory reporting.
-      properties:
-        inventoryLocation:
-          description: Warehouse or distribution center holding inventory.
-          allOf:
-          - $ref: '#/components/schemas/Party'
-        buyer:
-          description: Buyer receiving the inventory report.
-          allOf:
-          - $ref: '#/components/schemas/Party'
-        supplier:
-          description: Supplier providing the inventory report.
-          allOf:
-          - $ref: '#/components/schemas/Party'
-    EquipmentDetails:
-      type: object
-      properties:
-        equipmentType:
-          type: string
-          enum:
-          - reefer
-          - trailer
-        equipmentId:
-          type: string
-        sealNumber:
-          type: string
-    InventoryLineItem:
-      type: object
-      description: Inventory line item with stock levels.
-      properties:
-        lineNumber:
-          type: string
-          description: Line item number.
-        productIds:
-          $ref: '#/components/schemas/ProductIds'
-        productAttributes:
-          $ref: '#/components/schemas/ProductAttributes'
-        itemStatus:
-          type: string
-          description: Current item availability status.
-          enum:
-          - inStock
-          - outOfStock
-          - discontinued
-          - backorder
-        unitOfMeasure:
-          type: string
-          description: Unit of measure for inventory quantities.
-        inventoryQuantities:
-          type: array
-          description: Inventory quantity details by type and location.
-          items:
-            $ref: '#/components/schemas/InventoryQuantity'
-        unlimitedAvailability:
-          type: boolean
-          description: Whether the item has unlimited availability (e.g., dropship).
-        unitCostPrice:
-          type: string
-          description: Unit cost price.
-        references:
-          $ref: '#/components/schemas/References'
-    CarrierWeightDetails:
-      type: object
-      properties:
-        packageForm:
-          type: string
-          enum:
-          - bag
-          - carton
-          - pallet
-        packageMaterial:
-          type: string
-          enum:
-          - corrugated
-          - plastic
-          - plasticVacuumed
-          - standard
-          - wood
-        weightUOM:
-          type: string
-          enum:
-          - pound
-          - kilogram
-        grossWeight:
-          type: string
-        netWeight:
-          type: string
-    POAckDates:
-      type: object
-      properties:
-        estimatedDeliveryDate:
-          type: string
-          format: date
-        requestedPickupDate:
-          type: string
-          format: date
-        scheduledShipDate:
-          type: string
-          format: date
-    SublineItem:
-      type: object
-      properties:
-        sublineId:
-          type: string
-        quantity:
-          $ref: '#/components/schemas/Quantity'
-        productIds:
-          $ref: '#/components/schemas/ProductIds'
-        productAttributes:
-          $ref: '#/components/schemas/ProductAttributes'
-    Dates:
-      type: object
-      description: Order dates.
-      properties:
-        cancelAfterDate:
-          type: string
-          format: date
-        customerOrderDate:
-          type: string
-          format: date
-        earliestDeliveryDate:
-          type: string
-          format: date
-        earliestShipDate:
-          type: string
-          format: date
-        latestShipDate:
-          type: string
-          format: date
-        latestDeliveryDate:
-          type: string
-          format: date
-        pickupDate:
-          type: string
-          format: date
-        promotionStartDate:
-          type: string
-          format: date
-        purchaseOrderDate:
-          type: string
-          format: date
-        requestedDeliveryDate:
-          type: string
-          format: date
-        requestedShipDate:
-          type: string
-          format: date
-        requestedDeliveryWeekOfDate:
-          type: string
-          format: date
-    AsnItem:
-      type: object
-      description: Item in shipment.
-      properties:
-        purchaseOrderLineId:
-          type: string
-        productIds:
-          $ref: '#/components/schemas/ProductIds'
-        productAttributes:
-          $ref: '#/components/schemas/ProductAttributes'
-        references:
-          $ref: '#/components/schemas/AsnItemReferences'
-        lotNumber:
-          type: string
-        coilNumber:
-          type: string
-          description: Coil number for industrial materials.
-        quantityShipped:
-          $ref: '#/components/schemas/Quantity'
-        expirationDate:
-          type: string
-          format: date
-        manufactureDate:
-          type: string
-          format: date
-          description: Manufacture date.
-        countryOfOrigin:
-          type: string
-        outerPack:
-          $ref: '#/components/schemas/PhysicalDetails'
-        innerPack:
-          $ref: '#/components/schemas/PhysicalDetails'
-    AllowanceCharge:
-      type: object
-      properties:
-        type:
-          type: string
-        amount:
-          type: string
-        percent:
-          type: string
-        description:
-          type: string
-    Notes:
-      type: object
-      description: Notes and instructions.
-      properties:
-        general:
-          $ref: '#/components/schemas/NoteDetail'
-        orderInstructions:
-          $ref: '#/components/schemas/NoteDetail'
-        shippingInstructions:
-          $ref: '#/components/schemas/NoteDetail'
-        giftMessage:
-          $ref: '#/components/schemas/NoteDetail'
-        packingSlipMessage:
-          $ref: '#/components/schemas/NoteDetail'
-    InventoryDates:
-      type: object
-      description: Inventory report date range.
-      properties:
-        reportStartDate:
-          type: string
-          format: date
-        reportEndDate:
-          type: string
-          format: date
-    SpecialHandlingDetails:
-      type: object
-      properties:
-        handlingType:
-          type: string
-        description:
-          type: string
-        materialId:
-          type: string
-        materialClass:
-          type: string
-        conditionResponse:
-          type: boolean
-    CreateTransactionResponseV4Dto:
-      type: object
-      required:
-      - id
-      - status
-      - detail
-      properties:
-        id:
-          type: string
-          example: '000000'
-          description: Transaction id.
-        status:
-          type: string
-          description: Status of the request.
-          enum:
-          - FAILED
-          - ACCEPTED
-        detail:
-          type: string
-          description: Error detail message.
-        validationErrors:
-          description: Validation errors.
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorDto'
-    ProductIds:
-      type: object
-      description: Product identifiers.
-      properties:
-        buyerItemNumber:
-          type: string
-        vendorItemNumber:
-          type: string
-        gtin12:
-          type: string
-        gtin13:
-          type: string
-        gtin14:
-          type: string
-        caseCode:
-          type: string
-        drugCode:
-          type: string
-        standardBookNumber:
-          type: string
-        buyerItemIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductIdDetail'
-        vendorItemIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductIdDetail'
     RoutingDetails:
       type: object
       properties:
@@ -2308,262 +2016,211 @@ components:
           description: Local tax (TXI01='SL' or 'LS').
           allOf:
           - $ref: '#/components/schemas/TaxDetails'
-    POAckAction:
+    ValidationErrorDto:
       type: object
-      description: Acknowledgment action (accepted, rejected, or backordered).
+      required:
+      - payloadPaths
+      - errorMessage
+      - outputPath
       properties:
-        status:
+        payloadPaths:
+          description: Path in the original payload where the error occurred.
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        errorMessage:
           type: string
-          description: REQUIRED. Action status.
+          description: Error message describing the validation failure.
+        outputPath:
+          type: string
+          description: Path in the output/transformed message where the error occurred.
+    HeaderMonetaryAmounts:
+      type: object
+      description: Header-level monetary amounts.
+      properties:
+        net:
+          type: string
+          description: Net amount.
+        gross:
+          type: string
+          description: Gross amount.
+        discount:
+          type: string
+          description: Discount amount.
+        freight:
+          type: string
+          description: Freight amount.
+    InvoiceParties:
+      type: object
+      description: Parties involved in invoice.
+      properties:
+        buyer:
+          description: Buyer company (N1 segment, BY).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        shipTo:
+          description: Ship-to location (N1 segment, ST).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        billTo:
+          description: Bill-to location (N1 segment, BT).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        accountsReceivable:
+          description: Accounts receivable / Remit To / Payee (N1*RI or PER*AR).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        accountsPayable:
+          description: Accounts payable / Payer for credits (N1*15 or PER*AP).
+          allOf:
+          - $ref: '#/components/schemas/Party'
+    CreateTransactionBodyV4Dto:
+      type: object
+      required:
+      - type
+      - stream
+      - message
+      - senderId
+      - receiverId
+      properties:
+        type:
+          type: string
+          description: The type of Transaction to be created. Please refer to our <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">list of available Transaction Types</a>.
           enum:
-          - accepted
-          - rejected
-          - backordered
-        statusReasonCode:
+          - 850_PURCHASE_ORDER
+          - 855_PURCHASE_ORDER_ACKNOWLEDGMENT
+          - 856_SHIP_NOTICE_MANIFEST
+          - 810_INVOICE
+          - 846_INVENTORY_ADVICE
+          - 860_PURCHASE_ORDER_CHANGE
+          example: 850_PURCHASE_ORDER
+        stream:
           type: string
-          description: Reason code for rejected/backordered status.
-        statusNote:
-          $ref: '#/components/schemas/NoteDetail'
+          description: Name of stream to create the transaction on.
+          enum:
+          - test
+          - live
+          example: test
+          default: test
+        senderId:
+          type: string
+          description: Sender identifier.
+        receiverId:
+          type: string
+          description: Receiver identifier.
+        message:
+          description: Transaction document in the structure defined by the specified type.
+          oneOf:
+          - $ref: '#/components/schemas/850_PURCHASE_ORDER'
+          - $ref: '#/components/schemas/855_PURCHASE_ORDER_ACKNOWLEDGMENT'
+          - $ref: '#/components/schemas/856_SHIP_NOTICE_MANIFEST'
+          - $ref: '#/components/schemas/810_INVOICE'
+          - $ref: '#/components/schemas/846_INVENTORY_ADVICE'
+          - $ref: '#/components/schemas/860_PURCHASE_ORDER_CHANGE'
+    References:
+      type: object
+      description: Reference numbers.
+      properties:
+        accountNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        arrivalCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+        associatedPurchaseOrderNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        reservationNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        customerOrderNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        deliveryReference:
+          $ref: '#/components/schemas/ReferenceDetail'
+        divisionId:
+          $ref: '#/components/schemas/ReferenceDetail'
+        departmentNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        internalCustomerNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        vendorNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        merchandiseTypeCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+        promotionNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        storeNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        thirdPartyReferenceNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        warehouseStorageLocation:
+          $ref: '#/components/schemas/ReferenceDetail'
+        shipmentNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        invoiceNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+    POLineItem:
+      type: object
+      description: Purchase order line item.
+      properties:
+        purchaseOrderLineId:
+          type: string
         quantity:
           $ref: '#/components/schemas/Quantity'
-        scheduledShipDate:
-          type: string
-          format: date
-          description: Scheduled ship date.
-        estimatedDeliveryDate:
-          type: string
-          format: date
-          description: Estimated delivery date.
         unitCostPrice:
           type: string
-          description: Acknowledged unit price (for price changes).
-        substitutedItem:
-          type: object
-          description: Substituted product (for substitutions).
-          properties:
-            productIds:
-              $ref: '#/components/schemas/ProductIds'
-    Contact:
-      type: object
-      properties:
-        type:
+        unitPriceBasis:
           type: string
-          enum:
-          - primary
-          - customerRelations
-          - orderInquiry
-          - department
-          - shipping
-          - receiving
-          - hazmat
-        name:
-          type: string
-        phoneNumber:
-          type: string
-        faxNumber:
-          type: string
-        email:
-          type: string
-    TermsOfSale:
-      type: object
-      description: Payment terms.
-      properties:
-        type:
-          type: string
-          enum:
-          - basic
-          - basicDiscountOffered
-          - discountNotApplicable
-          - endOfMonth
-          - endOfMonth10
-          - instant
-          - mutuallyDefined
-        basisDate:
-          type: string
-          enum:
-          - invoiceDate
-          - receiptOfGoods
-          - deliveryDate
-          - shipDate
-          - mutuallyDefined
-          - gageApprovalDate
-          - specifiedDate
-          - acceptanceDate
-          - invoiceTransmissionDate
-          - effectiveDate
-        discountPercent:
-          type: string
-        discountDaysDue:
-          type: integer
-          description: Number of days in the discount period.
-        discountDueDate:
-          type: string
-          format: date
-        dayOfMonth:
-          type: integer
-        netDaysDue:
-          type: integer
-          description: Number of days until total invoice amount is due.
-        netDueDate:
-          type: string
-          format: date
-        discountAmount:
-          type: string
-          description: Total discount amount.
-        description:
-          type: string
-        paymentMethodType:
-          type: string
-          enum:
-          - check
-          - letterOfCredit
-          - wireTransfer
-          - corporateTradePayment
-          - specialAccount
-          - directPayOthers
-    AsnPallet:
-      type: object
-      description: Pallet in shipment.
-      properties:
-        palletType:
-          type: string
-          enum:
-          - chep
-          - iGps
-          - peco
-          - whiteWood
-          - hardWood
-          - aluminum
-          - specifiedByDOT
-          - metal
-          - standard
-          - steel
-          - wood
-          - slipsheet
-          - softWood
-        trackingNumber:
-          type: string
-        serialShippingId:
-          type: string
-          description: SSCC-18 code.
-        layersPerPallet:
-          type: integer
-        cartonsPerLayer:
-          type: integer
-        palletExchangeType:
-          type: string
-          description: Pallet exchange type.
-          enum:
-          - noExchangeOrReturn
-          - exchange
-          - return
-          - customerPurchase
-          - thirdPartyExchange
-        palletPhysicalDetails:
+        additionalPricing:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingInfo'
+        productIds:
+          description: REQUIRED. Product identifiers.
+          allOf:
+          - $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        outerPack:
           $ref: '#/components/schemas/PhysicalDetails'
-        cartons:
+        innerPack:
+          $ref: '#/components/schemas/PhysicalDetails'
+        packaging:
           type: array
           items:
-            $ref: '#/components/schemas/AsnCarton'
-        items:
-          type: array
-          description: Items directly on pallet (no cartons).
-          items:
-            $ref: '#/components/schemas/AsnItem'
-    CarrierDetails:
-      type: object
-      description: Shipping details.
-      properties:
-        routing:
+            $ref: '#/components/schemas/PackagingDetails'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        references:
+          $ref: '#/components/schemas/References'
+        destinationQuantities:
           type: array
           items:
-            $ref: '#/components/schemas/RoutingDetails'
-        freeOnBoard:
+            $ref: '#/components/schemas/DestinationQuantity'
+        allowances:
           type: array
           items:
-            $ref: '#/components/schemas/FOBDetails'
-        specialHandling:
+            $ref: '#/components/schemas/AllowanceCharge'
+        charges:
           type: array
           items:
-            $ref: '#/components/schemas/SpecialHandlingDetails'
-    ReferenceDetail:
-      type: object
-      properties:
-        value:
-          type: string
-          description: REQUIRED. Reference value.
-        description:
-          type: string
-    Quantity:
-      type: object
-      properties:
-        value:
-          type: string
-          description: REQUIRED. Quantity value.
-        unitOfMeasure:
-          type: string
-          enum:
-          - ball
-          - assortment
-          - ocularInsertSystem
-          - bundle
-          - bag
-          - bottle
-          - belt
-          - box
-          - cell
-          - case
-          - card
-          - container
-          - can
-          - cartridge
-          - cassette
-          - carton
-          - coil
-          - combo
-          - drum
-          - display
-          - dozen
-          - each
-          - knots
-          - order
-          - flakeTon
-          - foot
-          - gallon
-          - gram
-          - person
-          - kit
-          - pound
-          - linearFoot
-          - monetaryValue
-          - milliliter
-          - meter
-          - ounce
-          - threePack
-          - sixPack
-          - pail
-          - pairInches
-          - piece
-          - pad
-          - palletLift
-          - packPAK
-          - package
-          - palletUnitLoad
-          - pair
-          - pint
-          - quart
-          - reel
-          - roll
-          - section
-          - squareFoot
-          - sheet
-          - set
-          - syringe
-          - tube
-          - tote
-          - thousand
-          - unit
-          - vial
+            $ref: '#/components/schemas/AllowanceCharge'
+        monetaryAmounts:
+          $ref: '#/components/schemas/MonetaryAmounts'
+        sublineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/SublineItem'
+        notes:
+          $ref: '#/components/schemas/Notes'
+        paperwork:
+          type: array
+          items:
+            $ref: '#/components/schemas/Paperwork'
+        conditionsAndRestrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conditions'
+        carrierDetails:
+          $ref: '#/components/schemas/CarrierDetails'
     856_SHIP_NOTICE_MANIFEST:
       type: object
       description: Ship Notice / Advanced Shipping Notice (ASN) document - Supplier notifies shipment details.
@@ -2630,117 +2287,344 @@ components:
           description: REQUIRED. Orders in this shipment (HL loops).
           items:
             $ref: '#/components/schemas/AsnOrder'
-    POChangeLineItem:
+    InventoryParties:
       type: object
-      description: Purchase order change line item.
+      description: Parties involved in inventory reporting.
       properties:
-        purchaseOrderLineId:
+        inventoryLocation:
+          description: Warehouse or distribution center holding inventory.
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        buyer:
+          description: Buyer receiving the inventory report.
+          allOf:
+          - $ref: '#/components/schemas/Party'
+        supplier:
+          description: Supplier providing the inventory report.
+          allOf:
+          - $ref: '#/components/schemas/Party'
+    CarrierDetails:
+      type: object
+      description: Shipping details.
+      properties:
+        routing:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutingDetails'
+        freeOnBoard:
+          type: array
+          items:
+            $ref: '#/components/schemas/FOBDetails'
+        specialHandling:
+          type: array
+          items:
+            $ref: '#/components/schemas/SpecialHandlingDetails'
+    TermsOfSale:
+      type: object
+      description: Payment terms.
+      properties:
+        type:
           type: string
-          description: Line item identifier.
-        changeReason:
-          type: string
-          description: REQUIRED. Reason for the change.
           enum:
-          - changeToItem
-          - addItem
-          - deleteItem
-          - priceChange
-          - quantityChange
-        originalQuantity:
-          description: Original ordered quantity before change.
-          allOf:
-          - $ref: '#/components/schemas/Quantity'
-        changeInQuantity:
-          description: Quantity delta (increase or decrease).
-          allOf:
-          - $ref: '#/components/schemas/Quantity'
+          - basic
+          - basicDiscountOffered
+          - discountNotApplicable
+          - endOfMonth
+          - endOfMonth10
+          - instant
+          - mutuallyDefined
+        basisDate:
+          type: string
+          enum:
+          - invoiceDate
+          - receiptOfGoods
+          - deliveryDate
+          - shipDate
+          - mutuallyDefined
+          - gageApprovalDate
+          - specifiedDate
+          - acceptanceDate
+          - invoiceTransmissionDate
+          - effectiveDate
+        discountPercent:
+          type: string
+        discountDaysDue:
+          type: integer
+          description: Number of days in the discount period.
+        discountDueDate:
+          type: string
+          format: date
+        dayOfMonth:
+          type: integer
+        netDaysDue:
+          type: integer
+          description: Number of days until total invoice amount is due.
+        netDueDate:
+          type: string
+          format: date
+        discountAmount:
+          type: string
+          description: Total discount amount.
+        description:
+          type: string
+        paymentMethodType:
+          type: string
+          enum:
+          - check
+          - letterOfCredit
+          - wireTransfer
+          - corporateTradePayment
+          - specialAccount
+          - directPayOthers
+    PricingInfo:
+      type: object
+      properties:
+        priceType:
+          type: string
+          enum:
+          - retail
+          - wholesale
+          - promotional
+          - contract
+        price:
+          type: string
         quantity:
-          description: New total quantity after change.
-          allOf:
-          - $ref: '#/components/schemas/Quantity'
-        unitCostPrice:
           type: string
-          description: Unit cost price.
-        unitPriceBasis:
+    PackagingDetails:
+      type: object
+      properties:
+        packagingCode:
           type: string
+        packagingDescription:
+          type: string
+    POAckDates:
+      type: object
+      properties:
+        estimatedDeliveryDate:
+          type: string
+          format: date
+        requestedPickupDate:
+          type: string
+          format: date
+        scheduledShipDate:
+          type: string
+          format: date
+    InventoryQuantity:
+      type: object
+      description: Inventory quantity for a specific location and type.
+      properties:
+        locationId:
+          type: string
+          description: Location identifier.
+        type:
+          type: string
+          description: Quantity type.
+          enum:
+          - available
+          - allocated
+          - incoming
+          - unavailable
+          - onHand
+          - committed
+        quantity:
+          type: string
+          description: Quantity value.
+        availableDate:
+          type: string
+          format: date
+          description: Date when quantity becomes available.
+    850_PURCHASE_ORDER:
+      type: object
+      description: Purchase Order document - Buyer sends order to supplier.
+      properties:
+        purpose:
+          type: string
+          description: REQUIRED. Transaction purpose (BEG01).
+          enum:
+          - original
+          - cancellation
+          - change
+          - replace
+          - confirmation
+        purchaseOrderType:
+          type: string
+          description: REQUIRED. PO type (BEG02).
+          enum:
+          - blanketEstimated
+          - blanketFirm
+          - dropship
+          - release
+          - rushOrder
+          - standalone
+        purchaseOrderNumber:
+          type: string
+          description: REQUIRED. Unique PO number (BEG03).
+        purchaseOrderDate:
+          type: string
+          format: date
+          description: REQUIRED. PO issue date (BEG05).
+        contractNumber:
+          type: string
+          description: Contract number (BEG06).
+        releaseNumber:
+          type: string
+          description: Release number for blanket orders (BEG04).
+        acknowledgmentType:
+          type: string
+          description: Acknowledgment request type.
+        parties:
+          $ref: '#/components/schemas/Parties'
+        dates:
+          $ref: '#/components/schemas/Dates'
+        references:
+          $ref: '#/components/schemas/References'
+        termsOfSale:
+          $ref: '#/components/schemas/TermsOfSale'
+        carrierDetails:
+          $ref: '#/components/schemas/CarrierDetails'
+        notes:
+          $ref: '#/components/schemas/Notes'
+        monetaryAmounts:
+          $ref: '#/components/schemas/HeaderMonetaryAmounts'
+        conditionsAndRestrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Conditions'
+        lineItems:
+          type: array
+          description: REQUIRED. Order line items (PO1 loop).
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/POLineItem'
+    ProductIds:
+      type: object
+      description: Product identifiers.
+      properties:
+        buyerItemNumber:
+          type: string
+        vendorItemNumber:
+          type: string
+        gtin12:
+          type: string
+        gtin13:
+          type: string
+        gtin14:
+          type: string
+        caseCode:
+          type: string
+        drugCode:
+          type: string
+        standardBookNumber:
+          type: string
+        buyerItemIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductIdDetail'
+        vendorItemIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductIdDetail'
+    InventoryLineItem:
+      type: object
+      description: Inventory line item with stock levels.
+      properties:
+        lineNumber:
+          type: string
+          description: Line item number.
         productIds:
           $ref: '#/components/schemas/ProductIds'
         productAttributes:
           $ref: '#/components/schemas/ProductAttributes'
-        dates:
-          $ref: '#/components/schemas/Dates'
-        notes:
-          $ref: '#/components/schemas/Notes'
-    846_INVENTORY_ADVICE:
-      type: object
-      description: Inventory Advice document - Supplier reports inventory levels to buyer.
-      properties:
-        purpose:
+        itemStatus:
           type: string
-          description: REQUIRED. Report purpose.
+          description: Current item availability status.
           enum:
-          - full
-          - incremental
-        reportType:
+          - inStock
+          - outOfStock
+          - discontinued
+          - backorder
+        unitOfMeasure:
           type: string
-          description: REQUIRED. Type of inventory report.
-          enum:
-          - sellerInventory
-        reportNumber:
+          description: Unit of measure for inventory quantities.
+        inventoryQuantities:
+          type: array
+          description: Inventory quantity details by type and location.
+          items:
+            $ref: '#/components/schemas/InventoryQuantity'
+        unlimitedAvailability:
+          type: boolean
+          description: Whether the item has unlimited availability (e.g., dropship).
+        unitCostPrice:
           type: string
-          description: REQUIRED. Unique report identifier.
-        reportDate:
-          type: string
-          format: date
-          description: REQUIRED. Report date.
-        parties:
-          $ref: '#/components/schemas/InventoryParties'
+          description: Unit cost price.
         references:
           $ref: '#/components/schemas/References'
+    855_PURCHASE_ORDER_ACKNOWLEDGMENT:
+      type: object
+      description: Purchase Order Acknowledgment document - Supplier confirms or rejects order.
+      properties:
+        purchaseOrderNumber:
+          type: string
+          description: REQUIRED. Original PO number being acknowledged (BAK03).
+        status:
+          type: string
+          description: REQUIRED. Overall acknowledgment status (BAK02).
+          enum:
+          - accepted
+          - rejected
+        statusReasonCode:
+          type: string
+          description: Reason code for status.
+          enum:
+          - discontinued
+          - invalidAddress
+          - invalidBillToCode
+          - invalidItemNumber
+          - invalidPrice
+          - invalidItemQuantity
+          - invalidShipFrom
+          - invalidShipMethod
+          - invalidShipToName
+          - invalidShipToAddress1
+          - invalidShipToAddress2
+          - invalidShipToCity
+          - invalidShipToStateOrProvince
+          - invalidShipToPostalCode
+          - invalidShipToCountry
+          - itemRecall
+          - itemSetupIssue
+          - mainlandOnly
+          - missingLineItemId
+          - missingOrderId
+          - missingShipId
+          - naturalDisaster
+          - outOfStock
+          - seasonalOrEndOfLife
+          - shippingInFull
+          - systemIssue
+          - taxNexusIssue
+          - transportationIssuePrepaid
+          - transportationIssueCollect
+          - undeliverableAddress
+          - weather
+        statusNote:
+          $ref: '#/components/schemas/NoteDetail'
         dates:
-          $ref: '#/components/schemas/InventoryDates'
-        sellersCurrency:
+          $ref: '#/components/schemas/POAckDates'
+        parties:
           type: object
           properties:
-            currencyCode:
-              type: string
-        notes:
-          $ref: '#/components/schemas/Notes'
+            shipFrom:
+              $ref: '#/components/schemas/Party'
+            supplier:
+              $ref: '#/components/schemas/Party'
+        termsOfSale:
+          $ref: '#/components/schemas/TermsOfSale'
         lineItems:
           type: array
-          description: REQUIRED. Inventory line items.
-          minItems: 1
+          description: Acknowledgment line items.
           items:
-            $ref: '#/components/schemas/InventoryLineItem'
-    PhysicalDetails:
-      type: object
-      properties:
-        numberOfUnits:
-          type: string
-        packageForm:
-          type: string
-          enum:
-          - carton
-          - case
-          - pallet
-          - bag
-          - box
-          - bundle
-          - drum
-          - roll
-        weight:
-          type: string
-        weightUnit:
-          type: string
-          enum:
-          - pound
-          - kilogram
-          - ounce
-          - gram
-        volume:
-          type: string
-        volumeUnit:
-          type: string
+            $ref: '#/components/schemas/POAckLineItem'
     GetTransactionDeliveryResponseDto:
       type: object
       required:
@@ -2819,105 +2703,101 @@ components:
           format: date-time
           description: Datetime the delivery was failed or approved
           example: '2025-10-02T16:46:11.943Z'
-    InvoiceParties:
+    DestinationQuantity:
       type: object
-      description: Parties involved in invoice.
       properties:
-        buyer:
-          description: Buyer company (N1 segment, BY).
-          allOf:
-          - $ref: '#/components/schemas/Party'
-        shipTo:
-          description: Ship-to location (N1 segment, ST).
-          allOf:
-          - $ref: '#/components/schemas/Party'
-        billTo:
-          description: Bill-to location (N1 segment, BT).
-          allOf:
-          - $ref: '#/components/schemas/Party'
-        accountsReceivable:
-          description: Accounts receivable / Remit To / Payee (N1*RI or PER*AR).
-          allOf:
-          - $ref: '#/components/schemas/Party'
-        accountsPayable:
-          description: Accounts payable / Payer for credits (N1*15 or PER*AP).
-          allOf:
-          - $ref: '#/components/schemas/Party'
-    CreateTransactionBodyV4Dto:
+        identificationCode:
+          type: string
+        identificationCodeType:
+          type: string
+        quantity:
+          type: string
+    InvoiceDates:
       type: object
-      required:
-      - type
-      - stream
-      - message
-      - senderId
-      - receiverId
+      description: Invoice-related dates.
       properties:
-        type:
+        shipDate:
           type: string
-          description: The type of Transaction to be created. Please refer to our <a href="https://docs.orderful.com/reference/available-transaction-types" target="_blank">list of available Transaction Types</a>.
-          enum:
-          - 850_PURCHASE_ORDER
-          - 855_PURCHASE_ORDER_ACKNOWLEDGMENT
-          - 856_SHIP_NOTICE_MANIFEST
-          - 810_INVOICE
-          - 846_INVENTORY_ADVICE
-          - 860_PURCHASE_ORDER_CHANGE
-          example: 850_PURCHASE_ORDER
-        stream:
+          format: date
+        deliveryDate:
           type: string
-          description: Name of stream to create the transaction on.
-          enum:
-          - test
-          - live
-          example: test
-          default: test
-        senderId:
+          format: date
+        termsNetDueDate:
           type: string
-          description: Sender identifier.
-        receiverId:
+          format: date
+        termsDiscountDueDate:
           type: string
-          description: Receiver identifier.
-        message:
-          description: Transaction document in the structure defined by the specified type.
-          oneOf:
-          - $ref: '#/components/schemas/850_PURCHASE_ORDER'
-          - $ref: '#/components/schemas/855_PURCHASE_ORDER_ACKNOWLEDGMENT'
-          - $ref: '#/components/schemas/856_SHIP_NOTICE_MANIFEST'
-          - $ref: '#/components/schemas/810_INVOICE'
-          - $ref: '#/components/schemas/846_INVENTORY_ADVICE'
-          - $ref: '#/components/schemas/860_PURCHASE_ORDER_CHANGE'
-    Conditions:
+          format: date
+    AsnItemReferences:
+      type: object
+      description: Item-level references for ASN shipments.
+      properties:
+        heatCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+        billOfMaterial:
+          $ref: '#/components/schemas/ReferenceDetail'
+        barCode:
+          $ref: '#/components/schemas/ReferenceDetail'
+    Paperwork:
       type: object
       properties:
         type:
           type: string
         description:
           type: string
-    HeaderMonetaryAmounts:
+        required:
+          type: boolean
+    POAckLineItem:
       type: object
-      description: Header-level monetary amounts.
+      description: Line item acknowledgment details.
       properties:
-        net:
+        purchaseOrderLineId:
           type: string
-          description: Net amount.
-        gross:
-          type: string
-          description: Gross amount.
-        discount:
-          type: string
-          description: Discount amount.
-        freight:
-          type: string
-          description: Freight amount.
-    MonetaryAmounts:
+          description: Original PO line item ID.
+        productIds:
+          $ref: '#/components/schemas/ProductIds'
+        productAttributes:
+          $ref: '#/components/schemas/ProductAttributes'
+        actions:
+          type: array
+          description: REQUIRED. Actions for this line item.
+          items:
+            $ref: '#/components/schemas/POAckAction'
+    AsnReferences:
       type: object
       properties:
-        lineTotal:
-          type: string
-        unitPrice:
-          type: string
-        extendedPrice:
-          type: string
+        appointmentNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        billOfLadingNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        loadPlanningNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        pickupReferenceNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        proNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        trackingNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+        vendorNumber:
+          $ref: '#/components/schemas/ReferenceDetail'
+    Parties:
+      type: object
+      description: Trading partner information.
+      properties:
+        buyer:
+          $ref: '#/components/schemas/Party'
+        shipTo:
+          $ref: '#/components/schemas/Party'
+        billTo:
+          $ref: '#/components/schemas/Party'
+        shipFrom:
+          $ref: '#/components/schemas/Party'
+        accountsPayable:
+          $ref: '#/components/schemas/Party'
+        soldTo:
+          $ref: '#/components/schemas/Party'
+        supplier:
+          $ref: '#/components/schemas/Party'
     AsnOrder:
       type: object
       description: Order within a shipment.
@@ -2951,6 +2831,126 @@ components:
           description: Items directly on order (no pallets or cartons, SOI hierarchy).
           items:
             $ref: '#/components/schemas/AsnItem'
+    CarrierWeightDetails:
+      type: object
+      properties:
+        packageForm:
+          type: string
+          enum:
+          - bag
+          - carton
+          - pallet
+        packageMaterial:
+          type: string
+          enum:
+          - corrugated
+          - plastic
+          - plasticVacuumed
+          - standard
+          - wood
+        weightUOM:
+          type: string
+          enum:
+          - pound
+          - kilogram
+        grossWeight:
+          type: string
+        netWeight:
+          type: string
+    InventoryDates:
+      type: object
+      description: Inventory report date range.
+      properties:
+        reportStartDate:
+          type: string
+          format: date
+        reportEndDate:
+          type: string
+          format: date
+    AsnPallet:
+      type: object
+      description: Pallet in shipment.
+      properties:
+        palletType:
+          type: string
+          enum:
+          - chep
+          - iGps
+          - peco
+          - whiteWood
+          - hardWood
+          - aluminum
+          - specifiedByDOT
+          - metal
+          - standard
+          - steel
+          - wood
+          - slipsheet
+          - softWood
+        trackingNumber:
+          type: string
+        serialShippingId:
+          type: string
+          description: SSCC-18 code.
+        layersPerPallet:
+          type: integer
+        cartonsPerLayer:
+          type: integer
+        palletExchangeType:
+          type: string
+          description: Pallet exchange type.
+          enum:
+          - noExchangeOrReturn
+          - exchange
+          - return
+          - customerPurchase
+          - thirdPartyExchange
+        palletPhysicalDetails:
+          $ref: '#/components/schemas/PhysicalDetails'
+        cartons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AsnCarton'
+        items:
+          type: array
+          description: Items directly on pallet (no cartons).
+          items:
+            $ref: '#/components/schemas/AsnItem'
+    POAckAction:
+      type: object
+      description: Acknowledgment action (accepted, rejected, or backordered).
+      properties:
+        status:
+          type: string
+          description: REQUIRED. Action status.
+          enum:
+          - accepted
+          - rejected
+          - backordered
+        statusReasonCode:
+          type: string
+          description: Reason code for rejected/backordered status.
+        statusNote:
+          $ref: '#/components/schemas/NoteDetail'
+        quantity:
+          $ref: '#/components/schemas/Quantity'
+        scheduledShipDate:
+          type: string
+          format: date
+          description: Scheduled ship date.
+        estimatedDeliveryDate:
+          type: string
+          format: date
+          description: Estimated delivery date.
+        unitCostPrice:
+          type: string
+          description: Acknowledged unit price (for price changes).
+        substitutedItem:
+          type: object
+          description: Substituted product (for substitutions).
+          properties:
+            productIds:
+              $ref: '#/components/schemas/ProductIds'
   securitySchemes:
     API_KEY:
       type: apiKey
