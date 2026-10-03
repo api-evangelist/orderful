@@ -69,6 +69,51 @@ paths:
                 $ref: '#/components/schemas/ListRelationshipsResponseV3Dto'
 components:
   schemas:
+    RelationshipIdentityV3Dto:
+      type: object
+      required:
+      - ediAccountId
+      - liveIsaId
+      - testIsaId
+      - organizationId
+      - organizationName
+      - ediAccountName
+      properties:
+        ediAccountId:
+          type: number
+          description: EDI account ID.
+          example: 123
+        liveIsaId:
+          type: string
+          description: Live ISA ID.
+          example: ISA_ID
+        testIsaId:
+          type:
+          - string
+          - 'null'
+          description: Test ISA ID.
+          example: TEST_ISA_ID
+        organizationId:
+          type: number
+          description: Organization ID.
+          example: 123
+        organizationName:
+          type: string
+          description: Organization name.
+          example: Organization_Name
+        ediAccountName:
+          type: string
+          description: EDI account name.
+          example: EDI_Account_Name
+    ListRelationshipsResponseV3MetadataDto:
+      type: object
+      required:
+      - pagination
+      properties:
+        pagination:
+          description: Pagination information.
+          allOf:
+          - $ref: '#/components/schemas/PaginationV3'
     PaginationLinkV3:
       type: object
       required:
@@ -139,42 +184,15 @@ components:
           enum:
           - ENABLED
           - DISABLED
-    RelationshipIdentityV3Dto:
+    RelationshipTransactionTypeV3Dto:
       type: object
       required:
-      - ediAccountId
-      - liveIsaId
-      - testIsaId
-      - organizationId
-      - organizationName
-      - ediAccountName
+      - name
       properties:
-        ediAccountId:
-          type: number
-          description: EDI account ID.
-          example: 123
-        liveIsaId:
+        name:
           type: string
-          description: Live ISA ID.
-          example: ISA_ID
-        testIsaId:
-          type:
-          - string
-          - 'null'
-          description: Test ISA ID.
-          example: TEST_ISA_ID
-        organizationId:
-          type: number
-          description: Organization ID.
-          example: 123
-        organizationName:
-          type: string
-          description: Organization name.
-          example: Organization_Name
-        ediAccountName:
-          type: string
-          description: EDI account name.
-          example: EDI_Account_Name
+          description: Transaction type name.
+          example: 810_INVOICE
     ListRelationshipsResponseV3Dto:
       type: object
       required:
@@ -190,15 +208,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RelationshipResponseV3Dto'
-    ListRelationshipsResponseV3MetadataDto:
-      type: object
-      required:
-      - pagination
-      properties:
-        pagination:
-          description: Pagination information.
-          allOf:
-          - $ref: '#/components/schemas/PaginationV3'
     PaginationV3:
       type: object
       required:
@@ -206,15 +215,6 @@ components:
       properties:
         links:
           $ref: '#/components/schemas/PaginationLinkV3'
-    RelationshipTransactionTypeV3Dto:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Transaction type name.
-          example: 810_INVOICE
   securitySchemes:
     API_KEY:
       type: apiKey

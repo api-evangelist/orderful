@@ -83,11 +83,6 @@ components:
           type: number
       required:
       - confirmedTransactions
-    PollingDeliveryResponseDto:
-      type: object
-      properties:
-        delivery:
-          type: object
     ConfirmDeliveryItems:
       type: object
       properties:
@@ -98,6 +93,11 @@ components:
             minLength: 1
       required:
       - resourceIds
+    PollingDeliveryResponseDto:
+      type: object
+      properties:
+        delivery:
+          type: object
   securitySchemes:
     API_KEY:
       type: apiKey

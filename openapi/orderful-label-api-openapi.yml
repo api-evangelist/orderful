@@ -71,153 +71,6 @@ paths:
                   title: PDF
 components:
   schemas:
-    LabelItemDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Item number.
-        description:
-          type: string
-          description: Item description.
-        gtin:
-          type: string
-          description: GTIN identifier.
-        productDate:
-          type: string
-          description: Product date.
-        lotNumber:
-          type: string
-          description: Lot number.
-        expirationDate:
-          type: string
-          description: Expiration date.
-        upcNumber:
-          type: string
-          description: UPC number.
-        temperatureControl:
-          type: string
-          description: Temperature control requirements.
-        skuNumber:
-          type: string
-          description: SKU number.
-        color:
-          type: string
-          description: Item color.
-        size:
-          type: string
-          description: Item size.
-        style:
-          type: string
-          description: Item style.
-        buyerPartNumber:
-          type: string
-          description: Buyer part number.
-        countryOfOrigin:
-          type: string
-          description: Country of origin.
-    LabelDepartmentDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Department number.
-        name:
-          type: string
-          description: Department name.
-    LabelCarrierDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Carrier name.
-        code:
-          type: string
-          description: Carrier code (SCAC).
-    LabelShipmentDto:
-      type: object
-      properties:
-        shipmentIdentification:
-          type: string
-          description: Shipment identification number.
-        billOfLadingNumber:
-          type: string
-          description: Bill of lading number.
-        proNumber:
-          type: string
-          description: PRO number.
-        sscc-18:
-          type: string
-          description: SSCC-18 barcode value.
-        finalDestination:
-          type: string
-          description: Final destination.
-        locationNumber:
-          type: string
-          description: Location number.
-        weight:
-          type: string
-          description: Shipment weight.
-        date:
-          type: string
-          description: Shipment date.
-        sscc18LastFour:
-          type: string
-          description: Last four digits of SSCC-18.
-    LabelCartonDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Carton number.
-        max:
-          type: string
-          description: Maximum cartons.
-    LabelCaseDto:
-      type: object
-      properties:
-        pack:
-          type: string
-          description: Case pack quantity.
-        innerPack:
-          type: string
-          description: Inner pack quantity.
-        unitsPerInnerPack:
-          type: string
-          description: Units per inner pack.
-    LabelAddressDto:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Recipient name.
-        careOf:
-          type: string
-          description: Recipient care-of.
-        address1:
-          type: string
-          description: Address line 1.
-        address2:
-          type: string
-          description: Address line 2.
-        city:
-          type: string
-          description: City name.
-        state:
-          type: string
-          description: State code.
-        country:
-          type: string
-          description: Country.
-        zip:
-          type: string
-          description: Zip code.
-    LabelMerchandiseDto:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Merchandise type.
     LabelDistributionCenterDto:
       type: object
       properties:
@@ -227,57 +80,24 @@ components:
         number:
           type: string
           description: Distribution center number.
-    LabelPalletDto:
+    LabelCarrierDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Carrier name.
+        code:
+          type: string
+          description: Carrier code (SCAC).
+    LabelDepartmentDto:
       type: object
       properties:
         number:
           type: string
-          description: Pallet number.
-        max:
+          description: Department number.
+        name:
           type: string
-          description: Maximum pallets.
-        cubicDimensions:
-          type: string
-          description: Cubic dimensions.
-        weight:
-          type: string
-          description: Pallet weight.
-        units:
-          type: string
-          description: Number of units.
-    LabelVendorDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Vendor number.
-        partNumber:
-          type: string
-          description: Vendor part number.
-    LabelPurchaseOrderDto:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Purchase order number.
-        type:
-          type: string
-          description: Purchase order type.
-        processHandlingCode:
-          type: string
-          description: Process handling code.
-        customerOrderNumber:
-          type: string
-          description: Customer order number.
-        eventCode:
-          type: string
-          description: Event code.
-        markForLocationNumber:
-          type: string
-          description: Mark-for location number.
-        suggestedRetailPrice:
-          type: string
-          description: Suggested retail price.
+          description: Department name.
     GenerateLabelRequestBodyDto:
       type: object
       description: Request body for generating a UCC-128 shipping label.
@@ -717,6 +537,135 @@ components:
         optionalInformation:
           type: string
           description: Optional information.
+    LabelMerchandiseDto:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Merchandise type.
+    LabelCartonDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Carton number.
+        max:
+          type: string
+          description: Maximum cartons.
+    LabelItemDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Item number.
+        description:
+          type: string
+          description: Item description.
+        gtin:
+          type: string
+          description: GTIN identifier.
+        productDate:
+          type: string
+          description: Product date.
+        lotNumber:
+          type: string
+          description: Lot number.
+        expirationDate:
+          type: string
+          description: Expiration date.
+        upcNumber:
+          type: string
+          description: UPC number.
+        temperatureControl:
+          type: string
+          description: Temperature control requirements.
+        skuNumber:
+          type: string
+          description: SKU number.
+        color:
+          type: string
+          description: Item color.
+        size:
+          type: string
+          description: Item size.
+        style:
+          type: string
+          description: Item style.
+        buyerPartNumber:
+          type: string
+          description: Buyer part number.
+        countryOfOrigin:
+          type: string
+          description: Country of origin.
+    LabelPalletDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Pallet number.
+        max:
+          type: string
+          description: Maximum pallets.
+        cubicDimensions:
+          type: string
+          description: Cubic dimensions.
+        weight:
+          type: string
+          description: Pallet weight.
+        units:
+          type: string
+          description: Number of units.
+    LabelPurchaseOrderDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Purchase order number.
+        type:
+          type: string
+          description: Purchase order type.
+        processHandlingCode:
+          type: string
+          description: Process handling code.
+        customerOrderNumber:
+          type: string
+          description: Customer order number.
+        eventCode:
+          type: string
+          description: Event code.
+        markForLocationNumber:
+          type: string
+          description: Mark-for location number.
+        suggestedRetailPrice:
+          type: string
+          description: Suggested retail price.
+    LabelAddressDto:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Recipient name.
+        careOf:
+          type: string
+          description: Recipient care-of.
+        address1:
+          type: string
+          description: Address line 1.
+        address2:
+          type: string
+          description: Address line 2.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: State code.
+        country:
+          type: string
+          description: Country.
+        zip:
+          type: string
+          description: Zip code.
     LabelStoreDto:
       type: object
       properties:
@@ -739,6 +688,57 @@ components:
         number:
           type: string
           description: Store number.
+    LabelShipmentDto:
+      type: object
+      properties:
+        shipmentIdentification:
+          type: string
+          description: Shipment identification number.
+        billOfLadingNumber:
+          type: string
+          description: Bill of lading number.
+        proNumber:
+          type: string
+          description: PRO number.
+        sscc-18:
+          type: string
+          description: SSCC-18 barcode value.
+        finalDestination:
+          type: string
+          description: Final destination.
+        locationNumber:
+          type: string
+          description: Location number.
+        weight:
+          type: string
+          description: Shipment weight.
+        date:
+          type: string
+          description: Shipment date.
+        sscc18LastFour:
+          type: string
+          description: Last four digits of SSCC-18.
+    LabelCaseDto:
+      type: object
+      properties:
+        pack:
+          type: string
+          description: Case pack quantity.
+        innerPack:
+          type: string
+          description: Inner pack quantity.
+        unitsPerInnerPack:
+          type: string
+          description: Units per inner pack.
+    LabelVendorDto:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Vendor number.
+        partNumber:
+          type: string
+          description: Vendor part number.
   securitySchemes:
     API_KEY:
       type: apiKey
