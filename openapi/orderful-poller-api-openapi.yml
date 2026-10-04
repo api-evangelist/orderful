@@ -76,6 +76,11 @@ paths:
       - API_KEY: []
 components:
   schemas:
+    PollingDeliveryResponseDto:
+      type: object
+      properties:
+        delivery:
+          type: object
     ConfirmDeliveryResponse:
       type: object
       properties:
@@ -93,11 +98,6 @@ components:
             minLength: 1
       required:
       - resourceIds
-    PollingDeliveryResponseDto:
-      type: object
-      properties:
-        delivery:
-          type: object
   securitySchemes:
     API_KEY:
       type: apiKey
