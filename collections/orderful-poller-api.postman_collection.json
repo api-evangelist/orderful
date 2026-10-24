@@ -1,293 +1,329 @@
 {
+  "info": {
+    "_postman_id": "e936bed2-d671-4b49-b8ed-bc9066311b4b",
+    "name": "Orderful Poller API",
+    "description": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:49:01.000Z",
+    "updatedAt": "2026-10-21T20:49:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e936bed2-d671-4b49-b8ed-bc9066311b4b"
+  },
   "item": [
     {
-      "id": "797e1f75-1b9c-4c65-8476-b4b0adc32581",
-      "name": "Poller",
-      "description": {
-        "content": "Retrieve and confirm transactions from polling buckets.",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "f7b070f6-28e8-4591-a569-7a5fb93af86c",
-          "name": "Remove a set of Transactions from a Bucket",
-          "request": {
-            "name": "Remove a set of Transactions from a Bucket",
-            "description": {
-              "content": "Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as <a href=\"https://docs.orderful.com/reference/deliverycontroller_handledeliveryapproved\" target=\"_blank\">Approved</a> or <a href=\"https://docs.orderful.com/reference/deliverycontroller_handlefaildeliveryrequest\" target=\"_blank\">Failed</a>. This will automatically remove the Transaction from the Bucket.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "polling-buckets",
-                ":id",
-                "confirm-retrieval"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<number>",
-                  "key": "id",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "orderful-api-key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"resourceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "polling-buckets",
+          "item": [
             {
-              "id": "6f10ebae-c4d3-4900-9ff2-48c1e1213aaf",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "polling-buckets",
-                    ":id",
-                    "confirm-retrieval"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<number>",
-                      "key": "id",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "orderful-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"resourceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{id}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "confirm-retrieval",
+                  "item": [
+                    {
+                      "name": "Remove a set of Transactions from a Bucket",
+                      "id": "8373ab71-41b4-4e87-be51-681881d47b36",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "orderful-api-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"resourceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/polling-buckets/:id/confirm-retrieval",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "polling-buckets",
+                            ":id",
+                            "confirm-retrieval"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6459d6fc-db8b-471e-b36d-5705a117bf8d",
+                              "key": "id",
+                              "value": "<number>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Orderful will soon deprecate this endpoint. After retrieving Transactions from a Polling Bucket, you should use the Delivery API to mark a Delivery as Approved or Failed. This will automatically remove the Transaction from the Bucket."
+                      },
+                      "response": [
+                        {
+                          "id": "21cd03e0-eb6b-4607-a05e-8f0dbdfafdb1",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "orderful-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"resourceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/polling-buckets/:id/confirm-retrieval",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "polling-buckets",
+                                ":id",
+                                "confirm-retrieval"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"confirmedTransactions\": \"<number>\"\n}",
+                          "createdAt": "2026-10-21T20:49:02.000Z",
+                          "updatedAt": "2026-10-21T20:49:02.000Z",
+                          "uid": "35240-21cd03e0-eb6b-4607-a05e-8f0dbdfafdb1"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:49:02.000Z",
+                      "updatedAt": "2026-10-21T20:49:02.000Z",
+                      "uid": "35240-8373ab71-41b4-4e87-be51-681881d47b36"
+                    }
+                  ],
+                  "id": "8b7f7e44-8f9b-4c1b-8d79-ba2033e08788",
+                  "createdAt": "2026-10-21T20:49:02.000Z",
+                  "updatedAt": "2026-10-21T20:49:02.000Z",
+                  "uid": "35240-8b7f7e44-8f9b-4c1b-8d79-ba2033e08788"
                 }
               ],
-              "body": "{\n  \"confirmedTransactions\": 7745.688187539762\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fd5f5823-e53b-4839-a180-0d24993ff1c3",
+              "createdAt": "2026-10-21T20:49:02.000Z",
+              "updatedAt": "2026-10-21T20:49:02.000Z",
+              "uid": "35240-fd5f5823-e53b-4839-a180-0d24993ff1c3"
+            },
+            {
+              "name": "{bucketId}",
+              "item": [
+                {
+                  "name": "Get Transactions from Poller Bucket",
+                  "id": "31952405-9f33-456f-ab83-150ab15dd803",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "orderful-api-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/polling-buckets/:bucketId?limit=<number>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "polling-buckets",
+                        ":bucketId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size.",
+                          "key": "limit",
+                          "value": "<number>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "825a2e91-341b-41d4-bce4-1bb937d9d62f",
+                          "key": "bucketId",
+                          "value": "<number>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the Transactions from the specified Poller Bucket."
+                  },
+                  "response": [
+                    {
+                      "id": "4655b4a9-b62c-4bc1-8496-f878db8b231f",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "orderful-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/polling-buckets/:bucketId?limit=<number>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "polling-buckets",
+                            ":bucketId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size.",
+                              "key": "limit",
+                              "value": "<number>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "bucketId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"delivery\": {}\n  },\n  {\n    \"delivery\": {}\n  }\n]",
+                      "createdAt": "2026-10-21T20:49:02.000Z",
+                      "updatedAt": "2026-10-21T20:49:02.000Z",
+                      "uid": "35240-4655b4a9-b62c-4bc1-8496-f878db8b231f"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:49:02.000Z",
+                  "updatedAt": "2026-10-21T20:49:02.000Z",
+                  "uid": "35240-31952405-9f33-456f-ab83-150ab15dd803"
+                }
+              ],
+              "id": "37f27c35-88b9-4982-8b5e-ac674faf1537",
+              "createdAt": "2026-10-21T20:49:02.000Z",
+              "updatedAt": "2026-10-21T20:49:02.000Z",
+              "uid": "35240-37f27c35-88b9-4982-8b5e-ac674faf1537"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cbb7f73e-7677-4916-b4ab-a5b11e3bd8a9",
-          "name": "Get Transactions from Poller Bucket",
-          "request": {
-            "name": "Get Transactions from Poller Bucket",
-            "description": {
-              "content": "Retrieves the Transactions from the specified Poller Bucket.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "polling-buckets",
-                ":bucketId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<number>",
-                  "description": "Value can be `1-100`. Default value is `30`. **Note:** Response size is limited to 200MB. We will return the maximum number of transactions possible without exceeding either the specified `limit` or the maximum response size."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<number>",
-                  "key": "bucketId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "orderful-api-key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "9b5dc524-4597-4092-9905-9d59539f462e",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "polling-buckets",
-                    ":bucketId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "<number>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<number>",
-                      "key": "bucketId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "orderful-api-key",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"delivery\": {}\n  },\n  {\n    \"delivery\": {}\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "878cd05b-dbce-46b9-8296-93dc81a54a6f",
+          "createdAt": "2026-10-21T20:49:02.000Z",
+          "updatedAt": "2026-10-21T20:49:02.000Z",
+          "uid": "35240-878cd05b-dbce-46b9-8296-93dc81a54a6f"
         }
       ],
-      "event": []
+      "id": "571879a1-3e18-4a22-ab9b-192526486f46",
+      "createdAt": "2026-10-21T20:49:02.000Z",
+      "updatedAt": "2026-10-21T20:49:02.000Z",
+      "uid": "35240-571879a1-3e18-4a22-ab9b-192526486f46"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.orderful.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.orderful.com"
     }
-  ],
-  "info": {
-    "_postman_id": "6f272a9a-8d1c-41f0-91fa-aebc9414c306",
-    "name": "Orderful Conversion Poller API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

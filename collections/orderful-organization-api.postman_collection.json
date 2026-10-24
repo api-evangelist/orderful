@@ -1,118 +1,129 @@
 {
+  "info": {
+    "_postman_id": "a676b483-7379-44ba-b5e6-6a0d93897b68",
+    "name": "Orderful Organization API",
+    "description": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:48:56.000Z",
+    "updatedAt": "2026-10-21T20:48:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a676b483-7379-44ba-b5e6-6a0d93897b68"
+  },
   "item": [
     {
-      "id": "4a5b9f00-78fb-4a2e-be25-68173f2a252d",
-      "name": "Organization",
-      "description": {
-        "content": "Retrieve organization information.",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "1499d14a-0ca6-40b2-9750-e30628d5fef6",
-          "name": "Get your Organization details",
-          "request": {
-            "name": "Get your Organization details",
-            "description": {
-              "content": "Retrieves the Organization information for the current user.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "organizations",
-                "me"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your Orderful API key.",
-                "key": "orderful-api-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "organizations",
+          "item": [
             {
-              "id": "bc0d1025-4514-42f9-8675-6d6bbab3e5b4",
-              "name": "Organization details.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "organizations",
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Your Orderful API key.",
-                    "key": "orderful-api-key",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "me",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Get your Organization details",
+                  "id": "4de944a2-a846-4c82-a500-cede0d69265b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "(Required) Your Orderful API key.",
+                        "key": "orderful-api-key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/organizations/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "organizations",
+                        "me"
+                      ]
+                    },
+                    "description": "Retrieves the Organization information for the current user."
+                  },
+                  "response": [
+                    {
+                      "id": "8adf0764-e88a-4c70-b052-934a86c74b00",
+                      "name": "Organization details.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "(Required) Your Orderful API key.",
+                            "key": "orderful-api-key",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/organizations/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "organizations",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"ediAccounts\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"liveIsaId\": \"<string>\",\n      \"testIsaId\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"liveIsaId\": \"<string>\",\n      \"testIsaId\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-21T20:48:57.000Z",
+                      "updatedAt": "2026-10-21T20:48:57.000Z",
+                      "uid": "35240-8adf0764-e88a-4c70-b052-934a86c74b00"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:48:57.000Z",
+                  "updatedAt": "2026-10-21T20:48:57.000Z",
+                  "uid": "35240-4de944a2-a846-4c82-a500-cede0d69265b"
                 }
               ],
-              "body": "{\n  \"id\": \"123\",\n  \"name\": \"Orderful\",\n  \"ediAccounts\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"liveIsaId\": \"string\",\n      \"testIsaId\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"liveIsaId\": \"string\",\n      \"testIsaId\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "fe8a306e-cda8-4760-983b-5737315e7346",
+              "createdAt": "2026-10-21T20:48:57.000Z",
+              "updatedAt": "2026-10-21T20:48:57.000Z",
+              "uid": "35240-fe8a306e-cda8-4760-983b-5737315e7346"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "651d38d3-2dbf-4227-bab6-7788dd22e8c5",
+          "createdAt": "2026-10-21T20:48:57.000Z",
+          "updatedAt": "2026-10-21T20:48:57.000Z",
+          "uid": "35240-651d38d3-2dbf-4227-bab6-7788dd22e8c5"
         }
       ],
-      "event": []
+      "id": "19d1ac84-84fb-4dc5-9807-3979eeef51df",
+      "createdAt": "2026-10-21T20:48:57.000Z",
+      "updatedAt": "2026-10-21T20:48:57.000Z",
+      "uid": "35240-19d1ac84-84fb-4dc5-9807-3979eeef51df"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.orderful.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.orderful.com"
     }
-  ],
-  "info": {
-    "_postman_id": "8548e3c1-5654-449f-b896-b242a713cb46",
-    "name": "Orderful Conversion Organization API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

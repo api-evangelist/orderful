@@ -1,149 +1,146 @@
 {
+  "info": {
+    "_postman_id": "2effcd66-958f-412a-8e17-894684783073",
+    "name": "Orderful Conversion API",
+    "description": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:48:35.000Z",
+    "updatedAt": "2026-10-21T20:48:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2effcd66-958f-412a-8e17-894684783073"
+  },
   "item": [
     {
-      "id": "d5e4bf0a-4330-4c09-83ec-83a7ff3d528c",
-      "name": "Conversion",
-      "description": {
-        "content": "Convert data between EDI X12 and JSON formats.",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "92be3988-6a9c-4256-8597-65f45a66dc9a",
-          "name": "Convert Data Between Formats",
-          "request": {
-            "name": "Convert Data Between Formats",
-            "description": {
-              "content": "This endpoint will convert JSON into X12, or X12 into JSON. Set the \"Content-Type\" header as the format you are sending, and the \"Accept\" header as the format you would like to receive back.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "convert"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Your Orderful API key.",
-                "key": "orderful-api-key",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "convert",
+          "item": [
             {
-              "id": "560f6bcb-44f5-4dee-b945-94410ad7a472",
-              "name": "Data converted successfully.",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "convert"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+              "name": "Convert Data Between Formats",
+              "id": "554b9788-708b-4956-8111-a63be7ab0878",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "disabled": false,
                     "description": "(Required) Your Orderful API key.",
                     "key": "orderful-api-key",
                     "value": "<string>"
                   },
                   {
-                    "disabled": false,
-                    "description": "(Required) ",
                     "key": "Content-Type",
-                    "value": "application/edi-x12"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) ",
-                    "key": "Accept",
-                    "value": "application/edi-x12"
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "<object>",
+                  "raw": "{}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v3/convert",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "convert"
+                  ]
+                },
+                "description": "This endpoint will convert JSON into X12, or X12 into JSON. Set the \"Content-Type\" header as the format you are sending, and the \"Accept\" header as the format you would like to receive back."
               },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "8240f3b4-e1d8-4212-96d2-ee14201ead2f",
+                  "name": "Data converted successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) Your Orderful API key.",
+                        "key": "orderful-api-key",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/convert",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "convert"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-21T20:48:36.000Z",
+                  "updatedAt": "2026-10-21T20:48:36.000Z",
+                  "uid": "35240-8240f3b4-e1d8-4212-96d2-ee14201ead2f"
                 }
               ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T20:48:36.000Z",
+              "updatedAt": "2026-10-21T20:48:36.000Z",
+              "uid": "35240-554b9788-708b-4956-8111-a63be7ab0878"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "2710c323-90fc-4553-a325-b115b7fac20b",
+          "createdAt": "2026-10-21T20:48:36.000Z",
+          "updatedAt": "2026-10-21T20:48:36.000Z",
+          "uid": "35240-2710c323-90fc-4553-a325-b115b7fac20b"
         }
       ],
-      "event": []
+      "id": "56fe4264-422e-40c5-abe6-783eba270a63",
+      "createdAt": "2026-10-21T20:48:36.000Z",
+      "updatedAt": "2026-10-21T20:48:36.000Z",
+      "uid": "35240-56fe4264-422e-40c5-abe6-783eba270a63"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.orderful.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.orderful.com"
     }
-  ],
-  "info": {
-    "_postman_id": "0baa43e9-31aa-4a26-86ec-a0cb2bb6be06",
-    "name": "Orderful Conversion API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

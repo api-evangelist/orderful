@@ -1,288 +1,319 @@
 {
+  "info": {
+    "_postman_id": "a2ffc55a-ee73-4558-be40-ee15f1951fce",
+    "name": "Orderful Delivery API",
+    "description": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:48:40.000Z",
+    "updatedAt": "2026-10-21T20:48:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a2ffc55a-ee73-4558-be40-ee15f1951fce"
+  },
   "item": [
     {
-      "id": "9defe7d9-fb5b-4028-8972-ceb416a90a7a",
-      "name": "Delivery",
-      "description": {
-        "content": "Approve or fail transaction deliveries.",
-        "type": "text/plain"
-      },
+      "name": "v3",
       "item": [
         {
-          "id": "79b7e8a9-121b-454b-8fc0-38efc29cafb4",
-          "name": "Approve a Delivery",
-          "request": {
-            "name": "Approve a Delivery",
-            "description": {
-              "content": "Approves the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "deliveries",
-                ":deliveryId",
-                "approve"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "deliveryId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "orderful-api-key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"note\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "deliveries",
+          "item": [
             {
-              "id": "d3e52b2e-f83f-4d3f-a5a4-42613098cd88",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "deliveries",
-                    ":deliveryId",
-                    "approve"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deliveryId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "orderful-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"note\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{deliveryId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "approve",
+                  "item": [
+                    {
+                      "name": "Approve a Delivery",
+                      "id": "4daf852d-567b-4cc6-ac89-5ac20bdb3ea9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "orderful-api-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/deliveries/:deliveryId/approve",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "deliveries",
+                            ":deliveryId",
+                            "approve"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b611fe65-8838-4823-a15a-dc93bbbb7628",
+                              "key": "deliveryId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Approves the specified Delivery. This link is included when a Transaction is retrieved from a Poller Bucket or via an Inbound HTTP Communication Channel.\n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `DELIVERED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket."
+                      },
+                      "response": [
+                        {
+                          "id": "12634696-2322-4681-9b6a-d29163d35374",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "orderful-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/deliveries/:deliveryId/approve",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "deliveries",
+                                ":deliveryId",
+                                "approve"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deliveryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:48:41.000Z",
+                          "updatedAt": "2026-10-21T20:48:41.000Z",
+                          "uid": "35240-12634696-2322-4681-9b6a-d29163d35374"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:48:41.000Z",
+                      "updatedAt": "2026-10-21T20:48:41.000Z",
+                      "uid": "35240-4daf852d-567b-4cc6-ac89-5ac20bdb3ea9"
+                    }
+                  ],
+                  "id": "55338548-e2f8-4ff6-b934-c4590ea57c15",
+                  "createdAt": "2026-10-21T20:48:41.000Z",
+                  "updatedAt": "2026-10-21T20:48:41.000Z",
+                  "uid": "35240-55338548-e2f8-4ff6-b934-c4590ea57c15"
+                },
+                {
+                  "name": "fail",
+                  "item": [
+                    {
+                      "name": "Fail a Delivery",
+                      "id": "fc07cd87-dd31-41bf-ac0d-dd5777a47272",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "orderful-api-key",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/deliveries/:deliveryId/fail",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "deliveries",
+                            ":deliveryId",
+                            "fail"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d14470eb-5d15-4344-a5da-2a6ffda9cd54",
+                              "key": "deliveryId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Fails the specified Delivery. This link is included when a Transaction is retrieved from a Poller Bucket or via an Inbound HTTP Communication Channel.\n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket."
+                      },
+                      "response": [
+                        {
+                          "id": "69e66f52-cfd9-42f4-9d06-d91d752b68f6",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "orderful-api-key",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/deliveries/:deliveryId/fail",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "deliveries",
+                                ":deliveryId",
+                                "fail"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "deliveryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-21T20:48:41.000Z",
+                          "updatedAt": "2026-10-21T20:48:41.000Z",
+                          "uid": "35240-69e66f52-cfd9-42f4-9d06-d91d752b68f6"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:48:41.000Z",
+                      "updatedAt": "2026-10-21T20:48:41.000Z",
+                      "uid": "35240-fc07cd87-dd31-41bf-ac0d-dd5777a47272"
+                    }
+                  ],
+                  "id": "b5cf8b45-fd04-49ec-9522-78e24d5b12e9",
+                  "createdAt": "2026-10-21T20:48:41.000Z",
+                  "updatedAt": "2026-10-21T20:48:41.000Z",
+                  "uid": "35240-b5cf8b45-fd04-49ec-9522-78e24d5b12e9"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "d36c6903-4138-410b-b810-2b5bede2896f",
+              "createdAt": "2026-10-21T20:48:41.000Z",
+              "updatedAt": "2026-10-21T20:48:41.000Z",
+              "uid": "35240-d36c6903-4138-410b-b810-2b5bede2896f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dbf40336-6e81-495f-8128-a67fc2c59a1a",
-          "name": "Fail a Delivery",
-          "request": {
-            "name": "Fail a Delivery",
-            "description": {
-              "content": "Fails the specified Delivery. This link is included when a Transaction is retrieved from a <a href=\"https://docs.orderful.com/reference/pollingcontroller_list\" target=\"_blank\">Poller Bucket</a> or via an <a href=\"https://docs.orderful.com/docs/inbound-http\" target=\"_blank\">Inbound HTTP Communication Channel</a>. \n\nIf this Delivery is the most recent one associated with a Transaction, this will update the Transaction's `deliveryStatus` to `FAILED`.\n\nIf this Delivery is associated with one or more Transactions in a Poller Bucket, this will also remove the Transactions from that Bucket.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v3",
-                "deliveries",
-                ":deliveryId",
-                "fail"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "deliveryId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
-                {
-                  "key": "key",
-                  "value": "orderful-api-key"
-                },
-                {
-                  "key": "value",
-                  "value": "{{apiKey}}"
-                },
-                {
-                  "key": "in",
-                  "value": "header"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"note\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0614a42c-ce3f-4281-a391-87f10e04397a",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v3",
-                    "deliveries",
-                    ":deliveryId",
-                    "fail"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "deliveryId",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "orderful-api-key",
-                    "value": "<API Key>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"note\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e3eaf14f-9650-4599-84f7-8bfe3cde8ebe",
+          "createdAt": "2026-10-21T20:48:41.000Z",
+          "updatedAt": "2026-10-21T20:48:41.000Z",
+          "uid": "35240-e3eaf14f-9650-4599-84f7-8bfe3cde8ebe"
         }
       ],
-      "event": []
+      "id": "0c3d489e-2d9a-489b-b055-3c248fbdc45f",
+      "createdAt": "2026-10-21T20:48:41.000Z",
+      "updatedAt": "2026-10-21T20:48:41.000Z",
+      "uid": "35240-0c3d489e-2d9a-489b-b055-3c248fbdc45f"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.orderful.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.orderful.com"
     }
-  ],
-  "info": {
-    "_postman_id": "4b3a1755-1d2b-4714-a381-f16180ef4e62",
-    "name": "Orderful Conversion Delivery API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The official Orderful API documentation.\n\nContact Support:\n Name: Orderful\n Email: developers@orderful.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
