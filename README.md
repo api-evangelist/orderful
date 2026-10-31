@@ -64,6 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Orderful is a company surfaced as a portfolio company of a16z, initialized-capital and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Orderful is a modern B2B trading and EDI platform that lets companies connect once to transact with any partner in their supply chain without building custom integrations. Its Mosaic API turns X12 and EDIFACT electronic data interchange into simple JSON, handling mapping, validation, testing, and compliance so suppliers, retailers, 3PLs, and carriers can exchange purchase orders (850), acknowledgments (855), ship notices (856), invoices (810), inventory advices (846), warehouse (940-series) and other transaction sets over a REST API, HTTP webhooks, AS2, SFTP, and VAN. The platform advertises 10,000+ trading partners, 50M+ transactions, and 99.99% network uptime, with US and EU regional data residency, Web EDI (Pixel), and GS1 UCC-128 shipping labels.
 
-Backed by: a16z, initialized-capital — http://orderful.com/
+**Areas:** Company · EDI · Electronic Data Interchange · Supply Chain · B2B · Logistics · Retail · Transaction · Integration
+
+## Orderful on APIs.io
+
+Everything profiled for Orderful is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/orderful/](https://apis.io/providers/orderful/)** — or go straight to one of the APIs or properties below.
+
+### APIs (9)
+
+- [Orderful Conversion API](https://apis.io/apis/orderful/orderful-conversion-api/) — Convert data between EDI X12 and JSON formats.
+- [Orderful Delivery API](https://apis.io/apis/orderful/orderful-delivery-api/) — Approve or fail transaction deliveries.
+- [Orderful Inbox API](https://apis.io/apis/orderful/orderful-inbox-api/) — Retrieve transactions from inboxes.
+- [Orderful Label API](https://apis.io/apis/orderful/orderful-label-api/) — Generate UCC-128 shipping labels.
+- [Orderful Organization API](https://apis.io/apis/orderful/orderful-organization-api/) — Retrieve organization information.
+- [Orderful Poller API](https://apis.io/apis/orderful/orderful-poller-api/) — Retrieve and confirm transactions from polling buckets.
+- [Orderful Relationship API](https://apis.io/apis/orderful/orderful-relationship-api/) — Manage trading partner relationships.
+- [Orderful Transaction API](https://apis.io/apis/orderful/orderful-transaction-api/) — Create and manage EDI transactions.
+- [Orderful Transaction (v3) API](https://apis.io/apis/orderful/orderful-transaction-v3-api/) — Create and manage EDI transactions using the v3 API.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (1)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Orderful Order-to-Cash](https://apis.io/arazzos/orderful/orderful-order-to-cash/)
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Orderful Webhooks](https://apis.io/asyncapis/orderful/orderful-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [orderful](https://apis.io/servers/orderful/orderful/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Orderful Agentic Access](https://apis.io/agentic-access/orderful/orderful-agentic-access/)
+
+#### Collections (9)
+
+Postman and Open Collection request collections.
+
+- [Orderful Conversion API](https://apis.io/collections/orderful/open-orderful-conversion-api/)
+- [Orderful Conversion Delivery API](https://apis.io/collections/orderful/open-orderful-delivery-api/)
+- [Orderful Conversion Inbox API](https://apis.io/collections/orderful/open-orderful-inbox-api/)
+- [Orderful Conversion Label API](https://apis.io/collections/orderful/open-orderful-label-api/)
+- [Orderful Conversion Organization API](https://apis.io/collections/orderful/open-orderful-organization-api/)
+- [Orderful Conversion Poller API](https://apis.io/collections/orderful/open-orderful-poller-api/)
+- [Orderful Conversion Relationship API](https://apis.io/collections/orderful/open-orderful-relationship-api/)
+- [Orderful Conversion Transaction API](https://apis.io/collections/orderful/open-orderful-transaction-api/)
+- [Orderful Conversion Transaction (v3) API](https://apis.io/collections/orderful/open-orderful-transaction-v3-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Orderful Openapi Overlay](https://apis.io/overlays/orderful/orderful-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Orderful Authentication](https://apis.io/security/orderful/orderful-authentication/)
+- [Orderful Domain Security](https://apis.io/security/orderful/orderful-domain-security/)
+- [Orderful Trust Center](https://apis.io/security/orderful/orderful-trust-center/)
+- [Orderful Vulnerability Disclosure](https://apis.io/security/orderful/orderful-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.orderful.com/)
+- [Documentation](https://docs.orderful.com/)
+- [Getting started](https://docs.orderful.com/reference/welcome-to-mosaic)
+- [API reference](https://docs.orderful.com/reference/overview)
+- [Pricing](https://www.orderful.com/pricing)
+- [Sign up](https://www.orderful.com/book-a-demo)
+- [Support](https://support.orderful.com/en/)
+- [Blog](https://www.orderful.com/blog)
+- [Terms of service](https://www.orderful.com/terms/terms-of-use)
+- [Privacy policy](https://www.orderful.com/terms/privacy-policy)
+- [GitHub](https://github.com/orderful)
+- [Status](https://status.orderful.com/)
+
+## API Evangelist rating
+
+**Kin Score 51.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 53.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 60.5 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 52.6 |
+
+**Agent readiness 29.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/orderful/](https://apis.io/providers/orderful/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Orderful: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/orderful/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
